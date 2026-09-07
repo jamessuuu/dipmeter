@@ -36,6 +36,8 @@ let sectionLine = null;
 let ramp = null;
 let assignedColor = null;
 let needsRender = true;
+// The control that opened the cross-section panel, so focus can be handed back on close.
+let sectionOpener = null;
 
 function setProgress(t, label) {
   const bar = document.querySelector('#loading .bar i');
@@ -301,11 +303,13 @@ function flyTo(lon, lat, distance, instant, mode) {
 // which points are on screen. Projecting the visible set on click is exact and costs one
 // pass over the arrays, which is cheap enough for a pointer event.
 
-function pickAt(clientX, clientY) {
+function pickAt(clientX, clientY, radiusPx) {
   const w = window.innerWidth, h = window.innerHeight;
   const v = new Vector3();
   let best = null;
-  const maxPx = 14;
+  // A pointer click wants a tight radius so it does not grab the wrong dot; the keyboard
+  // inspect wants a generous one, because "nearest the centre of the view" is the whole idea.
+  const maxPx = radiusPx || 14;
   for (let i = 0; i < events.count; i += 1) {
     const d = events.depth[i];
     if (d < state.depthMin || d > state.depthMax) continue;
@@ -413,8 +417,19 @@ function redrawSection() {
   for (const p of sec.points) if (p.depth > deepest) deepest = p.depth;
   for (const l of slabLines) for (const p of l.pts) if (p && p.depth > deepest) deepest = p.depth;
   const axisMax = Math.min(state.depthMax, Math.max(100, Math.ceil((deepest * 1.08) / 50) * 50));
-  $('panel-section').hidden = false;
+  // Focus moves into the panel only on the transition from hidden to shown. Doing it on every
+  // redraw would steal focus from whatever slider is being dragged.
+  const panel = $('panel-section');
+  const wasHidden = panel.hidden;
+  panel.hidden = false;
   document.body.classList.add('section-open');
+  if (wasHidden) {
+    // Move focus to the panel heading rather than the close button, so a screen reader hears
+    // what just opened instead of hearing "Close".
+    const heading = $('section-heading');
+    heading.setAttribute('tabindex', '-1');
+    heading.focus({ preventScroll: true });
+  }
   $('section-count').textContent = fmt(sec.points.length);
   $('section-length').textContent = Math.round(sec.totalKm) + ' km';
   $('section-note').textContent =
@@ -569,13 +584,48 @@ function buildUI(coastSegments, slabs) {
         flyTo(hit.lon, hit.lat, 1.05 + Math.min(1.6, hit.span / 22));
         results.hidden = true;
         search.value = hit.name;
+        // Return focus to the field the result came from, so the keyboard user is not
+        // dropped back to the top of the document.
+        search.focus();
       });
       li.appendChild(b);
       results.appendChild(li);
     }
     results.hidden = false;
   });
-  search.addEventListener('blur', () => { window.setTimeout(() => { results.hidden = true; }, 180); });
+
+  // Closing the result list on blur alone destroyed keyboard access to it: tabbing from the
+  // field INTO a result fired blur, and the timer then hid the list with focus already inside
+  // it, dropping the user to <body>. The list may only close when focus has actually left the
+  // whole combobox.
+  const focusIsInSearch = () => {
+    const a = document.activeElement;
+    return a === search || results.contains(a);
+  };
+  const maybeCloseResults = () => {
+    window.setTimeout(() => { if (!focusIsInSearch()) results.hidden = true; }, 0);
+  };
+  search.addEventListener('focusout', maybeCloseResults);
+  results.addEventListener('focusout', maybeCloseResults);
+
+  const closeResults = (returnFocus) => {
+    results.hidden = true;
+    if (returnFocus) search.focus();
+  };
+  search.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); closeResults(true); return; }
+    if (e.key === 'ArrowDown' && !results.hidden) {
+      const first = results.querySelector('button');
+      if (first) { e.preventDefault(); first.focus(); }
+    }
+  });
+  results.addEventListener('keydown', (e) => {
+    const buttons = [...results.querySelectorAll('button')];
+    const i = buttons.indexOf(document.activeElement);
+    if (e.key === 'Escape') { e.preventDefault(); closeResults(true); }
+    else if (e.key === 'ArrowDown' && i >= 0 && i < buttons.length - 1) { e.preventDefault(); buttons[i + 1].focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (i > 0) buttons[i - 1].focus(); else search.focus(); }
+  });
 
   // Section tool
   const sectionBtn = $('f-section');
@@ -594,6 +644,11 @@ function buildUI(coastSegments, slabs) {
     sectionBtn.setAttribute('aria-pressed', 'false');
     sectionBtn.textContent = 'Draw a cross section';
     needsRender = true;
+    // Hand focus back to whatever opened the panel. Without this, closing dropped focus to
+    // <body> and the next Tab restarted from the skip link at the top of the document.
+    const back = sectionOpener && document.contains(sectionOpener) ? sectionOpener : sectionBtn;
+    sectionOpener = null;
+    back.focus();
   });
   const corridor = $('f-corridor');
   corridor.addEventListener('input', () => {
@@ -607,6 +662,7 @@ function buildUI(coastSegments, slabs) {
   document.querySelectorAll('[data-section]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const [a, b] = JSON.parse(btn.dataset.section);
+      sectionOpener = btn;
       state.sectionA = a; state.sectionB = b;
       updateSectionLine();
       redrawSection();
@@ -695,6 +751,7 @@ function buildUI(coastSegments, slabs) {
         state.sectionMode = false;
         sectionBtn.setAttribute('aria-pressed', 'false');
         sectionBtn.textContent = 'Draw a cross section';
+        sectionOpener = sectionBtn;
         updateSectionLine();
         redrawSection();
       }
@@ -714,6 +771,24 @@ function buildUI(coastSegments, slabs) {
     else if (e.key === 'ArrowDown') scene.controls.rotateUp(-step);
     else if (e.key === '+' || e.key === '=') scene.controls.dollyIn(1.12);
     else if (e.key === '-' || e.key === '_') scene.controls.dollyOut(1.12);
+    else if (e.key === 'Enter' || e.key === ' ') {
+      // Per-event detail was reachable only by pointer, and the tables that would otherwise
+      // substitute are display:none while WebGL runs, so the detail was genuinely
+      // unreachable by keyboard. Enter inspects whatever is nearest the centre of the view;
+      // the arrow keys are how you choose what that is. #tip is role="status", so writing
+      // into it announces the result.
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const hit = pickAt(cx, cy, 260);
+      if (hit) showTip(hit, Math.min(cx, window.innerWidth - 260), cy);
+      else {
+        const tip = $('tip');
+        tip.textContent = 'No event near the centre of the view. Rotate with the arrow keys and try again.';
+        tip.hidden = false;
+        tip.style.left = Math.round(cx - 120) + 'px';
+        tip.style.top = Math.round(cy) + 'px';
+      }
+    } else if (e.key === 'Escape') { $('tip').hidden = true; }
     else handled = false;
     if (handled) { e.preventDefault(); scene.controls.update(); needsRender = true; }
   });

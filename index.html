@@ -21,9 +21,11 @@
 
 <a class="skip-link" href="#fallback">Skip the globe, go to the data tables</a>
 
+<main id="main">
+
 <div id="stage">
   <canvas id="gl" tabindex="0" role="application"
-    aria-label="Interactive globe of earthquake hypocentres. Use the arrow keys to rotate and the plus and minus keys to zoom. Every figure shown is also available as a table further down this page."></canvas>
+    aria-label="Interactive globe of earthquake hypocentres. Use the arrow keys to rotate, the plus and minus keys to zoom, and Enter to inspect the event nearest the centre of the view. Every figure shown is also available as a table further down this page."></canvas>
 </div>
 
 <div id="loading" aria-live="polite">
@@ -41,7 +43,7 @@
 
 <section class="panel" id="panel-readout" aria-labelledby="readout-heading">
   <h2 id="readout-heading">Showing now</h2>
-  <p class="readout-figure"><span id="visible-count">&mdash;</span>
+  <p class="readout-figure" aria-live="polite"><span id="visible-count">&mdash;</span>
     <small id="visible-share">&nbsp;</small></p>
 
   <div class="legend" aria-hidden="true">
@@ -174,15 +176,17 @@
     <button type="button" class="btn" id="section-close" aria-label="Close the cross section">Close</button>
   </div>
   <canvas id="section-canvas" role="img" aria-label="Depth section: distance across strike on the horizontal axis, depth in kilometres on the vertical axis."></canvas>
-  <p class="section-note" id="section-note"></p>
+  <p class="section-note" id="section-note" aria-live="polite"></p>
 </section>
 
 <p id="colophon">
   Sources: USGS ComCat &middot; USGS Slab2 &middot; Natural Earth. <a href="#fallback">Provenance</a>.
 </p>
 
-<main id="fallback">
+<section id="fallback" aria-labelledby="fallback-heading">
   <!--DIPMETER_FALLBACK-->
+</section>
+
 </main>
 
 <footer id="site-footer">

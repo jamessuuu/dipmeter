@@ -18,7 +18,8 @@
     "measure": "node scripts/measure-bundle.mjs",
     "shots": "node scripts/screenshots.mjs",
     "smoke": "node scripts/smoke.mjs",
-    "reference": "node scripts/measure-reference.mjs"
+    "reference": "node scripts/measure-reference.mjs",
+    "a11y": "node scripts/a11y.mjs"
   },
   "dependencies": {
     "three": "0.185.1"

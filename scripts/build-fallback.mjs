@@ -206,7 +206,7 @@ export function main() {
   const zeroDeep = manifest.zones.filter((z) => z.deepEvents === 0);
 
   const html = `<header class="fb-masthead">
-  <h1>dipmeter</h1>
+  <h1 id="fallback-heading">dipmeter</h1>
   <p class="fb-claim"><strong>${fmt(c.events)}</strong> located hypocentres against
   <strong>${manifest.zones.length}</strong> modelled slabs.</p>
   <p>Every located earthquake of magnitude ${c.magnitude.min} and above since

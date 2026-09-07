@@ -1,9 +1,9 @@
 {
-  "capturedAt": "2026-09-07T04:17:46.593Z",
+  "capturedAt": "2026-09-07T04:34:51.797Z",
   "base": "http://localhost:4317/",
   "buildFreshness": {
-    "srcMtime": "2026-09-07T04:13:22.007Z",
-    "distMtime": "2026-09-07T04:13:50.709Z"
+    "srcMtime": "2026-09-07T04:26:32.745Z",
+    "distMtime": "2026-09-07T04:26:46.770Z"
   },
   "shots": [
     {

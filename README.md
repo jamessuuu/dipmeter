@@ -185,15 +185,15 @@ Run `npm run build && npm run measure`. Written to [`docs/bundle-report.json`](d
 
 | File | Raw | Gzip | Brotli |
 |---|---:|---:|---:|
-| `assets/index.js` | 659,119 | **167,175** | 123,379 |
+| `assets/index.js` | 660,419 | **167,576** | 123,880 |
 | `assets/index.css` | 16,866 | 4,218 | 3,675 |
-| `index.html` | 253,040 | 34,508 | 27,520 |
-| **Shell total** | **929,025** | **205,901** | **154,574** |
+| `index.html` | 253,232 | 34,570 | 27,596 |
+| **Shell total** | **930,517** | **206,364** | **155,151** |
 
-Of the JavaScript, **625,520 B raw / 156,313 B gzip is three.js** and **33,599 B raw / 10,862 B gzip
+Of the JavaScript, **625,520 B raw / 156,313 B gzip is three.js** and **34,899 B raw / 11,263 B gzip
 is application code**, measured by building a probe that imports exactly the classes `src/globe.js`
 imports, through the same bundler and minifier. The stated budget was 165 KiB gzip for JavaScript;
-the bundle is **1,785 B under it**.
+the bundle is **1,384 B under it**.
 
 `index.html` is 253 KB raw because it carries the entire no-JavaScript fallback as served markup:
 2,377 SVG marks, every facet table, and the complete 594-region search index.
@@ -218,11 +218,11 @@ Tier A paints first; tier B streams in behind it.
 
 | | Reference | dipmeter | Difference |
 |---|---:|---:|---:|
-| JavaScript, raw | 916,370 | 659,119 | **−28.1%** |
-| JavaScript, gzip | 260,993 | 167,175 | **−35.9%** |
-| Shell total, raw | 1,113,585 | 929,025 | **−16.6%** |
-| Shell total, gzip | 292,274 | 205,901 | **−29.6%** |
-| Shell total, brotli | 243,784 | 154,574 | **−36.6%** |
+| JavaScript, raw | 916,370 | 660,419 | **−27.9%** |
+| JavaScript, gzip | 260,993 | 167,576 | **−35.8%** |
+| Shell total, raw | 1,113,585 | 930,517 | **−16.4%** |
+| Shell total, gzip | 292,274 | 206,364 | **−29.4%** |
+| Shell total, brotli | 243,784 | 155,151 | **−36.4%** |
 
 The brief quoted 260,791 B gzip for the reference's JavaScript; measured here it is 260,993 B. The
 202-byte gap is compressor settings, and it is exactly why the comparison is re-measured rather than
@@ -268,6 +268,7 @@ npm run measure        # bundle sizes, raw / gzip / brotli
 npm run preview        # serve dist/
 npm run shots          # drive the built page with Playwright and prove it renders
 npm run smoke          # drive the real controls and assert real outcomes
+npm run a11y           # 51 accessibility checks against the running page
 npm run reference      # re-measure the reference this project is compared against
 ```
 
@@ -284,18 +285,56 @@ value computed independently from `manifest.json`.
 `npm run shots` refuses to run against a `dist/` older than `src/`: a screenshot run against a stale
 build reports a green result for code that does not compile, which happened once during development.
 
-## Accessibility, measured
+## Accessibility, audited and guarded
 
-Contrast was measured on rendered pixels in both palettes, resolving computed colours through a
-canvas rather than parsing them: this browser returns `oklch()` from `getComputedStyle`, and a naive
-`rgb()` parser silently skips every value and then reports no failures, which is the worst possible
-result. Two real defects were found and fixed that way: `--ink-faint` measured **4.25:1** on the
-10.5px panel headings against a 4.5:1 floor, and the skip link measured **270 x 43 px** against a
-44 px target. Every sampled text pair now passes in both palettes.
+```
+npm run a11y        # 51 checks against the running page
+```
 
-Interactive targets at 390 px: every control is at least 44 px tall. The layer checkboxes are 24 x 24
-themselves, inside a `<label>` that is 369 x 44 and, verified by clicking its text rather than its
-box, actually toggles the input.
+`scripts/a11y.mjs` is a regression guard, not a checklist: every check in it exists because
+something was actually broken. A WCAG 2.2 AA audit of the live page found six real defects, all of
+them now fixed and pinned by that script.
+
+**Found by measuring rendered pixels:**
+
+- `--ink-faint` measured **4.25:1** on the 10.5 px panel headings in both palettes, under the 4.5:1
+  floor for small text. Now 5.28:1 on dusk and 5.58:1 on daylight.
+- The skip link measured **270 x 43 px** against a 44 px target.
+- The layer checkboxes measured **16 x 16**. Now 24 x 24, inside a `<label>` that is 369 x 44 and,
+  verified by clicking its text rather than its box, actually toggles the input.
+
+The measurement itself had to be fixed first. This browser returns `oklch()` from
+`getComputedStyle` for oklch-authored colours, so the first probe's `rgb()` parser silently skipped
+every sample and reported zero failures. Colours are now resolved by painting them to a canvas.
+
+**Found by driving the keyboard, and these were the serious ones:**
+
+- **Search results were unreachable by keyboard.** Closing the list on `blur` alone meant tabbing
+  from the field *into* a result fired blur, and a 180 ms timer then hid the list with focus already
+  inside it, dropping the user to `<body>`. Now the list closes only when focus has actually left the
+  whole combobox, `ArrowDown` enters it, `Escape` closes it and returns focus, and choosing a result
+  hands focus back to the field.
+- **The cross-section panel opened without moving focus and closed into `<body>`**, so the next Tab
+  restarted from the top of the document. Now focus moves to the panel heading on open and returns
+  to the exact control that opened it on close.
+- **The filtered count had no non-visual channel.** It changes on every filter move and is now an
+  `aria-live="polite"` region, as is the cross-section note.
+- **Per-event detail was reachable only by pointer**, and the tables that would otherwise substitute
+  are `display:none` while WebGL runs, so it was genuinely unreachable. `Enter` on the canvas now
+  inspects the event nearest the centre of the view and announces it through the `role="status"`
+  tooltip; `Escape` dismisses it.
+- The only `<main>` was the fallback, which is hidden whenever WebGL runs, so the primary experience
+  had no main landmark. `<main>` now wraps the whole page in both states.
+
+**Verified passing:** tab stop 1 is the skip link and stop 2 is the canvas, whose accessible name
+carries the full operating instructions; every stop shows a 2 px focus ring; the arrow keys and
+`+` / `-` move the camera, confirmed by hashing rendered pixels before and after rather than by
+trusting the handler; `prefers-reduced-motion` is honoured; the no-JavaScript document has exactly
+one visible `h1`, no dead panels, a caption on all four tables, zero unscoped `th`, and an
+accessible name on every figure.
+
+**Not done:** no screen reader was run. The audit used Chromium's accessibility tree as a proxy,
+which is not the same thing, and this is stated rather than glossed.
 
 ## Accessibility and degradation
 

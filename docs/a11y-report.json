@@ -1,0 +1,288 @@
+{
+  "ranAt": "2026-09-07T04:27:22.451Z",
+  "base": "http://localhost:4317/",
+  "failures": 0,
+  "results": [
+    {
+      "ok": true,
+      "label": "dusk contrast: #visible-count",
+      "detail": "15.18:1 (need 4.5, 21.8px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #visible-share",
+      "detail": "7.32:1 (need 4.5, 11.4px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #zone-caption",
+      "detail": "7.32:1 (need 4.5, 11.7px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: .key-fact",
+      "detail": "7.32:1 (need 4.5, 12.3px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #readout-heading",
+      "detail": "5.28:1 (need 4.5, 10.5px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: .field-head label",
+      "detail": "7.32:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: .field-head output",
+      "detail": "15.18:1 (need 4.5, 11.4px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: .toggle",
+      "detail": "7.32:1 (need 4.5, 12.3px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #zone-list button",
+      "detail": "7.32:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #controls-heading",
+      "detail": "5.28:1 (need 4.5, 10.5px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: .btn",
+      "detail": "15.18:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #f-search",
+      "detail": "15.18:1 (need 4.5, 12.8px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #headline-sub",
+      "detail": "16.31:1 (need 4.5, 12.6px)"
+    },
+    {
+      "ok": true,
+      "label": "dusk contrast: #panel-title h1",
+      "detail": "16.31:1 (need 4.5, 15.3px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #visible-count",
+      "detail": "16.25:1 (need 4.5, 21.8px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #visible-share",
+      "detail": "7.02:1 (need 4.5, 11.4px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #zone-caption",
+      "detail": "7.02:1 (need 4.5, 11.7px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: .key-fact",
+      "detail": "7.02:1 (need 4.5, 12.3px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #readout-heading",
+      "detail": "5.58:1 (need 4.5, 10.5px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: .field-head label",
+      "detail": "7.02:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: .field-head output",
+      "detail": "16.25:1 (need 4.5, 11.4px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: .toggle",
+      "detail": "7.02:1 (need 4.5, 12.3px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #zone-list button",
+      "detail": "7.02:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #controls-heading",
+      "detail": "5.58:1 (need 4.5, 10.5px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: .btn",
+      "detail": "16.25:1 (need 4.5, 12.0px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #f-search",
+      "detail": "16.25:1 (need 4.5, 12.8px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #headline-sub",
+      "detail": "15.26:1 (need 4.5, 12.6px)"
+    },
+    {
+      "ok": true,
+      "label": "daylight contrast: #panel-title h1",
+      "detail": "15.26:1 (need 4.5, 15.3px)"
+    },
+    {
+      "ok": true,
+      "label": "tab stop 1 is the skip link",
+      "detail": {
+        "id": "a",
+        "outline": true,
+        "h": 44,
+        "w": 270
+      }
+    },
+    {
+      "ok": true,
+      "label": "tab stop 2 is the canvas",
+      "detail": {
+        "id": "gl",
+        "outline": true,
+        "h": 900,
+        "w": 1440
+      }
+    },
+    {
+      "ok": true,
+      "label": "every early tab stop has a visible focus ring",
+      "detail": "a:true gl:true summary:true a:true f-depth-min:true f-depth-max:true"
+    },
+    {
+      "ok": true,
+      "label": "no interactive control is under 24 x 24 at 390 px",
+      "detail": "none"
+    },
+    {
+      "ok": true,
+      "label": "every toggle label is a 44 px target",
+      "detail": "44 44 44"
+    },
+    {
+      "ok": true,
+      "label": "a search result survives being tabbed into",
+      "detail": {
+        "inside": true,
+        "hidden": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "activating a result returns focus to the search field",
+      "detail": {
+        "hidden": true,
+        "onField": true,
+        "value": "south of the Fiji Islands"
+      }
+    },
+    {
+      "ok": true,
+      "label": "ArrowDown enters the result list"
+    },
+    {
+      "ok": true,
+      "label": "Escape closes the list and restores focus",
+      "detail": {
+        "hidden": true,
+        "onField": true
+      }
+    },
+    {
+      "ok": true,
+      "label": "opening the cross section moves focus into the panel",
+      "detail": {
+        "inside": true,
+        "active": "section-heading",
+        "live": "polite"
+      }
+    },
+    {
+      "ok": true,
+      "label": "the cross-section note is a live region",
+      "detail": "polite"
+    },
+    {
+      "ok": true,
+      "label": "closing the cross section returns focus to its opener",
+      "detail": {
+        "isBody": false,
+        "text": "Tonga",
+        "opener": "Tonga"
+      }
+    },
+    {
+      "ok": true,
+      "label": "the filtered count is a live region",
+      "detail": "polite"
+    },
+    {
+      "ok": true,
+      "label": "Enter on the canvas inspects an event",
+      "detail": "American SamoaMagnitude5.8Depth8.0 kmDate2022-09Position-16.71, -168.8"
+    },
+    {
+      "ok": true,
+      "label": "the inspection is announced as a status",
+      "detail": "status"
+    },
+    {
+      "ok": true,
+      "label": "Escape dismisses the inspection"
+    },
+    {
+      "ok": true,
+      "label": "the arrow keys move the camera",
+      "detail": "1099376020 -> 1946059023"
+    },
+    {
+      "ok": true,
+      "label": "no-JS: exactly one visible h1",
+      "detail": 1
+    },
+    {
+      "ok": true,
+      "label": "no-JS: the dead interactive panels are hidden",
+      "detail": 0
+    },
+    {
+      "ok": true,
+      "label": "no-JS: every table has a caption",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "no-JS: every table header is scoped",
+      "detail": 0
+    },
+    {
+      "ok": true,
+      "label": "no-JS: every figure svg has an accessible name",
+      "detail": 0
+    },
+    {
+      "ok": true,
+      "label": "no page errors during the audit",
+      "detail": "none"
+    }
+  ]
+}
