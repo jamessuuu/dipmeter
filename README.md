@@ -275,8 +275,11 @@ npm run reference      # re-measure the reference this project is compared again
 depth floor to 300 km and asserts the count equals the deep regime exactly, hides assigned depths
 and asserts the count drops by exactly 106,108, selects Kermadec-Tonga and asserts 27,386, sets the
 magnitude floor to 5.0 and asserts the tier A count, opens a cross section and asserts it states its
-own corridor width and vertical scale. 22 assertions, every expected value computed independently
-from `manifest.json`.
+own corridor width and vertical scale, clicks the globe until a tooltip appears and asserts it names
+a magnitude, a depth and a date, and narrows the time window to March 2011 and asserts the count
+stands more than three times above a quiet month, because the Tohoku aftershock sequence is in the
+catalogue and a time control that does not show it is not working. 28 assertions, every expected
+value computed independently from `manifest.json`.
 
 `npm run shots` refuses to run against a `dist/` older than `src/`: a screenshot run against a stale
 build reports a green result for code that does not compile, which happened once during development.

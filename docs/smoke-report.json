@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-07T04:08:53.775Z",
+  "ranAt": "2026-09-07T04:10:55.407Z",
   "base": "http://localhost:4317/",
   "results": [
     {
@@ -89,6 +89,42 @@
     {
       "ok": true,
       "label": "canvas holds keyboard focus",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "clicking the globe picks an event",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "tooltip reports a magnitude",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "tooltip reports a depth in km",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "tooltip reports a date",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "March 2011 is an aftershock spike, not a flat month",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "a quiet month still has events",
       "actual": true,
       "expected": true
     },

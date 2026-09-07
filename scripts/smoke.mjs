@@ -149,6 +149,52 @@ export async function main() {
   const moved = await page.evaluate(() => document.activeElement && document.activeElement.id === 'gl');
   assert('canvas holds keyboard focus', moved, true);
 
+  // 8b. Clicking a point produces a real tooltip about a real event.
+  let picked = null;
+  outer:
+  for (let y = 200; y <= 750; y += 55) {
+    for (let x = 420; x <= 1100; x += 55) {
+      await page.mouse.click(x, y);
+      await page.waitForTimeout(90);
+      const t = await page.evaluate(() => {
+        const el = document.getElementById('tip');
+        return el && !el.hidden ? el.textContent.trim() : null;
+      });
+      if (t) { picked = t; break outer; }
+    }
+  }
+  assert('clicking the globe picks an event', picked !== null, true);
+  if (picked) {
+    assert('tooltip reports a magnitude', /Magnitude\s*[0-9]/.test(picked), true);
+    assert('tooltip reports a depth in km', /Depth\s*-?[0-9.]+\s*km/.test(picked), true);
+    assert('tooltip reports a date', /Date\s*[12][0-9]{3}-[01][0-9]/.test(picked), true);
+  }
+
+  // 8c. The time scrubber is real: March 2011 must stand far above a quiet month, because
+  //     the Tohoku aftershock sequence is in the catalogue.
+  const monthCount = async (idx) => {
+    await page.evaluate((m) => {
+      const a = document.getElementById('f-time-min');
+      const z = document.getElementById('f-time-max');
+      a.value = String(m); a.dispatchEvent(new Event('input', { bubbles: true }));
+      z.value = String(m); z.dispatchEvent(new Event('input', { bubbles: true }));
+    }, idx);
+    await page.waitForTimeout(700);
+    return num(await page.textContent('#visible-count'));
+  };
+  const monthIndex = (y, m) => (y - manifest.counts.months.epochYear) * 12 + (m - 1);
+  const tohoku = await monthCount(monthIndex(2011, 3));
+  const quiet = await monthCount(monthIndex(1995, 6));
+  assert('March 2011 is an aftershock spike, not a flat month', tohoku > quiet * 3, true);
+  assert('a quiet month still has events', quiet > 50, true);
+  await page.evaluate(() => {
+    const a = document.getElementById('f-time-min');
+    const z = document.getElementById('f-time-max');
+    a.value = a.min; a.dispatchEvent(new Event('input', { bubbles: true }));
+    z.value = z.max; z.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await page.waitForTimeout(600);
+
   // 9. Theme toggle actually changes the root attribute and the ramp.
   await page.click('#f-theme');
   await page.waitForTimeout(600);
