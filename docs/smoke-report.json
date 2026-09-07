@@ -1,0 +1,145 @@
+{
+  "ranAt": "2026-09-07T04:05:26.140Z",
+  "base": "http://localhost:4317/",
+  "results": [
+    {
+      "ok": true,
+      "label": "headline event count",
+      "actual": 230059,
+      "expected": 230059
+    },
+    {
+      "ok": true,
+      "label": "headline slab count",
+      "actual": 27,
+      "expected": 27
+    },
+    {
+      "ok": true,
+      "label": "visible count with no filters",
+      "actual": 230059,
+      "expected": 230059
+    },
+    {
+      "ok": true,
+      "label": "deep-only count equals the deep regime",
+      "actual": 11298,
+      "expected": 11298
+    },
+    {
+      "ok": true,
+      "label": "hiding assigned depths removes exactly the assigned count",
+      "actual": 123951,
+      "expected": 123951
+    },
+    {
+      "ok": true,
+      "label": "selecting ker shows that zone count",
+      "actual": 27386,
+      "expected": 27386
+    },
+    {
+      "ok": true,
+      "label": "zone caption names the zone",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "clearing the zone restores the full count",
+      "actual": 230059,
+      "expected": 230059
+    },
+    {
+      "ok": true,
+      "label": "M5.0 floor equals the tier A count",
+      "actual": 62629,
+      "expected": 62629
+    },
+    {
+      "ok": true,
+      "label": "search returns at least one region for \"Fiji\"",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "cross section contains events",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "cross section states its vertical scale",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "cross section states its corridor width",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "cross section crosses at least one Slab2 surface",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "canvas holds keyboard focus",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "theme toggles to daylight",
+      "actual": "daylight",
+      "expected": "daylight"
+    },
+    {
+      "ok": true,
+      "label": "theme toggles back to dusk",
+      "actual": "dusk",
+      "expected": "dusk"
+    },
+    {
+      "ok": true,
+      "label": "slab mesh has triangles",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "ok": true,
+      "label": "slab vertices equal 3 per triangle",
+      "actual": 321726,
+      "expected": 321726
+    },
+    {
+      "ok": true,
+      "label": "coastline segment count matches the manifest",
+      "actual": 4994,
+      "expected": 4994
+    },
+    {
+      "ok": true,
+      "label": "all events are loaded",
+      "actual": 230059,
+      "expected": 230059
+    },
+    {
+      "ok": true,
+      "label": "no page errors",
+      "actual": 0,
+      "expected": 0
+    }
+  ],
+  "pageErrors": [],
+  "geom": {
+    "triangles": 107242,
+    "vertices": 321726,
+    "coast": 4994,
+    "events": 230059
+  }
+}

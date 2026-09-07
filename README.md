@@ -244,6 +244,7 @@ depth exaggeration is free.
 
 **Slab surfaces are never bridged.** The mesh builder emits a triangle only where all four corners
 of a grid cell carry a modelled depth, so a slab edge is a real edge rather than invented geometry.
+That yields 107,242 triangles across the 27 zones.
 
 **Picking does not use a raycaster.** The shader decides visibility, so three.js has no idea which
 points are on screen. A click projects the currently visible set and takes the nearest — one pass
@@ -266,7 +267,16 @@ npm run verify         # recompute every headline number from disk
 npm run measure        # bundle sizes, raw / gzip / brotli
 npm run preview        # serve dist/
 npm run shots          # drive the built page with Playwright and prove it renders
+npm run smoke          # drive the real controls and assert real outcomes
+npm run reference      # re-measure the reference this project is compared against
 ```
+
+`npm run smoke` is the one that checks the page *works* rather than that it paints: it sets the
+depth floor to 300 km and asserts the count equals the deep regime exactly, hides assigned depths
+and asserts the count drops by exactly 106,108, selects Kermadec-Tonga and asserts 27,386, sets the
+magnitude floor to 5.0 and asserts the tier A count, opens a cross section and asserts it states its
+own corridor width and vertical scale. 22 assertions, every expected value computed independently
+from `manifest.json`.
 
 `npm run shots` refuses to run against a `dist/` older than `src/`: a screenshot run against a stale
 build reports a green result for code that does not compile, which happened once during development.
@@ -303,3 +313,12 @@ src/                 the application
 - Rendering: **three.js** 0.185.1 (MIT).
 
 Project code is MIT licensed. The data keeps its own terms, all of which are quoted above.
+
+---
+
+## Portfolio card
+
+**Teaser:** Slabs, not blobs
+
+**Tagline:** 230,059 located earthquakes at true depth inside a transparent Earth, against the 27
+subduction slabs USGS actually modelled.

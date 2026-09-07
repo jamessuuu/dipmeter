@@ -16,7 +16,9 @@
     "preview": "vite preview",
     "verify": "node --max-old-space-size=8192 scripts/verify.mjs",
     "measure": "node scripts/measure-bundle.mjs",
-    "shots": "node scripts/screenshots.mjs"
+    "shots": "node scripts/screenshots.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "reference": "node scripts/measure-reference.mjs"
   },
   "dependencies": {
     "three": "0.185.1"
