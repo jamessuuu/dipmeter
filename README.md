@@ -185,17 +185,17 @@ Run `npm run build && npm run measure`. Written to [`docs/bundle-report.json`](d
 
 | File | Raw | Gzip | Brotli |
 |---|---:|---:|---:|
-| `assets/index.js` | 658,714 | **167,038** | 123,333 |
-| `assets/index.css` | 15,722 | 3,979 | 3,464 |
-| `index.html` | 251,499 | 33,865 | 27,149 |
-| **Shell total** | **925,935** | **204,882** | **153,946** |
+| `assets/index.js` | 659,119 | **167,175** | 123,379 |
+| `assets/index.css` | 16,866 | 4,218 | 3,675 |
+| `index.html` | 253,040 | 34,508 | 27,520 |
+| **Shell total** | **929,025** | **205,901** | **154,574** |
 
-Of the JavaScript, **625,520 B raw / 156,313 B gzip is three.js** and **33,194 B raw / 10,725 B gzip
+Of the JavaScript, **625,520 B raw / 156,313 B gzip is three.js** and **33,599 B raw / 10,862 B gzip
 is application code**, measured by building a probe that imports exactly the classes `src/globe.js`
 imports, through the same bundler and minifier. The stated budget was 165 KiB gzip for JavaScript;
-the bundle is **1,922 B under it**.
+the bundle is **1,785 B under it**.
 
-`index.html` is 251 KB raw because it carries the entire no-JavaScript fallback as served markup:
+`index.html` is 253 KB raw because it carries the entire no-JavaScript fallback as served markup:
 2,377 SVG marks, every facet table, and the complete 594-region search index.
 
 ### Data payload, loaded after first paint
@@ -218,11 +218,11 @@ Tier A paints first; tier B streams in behind it.
 
 | | Reference | dipmeter | Difference |
 |---|---:|---:|---:|
-| JavaScript, raw | 916,370 | 658,714 | **−28.1%** |
-| JavaScript, gzip | 260,993 | 167,038 | **−36.0%** |
-| Shell total, raw | 1,113,585 | 925,935 | **−16.9%** |
-| Shell total, gzip | 292,274 | 204,882 | **−29.9%** |
-| Shell total, brotli | 243,784 | 153,946 | **−36.9%** |
+| JavaScript, raw | 916,370 | 659,119 | **−28.1%** |
+| JavaScript, gzip | 260,993 | 167,175 | **−35.9%** |
+| Shell total, raw | 1,113,585 | 929,025 | **−16.6%** |
+| Shell total, gzip | 292,274 | 205,901 | **−29.6%** |
+| Shell total, brotli | 243,784 | 154,574 | **−36.6%** |
 
 The brief quoted 260,791 B gzip for the reference's JavaScript; measured here it is 260,993 B. The
 202-byte gap is compressor settings, and it is exactly why the comparison is re-measured rather than
@@ -283,6 +283,19 @@ value computed independently from `manifest.json`.
 
 `npm run shots` refuses to run against a `dist/` older than `src/`: a screenshot run against a stale
 build reports a green result for code that does not compile, which happened once during development.
+
+## Accessibility, measured
+
+Contrast was measured on rendered pixels in both palettes, resolving computed colours through a
+canvas rather than parsing them: this browser returns `oklch()` from `getComputedStyle`, and a naive
+`rgb()` parser silently skips every value and then reports no failures, which is the worst possible
+result. Two real defects were found and fixed that way: `--ink-faint` measured **4.25:1** on the
+10.5px panel headings against a 4.5:1 floor, and the skip link measured **270 x 43 px** against a
+44 px target. Every sampled text pair now passes in both palettes.
+
+Interactive targets at 390 px: every control is at least 44 px tall. The layer checkboxes are 24 x 24
+themselves, inside a `<label>` that is 369 x 44 and, verified by clicking its text rather than its
+box, actually toggles the input.
 
 ## Accessibility and degradation
 

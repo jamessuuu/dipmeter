@@ -1,9 +1,9 @@
 {
-  "capturedAt": "2026-09-07T04:08:54.096Z",
+  "capturedAt": "2026-09-07T04:15:00.334Z",
   "base": "http://localhost:4317/",
   "buildFreshness": {
-    "srcMtime": "2026-09-07T04:08:31.234Z",
-    "distMtime": "2026-09-07T04:08:34.874Z"
+    "srcMtime": "2026-09-07T04:13:22.007Z",
+    "distMtime": "2026-09-07T04:13:50.709Z"
   },
   "shots": [
     {
@@ -15,15 +15,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop.png",
-      "bytes": 850297,
+      "bytes": 851407,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 21,
-        "stdDev": 25.952,
-        "distinctColours": 3020,
-        "commonestColourShare": 0.2329
+        "mean": 21.17,
+        "stdDev": 26.31,
+        "distinctColours": 3024,
+        "commonestColourShare": 0.2321
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
@@ -40,15 +40,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-section.png",
-      "bytes": 882143,
+      "bytes": 883148,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 26.81,
-        "stdDev": 32.122,
-        "distinctColours": 4309,
-        "commonestColourShare": 0.2806
+        "mean": 26.99,
+        "stdDev": 32.382,
+        "distinctColours": 4310,
+        "commonestColourShare": 0.2791
       },
       "section": {
         "note": "4,532 events within 150 km of a 989 km section, with 1 Slab2 surface crossing it. Depth axis to 750 km. Vertical scale is 0.66 times the horizontal, so the plane is drawn shallower than its true dip.",
@@ -65,14 +65,14 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-deep.png",
-      "bytes": 691694,
+      "bytes": 692683,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 20.88,
-        "stdDev": 23.276,
-        "distinctColours": 1999,
+        "mean": 21.05,
+        "stdDev": 23.676,
+        "distinctColours": 2003,
         "commonestColourShare": 0.236
       },
       "visibleCount": "11,298",
@@ -87,15 +87,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-daylight.png",
-      "bytes": 1060988,
+      "bytes": 1061223,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 217.25,
-        "stdDev": 49.551,
-        "distinctColours": 1918,
-        "commonestColourShare": 0.2263
+        "mean": 217.09,
+        "stdDev": 49.638,
+        "distinctColours": 1919,
+        "commonestColourShare": 0.2253
       },
       "rendered": true
     },
@@ -108,14 +108,14 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-wide.png",
-      "bytes": 1195567,
+      "bytes": 1195925,
       "canvas": {
         "pixels": 129600,
         "imageWidth": 1920,
         "imageHeight": 1080,
-        "mean": 17.86,
-        "stdDev": 21.612,
-        "distinctColours": 2442,
+        "mean": 17.97,
+        "stdDev": 21.89,
+        "distinctColours": 2443,
         "commonestColourShare": 0.3216
       },
       "headline": {
@@ -133,15 +133,15 @@
         "dpr": 2
       },
       "file": "docs/shots/mobile.png",
-      "bytes": 864990,
+      "bytes": 865222,
       "canvas": {
         "pixels": 498720,
         "imageWidth": 780,
         "imageHeight": 1688,
-        "mean": 27.28,
-        "stdDev": 38.978,
-        "distinctColours": 7009,
-        "commonestColourShare": 0.227
+        "mean": 27.32,
+        "stdDev": 39.057,
+        "distinctColours": 7008,
+        "commonestColourShare": 0.2269
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
@@ -158,13 +158,13 @@
         "dpr": 1
       },
       "file": "docs/shots/tablet.png",
-      "bytes": 720543,
+      "bytes": 720629,
       "canvas": {
         "pixels": 331680,
         "imageWidth": 820,
         "imageHeight": 1180,
-        "mean": 22.08,
-        "stdDev": 28.155,
+        "mean": 22.1,
+        "stdDev": 28.192,
         "distinctColours": 5249,
         "commonestColourShare": 0.1915
       },
