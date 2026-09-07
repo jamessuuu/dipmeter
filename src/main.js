@@ -661,6 +661,15 @@ function buildUI(coastSegments, slabs) {
   $('fact-above').textContent = fmt(c.aboveSeaLevel);
   $('fact-assigned').textContent = fmt(c.defaultDepth);
   $('fact-attributed').textContent = fmt(c.attributedToASlab);
+  // The load-bearing ratio: depth is not spread through the Earth, it is confined to slabs.
+  const deepTotal = c.regimes.intermediate + c.regimes.deep;
+  const deepAttributed = manifest.zones.reduce((a, z) => a + z.deepEvents, 0);
+  $('fact-deep-attributed').textContent = fmt(deepAttributed)
+    + ' (' + (100 * deepAttributed / deepTotal).toFixed(1) + '%)';
+  $('key-fact').innerHTML = '<b>' + (100 * deepAttributed / deepTotal).toFixed(1)
+    + '%</b> of the ' + fmt(deepTotal) + ' events at 70 km or deeper fall inside one of these '
+    + manifest.zones.length + ' modelled slabs. Depth is not spread through the Earth. It is '
+    + 'confined to descending plates.';
   $('fact-triangles').textContent = fmt(slabs.triangles);
   $('fact-coast').textContent = fmt(coastSegments);
 

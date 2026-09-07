@@ -295,6 +295,21 @@ export function main() {
           String(bp.reference.javascript.gzip));
       }
     }
+    // The og:description carries a count in plain text where nothing regenerates it, which is
+    // exactly the kind of place a number rots. Checked here rather than trusted.
+    const indexPath = join(ROOT, 'index.html');
+    if (existsSync(indexPath)) {
+      const idx = readFileSync(indexPath, 'utf8');
+      const og = /property="og:description" content="([^"]*)"/.exec(idx);
+      check('index.html has an og:description', !!og, true);
+      if (og) {
+        check('og:description states the real event count',
+          og[1].includes(c.events.toLocaleString('en-US')), true, og[1].slice(0, 60) + '...');
+        check('og:description states the real slab count',
+          og[1].includes(String(manifest.zones.length)), true);
+      }
+    }
+
     check('README makes no hazard or forecast claim',
       /\b(hazard map is|will occur|probability of|risk of an earthquake|forecast that)\b/i.test(readme), false);
   }

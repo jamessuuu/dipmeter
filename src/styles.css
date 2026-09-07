@@ -419,6 +419,16 @@ dl.facts > div { display: flex; justify-content: space-between; gap: 0.75rem; bo
 dl.facts dt { color: var(--ink-muted); }
 dl.facts dd { margin: 0; font-family: var(--font-mono); font-size: 0.76rem; font-variant-numeric: tabular-nums; }
 
+.key-fact {
+  margin: 0.7rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+.key-fact b { color: var(--accent); font-weight: 620; font-variant-numeric: tabular-nums; }
+
 .legend { display: grid; gap: 0.3rem; margin: 0.6rem 0 0; }
 .legend-bar {
   height: 6px;

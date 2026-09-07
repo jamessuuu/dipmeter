@@ -22,7 +22,7 @@ headline number from the raw sources, separately decodes the shipped binaries, a
 disagree.
 
 ```
-npm run verify      # 67 checks, every figure recomputed from data on disk
+npm run verify      # 70 checks, every figure recomputed from data on disk
 ```
 
 The brief this was built from expected 229,956 events. The real count fetched on 2026-09-07 is

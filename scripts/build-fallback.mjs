@@ -199,6 +199,11 @@ export function main() {
     '<tr><td>' + esc(k) + '</td><td class="num">' + fmt(v) + '</td></tr>').join('');
 
   const decimationRatio = (c.events / totalMarks).toFixed(0);
+  // The depth split of slab attribution: the single most load-bearing ratio on the page, so
+  // it is computed from the manifest here rather than written down anywhere.
+  const deepTotal = c.regimes.intermediate + c.regimes.deep;
+  const deepAttributed = manifest.zones.reduce((a, z) => a + z.deepEvents, 0);
+  const zeroDeep = manifest.zones.filter((z) => z.deepEvents === 0);
 
   const html = `<header class="fb-masthead">
   <h1>dipmeter</h1>
@@ -278,6 +283,14 @@ events that make up the dipping planes contain none of them.</p>
 if that distance is under ${manifest.encoding.ATTRIBUTION_MAX_RESIDUAL_KM} km.
 ${fmt(c.attributedToASlab)} events meet that test and ${fmt(c.unattributed)} do not, which is
 expected: mid-ocean ridges, transform faults and continental interiors have no slab under them.</p>
+
+<p><strong>Split by depth, that ratio is the whole argument of this page.</strong> Of the
+${fmt(deepTotal)} events at 70 km or deeper, <strong>${fmt(deepAttributed)}
+(${(100 * deepAttributed / deepTotal).toFixed(1)}%)</strong> fall inside a modelled slab. Depth is
+not distributed through the Earth; it is confined to ${manifest.zones.filter((z) => z.deepEvents > 0).length}
+descending plates. ${esc(zeroDeep.length === 1 ? zeroDeep[0].name : zeroDeep.map((z) => z.name).join(', '))}
+${zeroDeep.length === 1 ? 'is the one modelled zone with no deep seismicity at all' : 'are the modelled zones with no deep seismicity at all'},
+which is a real property of that margin rather than a gap in the catalogue.</p>
 
 <h2>Catalogue event types</h2>
 <p>The query asked the catalogue for everything above magnitude 4.5, not only for earthquakes, so
