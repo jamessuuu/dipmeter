@@ -1,0 +1,28 @@
+{
+  "name": "dipmeter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Every located earthquake of magnitude 4.5 and above since 1990, drawn at its real depth inside a transparent Earth against the 27 subduction surfaces USGS actually modelled.",
+  "license": "MIT",
+  "scripts": {
+    "fetch": "node scripts/fetch-comcat.mjs && node scripts/fetch-slab2.mjs",
+    "probe": "node --max-old-space-size=6144 scripts/probe-risk.mjs",
+    "build:data": "node --max-old-space-size=8192 scripts/build-data.mjs",
+    "build:fallback": "node scripts/build-fallback.mjs",
+    "prebuild": "node scripts/build-fallback.mjs",
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "verify": "node --max-old-space-size=8192 scripts/verify.mjs",
+    "measure": "node scripts/measure-bundle.mjs",
+    "shots": "node scripts/screenshots.mjs"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "terser": "^5.51.2"
+  }
+}

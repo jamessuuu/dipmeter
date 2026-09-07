@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-07T04:02:21.507Z",
+  "markCeiling": 2400,
+  "marksDrawn": 2377,
+  "mapMarks": 1500,
+  "sectionMarks": [
+    {
+      "key": "tonga",
+      "drawn": 297,
+      "total": 5925,
+      "stride": 20
+    },
+    {
+      "key": "tohoku",
+      "drawn": 285,
+      "total": 3699,
+      "stride": 13
+    },
+    {
+      "key": "nchile",
+      "drawn": 295,
+      "total": 2354,
+      "stride": 8
+    }
+  ],
+  "occupiedCells": 6172,
+  "surfaceCells": 3880,
+  "decimationRatio": 97,
+  "htmlBytes": 242516
+}

@@ -1,0 +1,99 @@
+{
+  "fetchedAt": "2026-09-07T03:13:25.209Z",
+  "item": "https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467",
+  "doi": "10.5066/F7PV6JNV",
+  "licence": {
+    "statement": "U.S. Public Domain",
+    "fgdc": {
+      "useconst": "none",
+      "accconst": "none"
+    }
+  },
+  "archive": {
+    "name": "Slab2Distribute_Mar2018.tar.gz",
+    "bytes": 140213438,
+    "entries": 472
+  },
+  "depthGrids": {
+    "count": 27,
+    "bytes": 3485379,
+    "files": [
+      "alu_slab2_dep_02.23.18.grd",
+      "cal_slab2_dep_02.24.18.grd",
+      "cam_slab2_dep_02.24.18.grd",
+      "car_slab2_dep_02.24.18.grd",
+      "cas_slab2_dep_02.24.18.grd",
+      "cot_slab2_dep_02.24.18.grd",
+      "hal_slab2_dep_02.23.18.grd",
+      "hel_slab2_dep_02.24.18.grd",
+      "him_slab2_dep_02.24.18.grd",
+      "hin_slab2_dep_02.24.18.grd",
+      "izu_slab2_dep_02.24.18.grd",
+      "ker_slab2_dep_02.24.18.grd",
+      "kur_slab2_dep_02.24.18.grd",
+      "mak_slab2_dep_02.24.18.grd",
+      "man_slab2_dep_02.24.18.grd",
+      "mue_slab2_dep_02.24.18.grd",
+      "pam_slab2_dep_02.26.18.grd",
+      "phi_slab2_dep_02.26.18.grd",
+      "png_slab2_dep_02.26.18.grd",
+      "puy_slab2_dep_02.26.18.grd",
+      "ryu_slab2_dep_02.26.18.grd",
+      "sam_slab2_dep_02.23.18.grd",
+      "sco_slab2_dep_02.23.18.grd",
+      "sol_slab2_dep_02.23.18.grd",
+      "sul_slab2_dep_02.23.18.grd",
+      "sum_slab2_dep_02.23.18.grd",
+      "van_slab2_dep_02.23.18.grd"
+    ]
+  },
+  "supplementaryNodeFiles": {
+    "count": 4,
+    "bytes": 16501841,
+    "files": [
+      "izu_slab2_sup_02.24.18.csv",
+      "ker_slab2_sup_02.24.18.csv",
+      "man_slab2_sup_02.24.18.csv",
+      "sol_slab2_sup_02.23.18.csv"
+    ],
+    "meaning": "zones whose surface overturns past vertical"
+  },
+  "clipPolygons": {
+    "count": 27,
+    "bytes": 138526,
+    "files": [
+      "alu_slab2_clp_02.23.18.csv",
+      "cal_slab2_clp_02.24.18.csv",
+      "cam_slab2_clp_02.24.18.csv",
+      "car_slab2_clp_02.24.18.csv",
+      "cas_slab2_clp_02.24.18.csv",
+      "cot_slab2_clp_02.24.18.csv",
+      "hal_slab2_clp_02.23.18.csv",
+      "hel_slab2_clp_02.24.18.csv",
+      "him_slab2_clp_02.24.18.csv",
+      "hin_slab2_clp_02.24.18.csv",
+      "izu_slab2_clp_02.24.18.csv",
+      "ker_slab2_clp_02.24.18.csv",
+      "kur_slab2_clp_02.24.18.csv",
+      "mak_slab2_clp_02.24.18.csv",
+      "man_slab2_clp_02.24.18.csv",
+      "mue_slab2_clp_02.24.18.csv",
+      "pam_slab2_clp_02.26.18.csv",
+      "phi_slab2_clp_02.26.18.csv",
+      "png_slab2_clp_02.26.18.csv",
+      "puy_slab2_clp_02.26.18.csv",
+      "ryu_slab2_clp_02.26.18.csv",
+      "sam_slab2_clp_02.23.18.csv",
+      "sco_slab2_clp_02.23.18.csv",
+      "sol_slab2_clp_02.23.18.csv",
+      "sul_slab2_clp_02.23.18.csv",
+      "sum_slab2_clp_02.23.18.csv",
+      "van_slab2_clp_02.23.18.csv"
+    ]
+  },
+  "depthGridsAscii": {
+    "count": 27,
+    "bytes": 125266978,
+    "note": "Slab2_TXT ASCII twins of the .grd depth grids; the build reads these"
+  }
+}

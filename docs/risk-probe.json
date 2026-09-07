@@ -1,0 +1,548 @@
+{
+  "probedAt": "2026-09-07T03:18:58.084Z",
+  "catalogue": {
+    "path": "data/raw/comcat-m45-1990-2026.csv",
+    "dataRows": 230060,
+    "parsed": 230060,
+    "skippedIncomplete": 0
+  },
+  "depthQuality": {
+    "defaultDepthValuesTested": [
+      10,
+      33,
+      35
+    ],
+    "eventsAtDefaultDepth": 106052,
+    "fractionAtDefaultDepth": 0.460975,
+    "perDefaultValue": {
+      "10": 70228,
+      "33": 24408,
+      "35": 11416
+    },
+    "eventsWithNoReportedDepthError": 88405,
+    "eventsDeeperThan70km": 50260,
+    "eventsShallowerThan70km": 179800,
+    "fractionOfShallowBandAtDefaultDepth": 0.589833,
+    "mostCommonDepths": [
+      {
+        "depthKm": 10,
+        "events": 70228,
+        "pct": 30.526
+      },
+      {
+        "depthKm": 33,
+        "events": 24408,
+        "pct": 10.609
+      },
+      {
+        "depthKm": 35,
+        "events": 11416,
+        "pct": 4.962
+      },
+      {
+        "depthKm": 30,
+        "events": 2410,
+        "pct": 1.048
+      },
+      {
+        "depthKm": 5,
+        "events": 687,
+        "pct": 0.299
+      },
+      {
+        "depthKm": 100,
+        "events": 656,
+        "pct": 0.285
+      },
+      {
+        "depthKm": 20,
+        "events": 506,
+        "pct": 0.22
+      },
+      {
+        "depthKm": 600,
+        "events": 470,
+        "pct": 0.204
+      },
+      {
+        "depthKm": 15,
+        "events": 460,
+        "pct": 0.2
+      },
+      {
+        "depthKm": 12,
+        "events": 360,
+        "pct": 0.156
+      },
+      {
+        "depthKm": 25,
+        "events": 327,
+        "pct": 0.142
+      },
+      {
+        "depthKm": 150,
+        "events": 289,
+        "pct": 0.126
+      }
+    ],
+    "killCondition2Threshold": 0.3333333333333333,
+    "killCondition2Triggered": true,
+    "mitigation": "Default-depth events are a separate render class and a printed count; they are never silently mixed into the depth axis."
+  },
+  "sections": [
+    {
+      "key": "tonga",
+      "label": "Tonga",
+      "geometry": {
+        "key": "tonga",
+        "label": "Tonga",
+        "lat0": -20,
+        "lon0": 186.5,
+        "azimuth": 10,
+        "halfLengthKm": 180,
+        "halfWidthKm": 600,
+        "dipSign": -1
+      },
+      "intermediateEvents": 824,
+      "fit": {
+        "n": 824,
+        "dipDegrees": 29.796702884975307,
+        "medianKm": 2.6036337996037613,
+        "madHalfWidthKm": 42.04126896907784,
+        "p10Km": -50.442002396873576,
+        "p90Km": 48.61784722263101,
+        "interdecileWidthKm": 99.05984961950459,
+        "rmsKm": 41.423906677972376
+      }
+    },
+    {
+      "key": "tohoku",
+      "label": "Northern Japan",
+      "geometry": {
+        "key": "tohoku",
+        "label": "Northern Japan",
+        "lat0": 39.5,
+        "lon0": 144,
+        "azimuth": 15,
+        "halfLengthKm": 200,
+        "halfWidthKm": 600,
+        "dipSign": -1
+      },
+      "intermediateEvents": 273,
+      "fit": {
+        "n": 273,
+        "dipDegrees": 21.136837026031962,
+        "medianKm": -1.4539453236006292,
+        "madHalfWidthKm": 18.373802622866496,
+        "p10Km": -19.534792383186183,
+        "p90Km": 19.620260026158213,
+        "interdecileWidthKm": 39.15505240934439,
+        "rmsKm": 16.501124051222842
+      }
+    },
+    {
+      "key": "nchile",
+      "label": "Northern Chile",
+      "geometry": {
+        "key": "nchile",
+        "label": "Northern Chile",
+        "lat0": -21.5,
+        "lon0": -70.9,
+        "azimuth": 0,
+        "halfLengthKm": 200,
+        "halfWidthKm": 700,
+        "dipSign": 1
+      },
+      "intermediateEvents": 1682,
+      "fit": {
+        "n": 1682,
+        "dipDegrees": 25.41463020948615,
+        "medianKm": -0.3677810937851668,
+        "madHalfWidthKm": 14.303947768855437,
+        "p10Km": -19.075545497568868,
+        "p90Km": 19.33457925921205,
+        "interdecileWidthKm": 38.41012475678092,
+        "rmsKm": 15.944277088049649
+      }
+    }
+  ],
+  "slabResidual": {
+    "method": "For every catalogued event at 70 km depth or deeper, the vertical distance to the nearest Slab2 modelled surface directly beneath it.",
+    "deepEvents": 50260,
+    "matchedToASlab": 49165,
+    "outsideEverySlabFootprint": 1095,
+    "global": {
+      "n": 49165,
+      "medianKm": 41.604897727965906,
+      "madHalfWidthKm": 34.79359686120785,
+      "p10Km": 5.396648980419878,
+      "p90Km": 104.64086430908198,
+      "interdecileWidthKm": 99.2442153286621,
+      "rmsKm": 70.1029173305876
+    },
+    "within25km": 13520,
+    "within50km": 28336,
+    "within100km": 43443,
+    "fractionWithin50km": 0.576345,
+    "perZone": [
+      {
+        "code": "ker",
+        "name": "Kermadec-Tonga",
+        "events": 12381,
+        "spread": {
+          "n": 12381,
+          "medianKm": 67.43080310058676,
+          "madHalfWidthKm": 41.551808001596186,
+          "p10Km": 12.554372951659388,
+          "p90Km": 138.03320953369038,
+          "interdecileWidthKm": 125.478836582031,
+          "rmsKm": 90.87032250122199
+        }
+      },
+      {
+        "code": "sam",
+        "name": "South America",
+        "events": 6461,
+        "spread": {
+          "n": 6461,
+          "medianKm": 20.81919494628866,
+          "madHalfWidthKm": 14.418878161261494,
+          "p10Km": 4.224396351867767,
+          "p90Km": 45.06541274414033,
+          "interdecileWidthKm": 40.841016392272564,
+          "rmsKm": 32.54207483824385
+        }
+      },
+      {
+        "code": "sum",
+        "name": "Sumatra-Java",
+        "events": 6216,
+        "spread": {
+          "n": 6216,
+          "medianKm": 37.452535624725236,
+          "madHalfWidthKm": 26.50858034498016,
+          "p10Km": 5.874636685180761,
+          "p90Km": 86.6584258941649,
+          "interdecileWidthKm": 80.78378920898415,
+          "rmsKm": 61.245835550206436
+        }
+      },
+      {
+        "code": "sol",
+        "name": "Solomon Islands",
+        "events": 4079,
+        "spread": {
+          "n": 4079,
+          "medianKm": 42.724312973022414,
+          "madHalfWidthKm": 30.536243670045085,
+          "p10Km": 3.4090876851812344,
+          "p90Km": 88.16966885437014,
+          "interdecileWidthKm": 84.76058116918891,
+          "rmsKm": 73.79005036145091
+        }
+      },
+      {
+        "code": "hal",
+        "name": "Halmahera",
+        "events": 3417,
+        "spread": {
+          "n": 3417,
+          "medianKm": 42.228507775878754,
+          "madHalfWidthKm": 32.1200166894892,
+          "p10Km": 1.0667697458986969,
+          "p90Km": 83.79069919853518,
+          "interdecileWidthKm": 82.72392945263648,
+          "rmsKm": 59.0167587486345
+        }
+      },
+      {
+        "code": "van",
+        "name": "Vanuatu",
+        "events": 3064,
+        "spread": {
+          "n": 3064,
+          "medianKm": 75.9993361450194,
+          "madHalfWidthKm": 37.79638460122649,
+          "p10Km": 32.490114420470874,
+          "p90Km": 127.53707939149439,
+          "interdecileWidthKm": 95.04696497102351,
+          "rmsKm": 87.91073410879959
+        }
+      },
+      {
+        "code": "izu",
+        "name": "Izu-Bonin",
+        "events": 2973,
+        "spread": {
+          "n": 2973,
+          "medianKm": 40.26519357299787,
+          "madHalfWidthKm": 31.82264069928469,
+          "p10Km": -2.3379613305674245,
+          "p90Km": 113.31358113494676,
+          "interdecileWidthKm": 115.65154246551418,
+          "rmsKm": 90.74661216020407
+        }
+      },
+      {
+        "code": "kur",
+        "name": "Kuril-Kamchatka-Japan",
+        "events": 2909,
+        "spread": {
+          "n": 2909,
+          "medianKm": 31.198589812439593,
+          "madHalfWidthKm": 18.180324575713268,
+          "p10Km": 10.051178800293508,
+          "p90Km": 56.34683033203119,
+          "interdecileWidthKm": 46.29565153173768,
+          "rmsKm": 38.89942443574433
+        }
+      },
+      {
+        "code": "phi",
+        "name": "Philippines",
+        "events": 1296,
+        "spread": {
+          "n": 1296,
+          "medianKm": 19.396022224854,
+          "madHalfWidthKm": 33.1509735746443,
+          "p10Km": -27.940557006836258,
+          "p90Km": 69.1777649375914,
+          "interdecileWidthKm": 97.11832194442766,
+          "rmsKm": 46.993030122127315
+        }
+      },
+      {
+        "code": "cam",
+        "name": "Central America",
+        "events": 1289,
+        "spread": {
+          "n": 1289,
+          "medianKm": 35.1625116822817,
+          "madHalfWidthKm": 18.949210311954513,
+          "p10Km": 13.921385028686457,
+          "p90Km": 75.27637245849577,
+          "interdecileWidthKm": 61.35498742980931,
+          "rmsKm": 48.39530995652165
+        }
+      },
+      {
+        "code": "hin",
+        "name": "Hindu Kush",
+        "events": 1113,
+        "spread": {
+          "n": 1113,
+          "medianKm": 78.09310729217603,
+          "madHalfWidthKm": 39.90135036181311,
+          "p10Km": 22.117712659263308,
+          "p90Km": 130.079533513641,
+          "interdecileWidthKm": 107.96182085437769,
+          "rmsKm": 90.33426468187875
+        }
+      },
+      {
+        "code": "sco",
+        "name": "Scotia Sea",
+        "events": 1028,
+        "spread": {
+          "n": 1028,
+          "medianKm": 41.96318807817129,
+          "madHalfWidthKm": 20.207154585105428,
+          "p10Km": 12.666646244440628,
+          "p90Km": 67.81915506469745,
+          "interdecileWidthKm": 55.15250882025683,
+          "rmsKm": 47.34604722943967
+        }
+      },
+      {
+        "code": "alu",
+        "name": "Alaska-Aleutians",
+        "events": 644,
+        "spread": {
+          "n": 644,
+          "medianKm": 22.45364865328996,
+          "madHalfWidthKm": 16.786825858250822,
+          "p10Km": -6.321021984033128,
+          "p90Km": 42.94742339222377,
+          "interdecileWidthKm": 49.2684453762569,
+          "rmsKm": 29.98969613758067
+        }
+      },
+      {
+        "code": "ryu",
+        "name": "Ryukyu",
+        "events": 570,
+        "spread": {
+          "n": 570,
+          "medianKm": 33.96889482727141,
+          "madHalfWidthKm": 26.95053977372499,
+          "p10Km": 2.086413612669503,
+          "p90Km": 75.62410458851934,
+          "interdecileWidthKm": 73.53769097584984,
+          "rmsKm": 50.09815659565324
+        }
+      },
+      {
+        "code": "man",
+        "name": "Manila",
+        "events": 425,
+        "spread": {
+          "n": 425,
+          "medianKm": 31.998597381592532,
+          "madHalfWidthKm": 29.435898186179536,
+          "p10Km": -7.022121381759339,
+          "p90Km": 74.89057133842513,
+          "interdecileWidthKm": 81.91269272018447,
+          "rmsKm": 47.025403961568706
+        }
+      },
+      {
+        "code": "pam",
+        "name": "Pamir",
+        "events": 343,
+        "spread": {
+          "n": 343,
+          "medianKm": 30.81498550415037,
+          "madHalfWidthKm": 35.119395818859225,
+          "p10Km": -20.629416381836204,
+          "p90Km": 66.63179615516682,
+          "interdecileWidthKm": 87.26121253700303,
+          "rmsKm": 45.3911426101656
+        }
+      },
+      {
+        "code": "car",
+        "name": "Caribbean",
+        "events": 271,
+        "spread": {
+          "n": 271,
+          "medianKm": 28.085451278685852,
+          "madHalfWidthKm": 23.371120409224943,
+          "p10Km": 2.8740783630370856,
+          "p90Km": 60.06572726745463,
+          "interdecileWidthKm": 57.19164890441755,
+          "rmsKm": 38.65563582508392
+        }
+      },
+      {
+        "code": "sul",
+        "name": "Sulawesi",
+        "events": 206,
+        "spread": {
+          "n": 206,
+          "medianKm": 22.0271656216431,
+          "madHalfWidthKm": 20.67480499941599,
+          "p10Km": 2.6062250549316985,
+          "p90Km": 58.712542658538744,
+          "interdecileWidthKm": 56.106317603607046,
+          "rmsKm": 35.08135628387366
+        }
+      },
+      {
+        "code": "png",
+        "name": "New Guinea",
+        "events": 142,
+        "spread": {
+          "n": 142,
+          "medianKm": 40.349415607147236,
+          "madHalfWidthKm": 22.003560112767058,
+          "p10Km": 21.554079412023892,
+          "p90Km": 70.46308125068661,
+          "interdecileWidthKm": 48.90900183866272,
+          "rmsKm": 48.711499508181376
+        }
+      },
+      {
+        "code": "hel",
+        "name": "Hellenic",
+        "events": 107,
+        "spread": {
+          "n": 107,
+          "medianKm": 25.581997763550078,
+          "madHalfWidthKm": 16.37593948948101,
+          "p10Km": 8.965023704199227,
+          "p90Km": 46.782096170654135,
+          "interdecileWidthKm": 37.81707246645491,
+          "rmsKm": 30.74239533077748
+        }
+      },
+      {
+        "code": "cot",
+        "name": "Cotabato",
+        "events": 77,
+        "spread": {
+          "n": 77,
+          "medianKm": 24.649115118407877,
+          "madHalfWidthKm": 28.615881362769862,
+          "p10Km": -26.35759864990275,
+          "p90Km": 53.53177348735656,
+          "interdecileWidthKm": 79.88937213725931,
+          "rmsKm": 38.38909922022576
+        }
+      },
+      {
+        "code": "cal",
+        "name": "Calabria",
+        "events": 59,
+        "spread": {
+          "n": 59,
+          "medianKm": 47.263123242187305,
+          "madHalfWidthKm": 30.221377119791782,
+          "p10Km": 18.261957507324222,
+          "p90Km": 89.96209284179719,
+          "interdecileWidthKm": 71.70013533447296,
+          "rmsKm": 58.98171776827379
+        }
+      },
+      {
+        "code": "puy",
+        "name": "Puysegur",
+        "events": 45,
+        "spread": {
+          "n": 45,
+          "medianKm": 47.63824634551877,
+          "madHalfWidthKm": 25.745029398082934,
+          "p10Km": 19.6007923889165,
+          "p90Km": 84.28077415061976,
+          "interdecileWidthKm": 64.67998176170326,
+          "rmsKm": 57.50806573103766
+        }
+      },
+      {
+        "code": "mue",
+        "name": "Muertos Trough",
+        "events": 23,
+        "spread": null
+      },
+      {
+        "code": "mak",
+        "name": "Makran",
+        "events": 22,
+        "spread": null
+      },
+      {
+        "code": "him",
+        "name": "Himalaya",
+        "events": 5,
+        "spread": null
+      },
+      {
+        "code": "cas",
+        "name": "Cascadia",
+        "events": 0,
+        "spread": null
+      }
+    ]
+  },
+  "verdict": {
+    "physicalSlabThicknessKm": [
+      50,
+      100
+    ],
+    "worstCorridorRobustFullWidthKm": 84.08,
+    "globalRobustFullWidthKm": 69.59,
+    "killCondition1Triggered": false,
+    "killCondition2Triggered": true,
+    "killCondition3Stop": false,
+    "proceed": true
+  }
+}

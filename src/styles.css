@@ -1,0 +1,713 @@
+/* dipmeter design system.
+   Dusk is the default because the subject is the inside of the Earth and a dark stage lets a
+   700 km deep point read against a shallow one. Daylight is a real alternative, not a token
+   flip: the ramp shifts lightness so the same depth ordering survives on a pale ground.
+   Every colour is authored in OKLCH; src/ramp.js converts the same numbers for WebGL. */
+
+:root {
+  color-scheme: dark;
+
+  /* Stage */
+  --stage: oklch(0.155 0.014 255);
+  --stage-deep: oklch(0.115 0.016 258);
+  --panel: oklch(0.205 0.016 255 / 0.86);
+  --panel-solid: oklch(0.205 0.016 255);
+  --hairline: oklch(0.35 0.018 255 / 0.75);
+  --hairline-strong: oklch(0.46 0.02 255 / 0.9);
+
+  /* Type */
+  --ink: oklch(0.94 0.006 255);
+  --ink-muted: oklch(0.72 0.012 255);
+  --ink-faint: oklch(0.58 0.014 255);
+
+  /* Signal */
+  --accent: oklch(0.78 0.15 68);
+  --accent-quiet: oklch(0.78 0.15 68 / 0.16);
+  --accent-ink: oklch(0.16 0.02 68);
+  --aj-attribution-signal: oklch(0.78 0.15 68);
+
+  /* The depth ramp. These four stops are the semantic core of the page and are read by
+     src/ramp.js as the single source of truth for both the legend and the point shader. */
+  --depth-0: oklch(0.72 0.19 32);
+  --depth-70: oklch(0.80 0.16 78);
+  --depth-300: oklch(0.68 0.16 305);
+  --depth-700: oklch(0.76 0.13 218);
+
+  --assigned: oklch(0.62 0.02 255);
+  --scrim: oklch(0.125 0.014 255);
+  /* The 660 km reference sphere. It is not data, so it must never compete with data. */
+  --reference: oklch(0.52 0.02 255);
+
+  --font-prose: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius: 3px;
+  --panel-pad: 0.875rem;
+  --tap: 44px;
+}
+
+:root[data-theme="daylight"] {
+  color-scheme: light;
+  --stage: oklch(0.975 0.004 255);
+  --stage-deep: oklch(0.93 0.008 255);
+  --panel: oklch(1 0 0 / 0.9);
+  --panel-solid: oklch(1 0 0);
+  --hairline: oklch(0.82 0.01 255 / 0.9);
+  --hairline-strong: oklch(0.68 0.014 255);
+  --ink: oklch(0.24 0.014 255);
+  --ink-muted: oklch(0.46 0.014 255);
+  --ink-faint: oklch(0.58 0.014 255);
+  --accent: oklch(0.55 0.15 55);
+  --accent-quiet: oklch(0.55 0.15 55 / 0.12);
+  --accent-ink: oklch(0.99 0.01 68);
+  --aj-attribution-signal: oklch(0.52 0.15 55);
+  --depth-0: oklch(0.58 0.20 30);
+  --depth-70: oklch(0.66 0.16 72);
+  --depth-300: oklch(0.50 0.19 302);
+  --depth-700: oklch(0.55 0.14 235);
+  --assigned: oklch(0.72 0.015 255);
+  --scrim: oklch(0.97 0.004 255);
+  --reference: oklch(0.86 0.008 255);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--stage);
+  color: var(--ink);
+  font-family: var(--font-prose);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body { overflow: hidden; }
+body.no-webgl, body.fallback-only { overflow: auto; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--panel-solid);
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius);
+  transition: top 120ms ease;
+}
+.skip-link:focus { top: 0.5rem; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---- Stage --------------------------------------------------------------------- */
+
+#stage {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 42%, var(--stage) 0%, var(--stage-deep) 100%);
+}
+#stage canvas { display: block; width: 100%; height: 100%; }
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 0.6rem;
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+#loading[hidden] { display: none; }
+#loading .bar {
+  width: 200px;
+  height: 1px;
+  background: var(--hairline);
+  position: relative;
+  overflow: hidden;
+}
+#loading .bar i {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--accent);
+  transition: transform 200ms ease;
+}
+
+/* ---- Panels -------------------------------------------------------------------- */
+
+.panel {
+  position: fixed;
+  background: var(--panel);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: var(--panel-pad);
+  z-index: 10;
+}
+
+#panel-title {
+  top: 0;
+  left: 0;
+  max-width: 34rem;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 1.25rem 3rem 3rem 1.25rem;
+  pointer-events: none;
+  /* A corner scrim, not a box: the title has to stay readable over whatever the globe puts
+     behind it, in both palettes, without drawing a panel around itself. */
+  background: radial-gradient(120% 100% at 0% 0%,
+    color-mix(in oklab, var(--scrim) 88%, transparent) 0%,
+    color-mix(in oklab, var(--scrim) 62%, transparent) 45%,
+    color-mix(in oklab, var(--scrim) 0%, transparent) 100%);
+}
+#panel-title h1 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 620;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+#panel-title .headline {
+  margin: 0.5rem 0 0;
+  font-size: 1.6rem;
+  line-height: 1.16;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+}
+#panel-title .headline b { font-weight: 620; color: var(--accent); }
+#panel-title .sub {
+  margin: 0.55rem 0 0;
+  color: var(--ink);
+  opacity: 0.82;
+  font-size: 0.84rem;
+  max-width: 24rem;
+  text-wrap: balance;
+}
+
+#panel-controls {
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 19.5rem;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#panel-readout {
+  left: 1.25rem;
+  bottom: 1.25rem;
+  width: 21rem;
+  max-height: 46vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 620;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.panel h3 {
+  margin: 1.1rem 0 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 620;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.panel h3:first-of-type { margin-top: 0; }
+
+/* ---- Controls ------------------------------------------------------------------ */
+
+.field { margin-bottom: 0.9rem; }
+.field-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.field-head label { font-size: 0.8rem; color: var(--ink-muted); }
+.field-head output {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: var(--tap);
+  margin: calc((var(--tap) - 1.1rem) / -2) 0;
+  background: transparent;
+  cursor: ew-resize;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--hairline-strong);
+  border-radius: 1px;
+}
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: var(--hairline-strong);
+  border-radius: 1px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--panel-solid);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--panel-solid);
+}
+input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.range-pair { display: grid; gap: 0; }
+
+input[type="search"], select {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0.5rem 0.6rem;
+  background: color-mix(in oklab, var(--stage) 70%, transparent);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--tap);
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+.toggle input { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex: none; }
+.toggle:hover { color: var(--ink); }
+.toggle .swatch {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+.toggle .count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.btn {
+  min-height: var(--tap);
+  padding: 0.45rem 0.8rem;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn[aria-pressed="true"] { background: var(--accent-quiet); border-color: var(--accent); color: var(--accent); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+#zone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 13rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--hairline);
+}
+#zone-list li { border-bottom: 1px solid var(--hairline); }
+#zone-list button {
+  display: flex;
+  width: 100%;
+  min-height: var(--tap);
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.2rem;
+  background: none;
+  border: none;
+  color: var(--ink-muted);
+  font: inherit;
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+#zone-list button:hover, #zone-list button[aria-current="true"] { color: var(--accent); }
+#zone-list .zcount {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+#zone-list .overturn {
+  flex: none;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 2px;
+  color: var(--ink-faint);
+}
+
+/* ---- Readout ------------------------------------------------------------------- */
+
+.readout-figure {
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.readout-figure small {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  margin-top: 0.2rem;
+}
+
+dl.facts { margin: 0.9rem 0 0; display: grid; gap: 0.3rem; font-size: 0.8rem; }
+dl.facts > div { display: flex; justify-content: space-between; gap: 0.75rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.28rem; }
+dl.facts dt { color: var(--ink-muted); }
+dl.facts dd { margin: 0; font-family: var(--font-mono); font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+
+.legend { display: grid; gap: 0.3rem; margin: 0.6rem 0 0; }
+.legend-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--depth-0), var(--depth-70) 10%, var(--depth-300) 43%, var(--depth-700));
+}
+.legend-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ink-faint);
+}
+
+/* ---- Cross section ------------------------------------------------------------- */
+
+#panel-section {
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: min(34rem, calc(100vw - 2.5rem));
+  z-index: 12;
+}
+#panel-section[hidden] { display: none; }
+body.section-open #panel-controls { max-height: calc(100vh - 2.5rem - 23rem); }
+#section-canvas { width: 100%; height: 250px; display: block; border: 1px solid var(--hairline); border-radius: var(--radius); }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.6rem; }
+.section-note { margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--ink-muted); }
+
+/* ---- Tooltip ------------------------------------------------------------------- */
+
+#tip {
+  position: fixed;
+  z-index: 30;
+  pointer-events: none;
+  background: var(--panel-solid);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.65rem;
+  font-size: 0.76rem;
+  max-width: 17rem;
+  box-shadow: 0 8px 30px oklch(0 0 0 / 0.35);
+}
+#tip[hidden] { display: none; }
+#tip .tip-place { font-weight: 600; }
+#tip dl { margin: 0.35rem 0 0; display: grid; grid-template-columns: auto auto; gap: 0.1rem 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; }
+#tip dt { color: var(--ink-faint); }
+#tip dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---- Fallback and long-form ----------------------------------------------------- */
+
+#fallback {
+  position: relative;
+  z-index: 5;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+body.has-webgl #fallback { display: none; }
+
+#fallback h2 { font-size: 1.1rem; font-weight: 620; letter-spacing: -0.01em; margin: 2.4rem 0 0.7rem; }
+#fallback p { color: var(--ink-muted); max-width: 44rem; }
+#fallback table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 0.8rem 0 0; }
+#fallback th, #fallback td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--hairline); }
+#fallback th { color: var(--ink-faint); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+#fallback td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+#fallback svg { max-width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--stage-deep); }
+.decimation-receipt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.7rem;
+  margin: 0.7rem 0 0;
+}
+
+/* ---- Footer -------------------------------------------------------------------- */
+
+#colophon {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 0.6rem;
+  z-index: 9;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+#colophon a { pointer-events: auto; }
+body.has-webgl #site-footer { display: none; }
+#site-footer { max-width: 60rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; font-size: 0.8rem; color: var(--ink-muted); border-top: 1px solid var(--hairline); }
+
+/* Agent James attribution. Pattern shared with polis and sluice; do not re-invent. */
+.aj-attribution { margin: 0; font: inherit; line-height: 1.5; color: inherit; }
+.aj-attribution__mark { display: inline-block; width: 20px; height: 20px; vertical-align: -0.3em; margin-right: 0.45em; }
+.aj-attribution a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+.aj-attribution a:hover { text-decoration-thickness: 2px; }
+.aj-attribution a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.aj-attribution__sep { margin: 0 0.35em; }
+
+/* ---- Responsive ---------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* Mobile is not the desktop layout at a smaller size. The stage has to stay visible, so
+     the controls become a sheet that is CLOSED by default, the readout shrinks to one line,
+     and the title gets a scrim because white text over a point cloud is not readable. */
+
+  #panel-title {
+    top: 0; left: 0; right: 0;
+    max-width: none;
+    padding: 0.85rem 0.9rem 2.2rem;
+    background: linear-gradient(to bottom,
+      color-mix(in oklab, var(--scrim) 94%, transparent) 0%,
+      color-mix(in oklab, var(--scrim) 78%, transparent) 55%,
+      color-mix(in oklab, var(--scrim) 0%, transparent) 100%);
+  }
+  #panel-title h1 { font-size: 0.78rem; letter-spacing: 0.2em; }
+  #panel-title .headline { font-size: 1.22rem; margin-top: 0.3rem; }
+  #panel-title .sub { font-size: 0.76rem; margin-top: 0.35rem; max-width: 34rem; }
+
+  /* Readout: a single compact strip, not a panel that eats the stage. */
+  #panel-readout {
+    left: 0.75rem; right: 0.75rem; width: auto;
+    top: auto; bottom: 4.6rem;
+    max-height: 38vh;
+    padding: 0.6rem 0.75rem;
+  }
+  #panel-readout > h2 { margin-bottom: 0.4rem; }
+  #panel-readout .readout-figure { font-size: 1.2rem; display: flex; align-items: baseline; gap: 0.6rem; }
+  #panel-readout .readout-figure small { display: inline; margin: 0; }
+  #panel-readout > p:last-of-type { display: none; }
+  body.sheet-open #panel-readout { display: none; }
+
+  /* Controls: a bottom sheet with a persistent handle. */
+  #panel-controls {
+    top: auto; bottom: 0; left: 0; right: 0; width: 100%;
+    max-height: 78vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-left: none; border-right: none; border-bottom: none;
+    padding: 0 var(--panel-pad) max(var(--panel-pad), env(safe-area-inset-bottom));
+    transform: translateY(calc(100% - 3.75rem));
+    transition: transform 220ms ease;
+    overscroll-behavior: contain;
+  }
+  body.sheet-open #panel-controls { transform: translateY(0); }
+  #panel-controls > h2 { display: none; }
+
+  #sheet-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    width: calc(100% + var(--panel-pad) * 2);
+    margin: 0 calc(var(--panel-pad) * -1) var(--panel-pad);
+    min-height: 3.75rem;
+    padding: 0 var(--panel-pad);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 620;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--panel-solid);
+  }
+  #sheet-toggle .chev { transition: transform 220ms ease; font-size: 0.9rem; }
+  body.sheet-open #sheet-toggle .chev { transform: rotate(180deg); }
+
+  #panel-section { left: 0.75rem; right: 0.75rem; width: auto; bottom: auto; top: 8.5rem; }
+  #colophon { display: none; }
+}
+
+@media (min-width: 901px) {
+  #sheet-toggle { display: none; }
+}
+
+@media (max-width: 420px) {
+  :root { --panel-pad: 0.7rem; }
+  #panel-title .headline { font-size: 1.02rem; }
+  #panel-title .sub { font-size: 0.72rem; }
+  #panel-readout { font-size: 0.92em; }
+  #panel-readout .readout-figure { font-size: 1.05rem; }
+  .btn { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* The catalogue facts collapse by default so the readout panel never overflows its own
+   frame on a laptop viewport. They are one click away, and they are in the served tables
+   below regardless. */
+#facts-details { margin-top: 0.9rem; border-top: 1px solid var(--hairline); padding-top: 0.6rem; }
+#facts-details > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  font-size: 0.68rem;
+  font-weight: 620;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+#facts-details > summary::-webkit-details-marker { display: none; }
+#facts-details > summary::before { content: "+"; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1; }
+#facts-details[open] > summary::before { content: "2"; }
+#facts-details > summary:hover { color: var(--ink); }
+
+#search-results { list-style: none; margin: 0.4rem 0 0; padding: 0; border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+#search-results[hidden] { display: none; }
+#search-results li + li { border-top: 1px solid var(--hairline); }
+#search-results button {
+  display: flex; width: 100%; min-height: var(--tap); align-items: center; gap: 0.5rem;
+  padding: 0.4rem 0.55rem; background: none; border: none; color: var(--ink-muted);
+  font: inherit; font-size: 0.8rem; text-align: left; cursor: pointer;
+}
+#search-results button:hover { color: var(--accent); background: var(--accent-quiet); }
+#search-results .zcount { margin-left: auto; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+#search-results .no-hit { display: block; padding: 0.6rem 0.55rem; font-size: 0.8rem; color: var(--ink-faint); }
+
+.fb-sections { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); margin-top: 0.8rem; }
+.fb-sections figure { margin: 0; }
+.fb-sections figcaption { font-size: 0.8rem; font-weight: 620; margin-bottom: 0.4rem; }
+
+/* Thin scrollbars inside panels, so a scrollable panel reads as scrollable. */
+.panel ::-webkit-scrollbar, .panel::-webkit-scrollbar { width: 6px; height: 6px; }
+.panel ::-webkit-scrollbar-thumb, .panel::-webkit-scrollbar-thumb { background: var(--hairline-strong); border-radius: 3px; }
+.panel ::-webkit-scrollbar-track, .panel::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- States where the interactive layer must get out of the way ------------------------
+   Two of them: no JavaScript at all, and JavaScript that could not obtain a WebGL2 context.
+   In both, the floating panels are inert furniture sitting on top of the real content, so
+   they are removed rather than left to look broken. */
+
+html:not(.js) #stage,
+html:not(.js) #loading,
+html:not(.js) #tip,
+html:not(.js) #colophon,
+html:not(.js) .panel,
+body.no-webgl #stage,
+body.no-webgl #loading,
+body.no-webgl #tip,
+body.no-webgl #colophon,
+body.no-webgl .panel {
+  display: none !important;
+}
+
+html:not(.js) body,
+body.no-webgl { overflow: auto; }
+
+html:not(.js) #fallback,
+body.no-webgl #fallback { display: block; padding-top: 2rem; }
+
+/* The fallback carries its own real <h1>, so heading order survives when the title panel is
+   hidden. With WebGL running, the panel's <h1> is the document heading and this one is not
+   rendered, because #fallback itself is not rendered. */
+.fb-masthead { margin-bottom: 2.5rem; }
+.fb-masthead h1 {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 620;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.fb-masthead .fb-claim {
+  margin: 0.7rem 0 0.9rem;
+  font-size: 1.75rem;
+  line-height: 1.18;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+  max-width: 30ch;
+}
+.fb-masthead .fb-claim strong { color: var(--accent); font-weight: 620; }
+
+#fallback-reason:not([hidden]) {
+  border-left: 2px solid var(--accent);
+  padding-left: 0.7rem;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}

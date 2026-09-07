@@ -1,0 +1,40 @@
+{
+  "measuredAt": "2026-09-07T03:56:04.280Z",
+  "reference": "https://human-atlas-seven.vercel.app/",
+  "method": "Fetched over HTTPS and compressed locally with node:zlib at gzip level 9 and brotli quality 11, the same settings scripts/measure-bundle.mjs uses for dipmeter, so the two are comparable.",
+  "files": [
+    {
+      "url": "https://human-atlas-seven.vercel.app/",
+      "kind": "html",
+      "raw": 626,
+      "gzip": 398,
+      "brotli": 249
+    },
+    {
+      "url": "https://human-atlas-seven.vercel.app/assets/index-CW6uCXww.js",
+      "raw": 916370,
+      "gzip": 260993,
+      "brotli": 218188,
+      "kind": "js"
+    },
+    {
+      "url": "https://human-atlas-seven.vercel.app/assets/index-excBUMy1.css",
+      "raw": 196589,
+      "gzip": 30883,
+      "brotli": 25347,
+      "kind": "css"
+    }
+  ],
+  "shellTotal": {
+    "raw": 1113585,
+    "gzip": 292274,
+    "brotli": 243784
+  },
+  "javascript": {
+    "url": "https://human-atlas-seven.vercel.app/assets/index-CW6uCXww.js",
+    "raw": 916370,
+    "gzip": 260993,
+    "brotli": 218188,
+    "kind": "js"
+  }
+}

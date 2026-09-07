@@ -1,0 +1,198 @@
+{
+  "fetchedAt": "2026-09-07T03:09:36.102Z",
+  "source": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+  "licence": "U.S. Public Domain (USGS)",
+  "minMagnitude": 4.5,
+  "chunks": [
+    {
+      "year": 1990,
+      "bytes": 718821,
+      "rows": 4430
+    },
+    {
+      "year": 1991,
+      "bytes": 663154,
+      "rows": 4098
+    },
+    {
+      "year": 1992,
+      "bytes": 713189,
+      "rows": 4391
+    },
+    {
+      "year": 1993,
+      "bytes": 677953,
+      "rows": 4189
+    },
+    {
+      "year": 1994,
+      "bytes": 679023,
+      "rows": 4200
+    },
+    {
+      "year": 1995,
+      "bytes": 758950,
+      "rows": 4702
+    },
+    {
+      "year": 1996,
+      "bytes": 753793,
+      "rows": 4674
+    },
+    {
+      "year": 1997,
+      "bytes": 743099,
+      "rows": 4588
+    },
+    {
+      "year": 1998,
+      "bytes": 618401,
+      "rows": 3804
+    },
+    {
+      "year": 1999,
+      "bytes": 660703,
+      "rows": 4068
+    },
+    {
+      "year": 2000,
+      "bytes": 822262,
+      "rows": 5010
+    },
+    {
+      "year": 2001,
+      "bytes": 770526,
+      "rows": 4680
+    },
+    {
+      "year": 2002,
+      "bytes": 815854,
+      "rows": 4963
+    },
+    {
+      "year": 2003,
+      "bytes": 863223,
+      "rows": 5136
+    },
+    {
+      "year": 2004,
+      "bytes": 1050398,
+      "rows": 6183
+    },
+    {
+      "year": 2005,
+      "bytes": 1332286,
+      "rows": 7878
+    },
+    {
+      "year": 2006,
+      "bytes": 1191740,
+      "rows": 7075
+    },
+    {
+      "year": 2007,
+      "bytes": 1234826,
+      "rows": 7274
+    },
+    {
+      "year": 2008,
+      "bytes": 1068946,
+      "rows": 6307
+    },
+    {
+      "year": 2009,
+      "bytes": 1027526,
+      "rows": 6054
+    },
+    {
+      "year": 2010,
+      "bytes": 1223380,
+      "rows": 7214
+    },
+    {
+      "year": 2011,
+      "bytes": 1622588,
+      "rows": 9584
+    },
+    {
+      "year": 2012,
+      "bytes": 1223464,
+      "rows": 7189
+    },
+    {
+      "year": 2013,
+      "bytes": 1247557,
+      "rows": 7211
+    },
+    {
+      "year": 2014,
+      "bytes": 1504234,
+      "rows": 8333
+    },
+    {
+      "year": 2015,
+      "bytes": 1304648,
+      "rows": 7153
+    },
+    {
+      "year": 2016,
+      "bytes": 1360176,
+      "rows": 7440
+    },
+    {
+      "year": 2017,
+      "bytes": 1171636,
+      "rows": 6372
+    },
+    {
+      "year": 2018,
+      "bytes": 1387307,
+      "rows": 7571
+    },
+    {
+      "year": 2019,
+      "bytes": 1318265,
+      "rows": 7211
+    },
+    {
+      "year": 2020,
+      "bytes": 1189332,
+      "rows": 6511
+    },
+    {
+      "year": 2021,
+      "bytes": 1633773,
+      "rows": 8959
+    },
+    {
+      "year": 2022,
+      "bytes": 1436199,
+      "rows": 7766
+    },
+    {
+      "year": 2023,
+      "bytes": 1441174,
+      "rows": 7651
+    },
+    {
+      "year": 2024,
+      "bytes": 1208961,
+      "rows": 6397
+    },
+    {
+      "year": 2025,
+      "bytes": 1630225,
+      "rows": 8558
+    },
+    {
+      "year": 2026,
+      "bytes": 989284,
+      "rows": 5236
+    }
+  ],
+  "combined": {
+    "path": "data/raw/comcat-m45-1990-2026.csv",
+    "bytes": 40051116,
+    "rows": 230060
+  }
+}

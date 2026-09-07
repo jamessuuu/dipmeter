@@ -1,0 +1,223 @@
+{
+  "measuredAt": "2026-09-07T03:56:29.618Z",
+  "shell": {
+    "files": [
+      {
+        "file": "assets/index-C9Rg9YP0.js",
+        "raw": 658714,
+        "gzip": 167038,
+        "brotli": 123333
+      },
+      {
+        "file": "assets/index-CHQqZndA.css",
+        "raw": 15722,
+        "gzip": 3979,
+        "brotli": 3464
+      },
+      {
+        "file": "index.html",
+        "raw": 251499,
+        "gzip": 33865,
+        "brotli": 27149
+      }
+    ],
+    "total": {
+      "raw": 925935,
+      "gzip": 204882,
+      "brotli": 153946
+    },
+    "javascript": {
+      "file": "assets/index-C9Rg9YP0.js",
+      "raw": 658714,
+      "gzip": 167038,
+      "brotli": 123333
+    },
+    "css": {
+      "file": "assets/index-CHQqZndA.css",
+      "raw": 15722,
+      "gzip": 3979,
+      "brotli": 3464
+    },
+    "html": {
+      "file": "index.html",
+      "raw": 251499,
+      "gzip": 33865,
+      "brotli": 27149
+    }
+  },
+  "payload": {
+    "files": [
+      {
+        "file": "data/coast.bin",
+        "raw": 21064,
+        "gzip": 20348,
+        "brotli": 19731
+      },
+      {
+        "file": "data/events-a.bin",
+        "raw": 814193,
+        "gzip": 457423,
+        "brotli": 430655
+      },
+      {
+        "file": "data/events-b.bin",
+        "raw": 2176606,
+        "gzip": 1179010,
+        "brotli": 1120388
+      },
+      {
+        "file": "data/manifest.json",
+        "raw": 94365,
+        "gzip": 16866,
+        "brotli": 13402
+      },
+      {
+        "file": "data/slabs.bin",
+        "raw": 729000,
+        "gzip": 102878,
+        "brotli": 83858
+      }
+    ],
+    "total": {
+      "raw": 3835228,
+      "gzip": 1776525,
+      "brotli": 1668034
+    }
+  },
+  "threeImports": [
+    {
+      "names": "WebGLRenderer",
+      "from": "three/src/renderers/WebGLRenderer.js"
+    },
+    {
+      "names": "Scene",
+      "from": "three/src/scenes/Scene.js"
+    },
+    {
+      "names": "PerspectiveCamera",
+      "from": "three/src/cameras/PerspectiveCamera.js"
+    },
+    {
+      "names": "BufferGeometry",
+      "from": "three/src/core/BufferGeometry.js"
+    },
+    {
+      "names": "BufferAttribute",
+      "from": "three/src/core/BufferAttribute.js"
+    },
+    {
+      "names": "Points",
+      "from": "three/src/objects/Points.js"
+    },
+    {
+      "names": "Mesh",
+      "from": "three/src/objects/Mesh.js"
+    },
+    {
+      "names": "LineSegments",
+      "from": "three/src/objects/LineSegments.js"
+    },
+    {
+      "names": "Line",
+      "from": "three/src/objects/Line.js"
+    },
+    {
+      "names": "ShaderMaterial",
+      "from": "three/src/materials/ShaderMaterial.js"
+    },
+    {
+      "names": "LineBasicMaterial",
+      "from": "three/src/materials/LineBasicMaterial.js"
+    },
+    {
+      "names": "SphereGeometry",
+      "from": "three/src/geometries/SphereGeometry.js"
+    },
+    {
+      "names": "Vector3",
+      "from": "three/src/math/Vector3.js"
+    },
+    {
+      "names": "Color",
+      "from": "three/src/math/Color.js"
+    },
+    {
+      "names": "Group",
+      "from": "three/src/objects/Group.js"
+    },
+    {
+      "names": "AdditiveBlending, NormalBlending, DoubleSide, BackSide, SRGBColorSpace",
+      "from": "three/src/constants.js"
+    },
+    {
+      "names": "OrbitControls",
+      "from": "three/examples/jsm/controls/OrbitControls.js"
+    }
+  ],
+  "threeOnly": {
+    "raw": 625520,
+    "gzip": 156313,
+    "brotli": 113599
+  },
+  "application": {
+    "raw": 33194,
+    "gzip": 10725,
+    "brotli": 9734,
+    "note": "Shipped bundle minus a three.js-only bundle built by the same bundler and minifier. Approximate: minifiers share strings across the whole graph."
+  },
+  "budget": {
+    "statedGzipBudgetBytes": 168960,
+    "source": "SLATE-3D-DATASET.md section 5.1: about 138 KB of three.js plus about 27 KB of application.",
+    "javascriptGzip": 167038,
+    "withinBudget": true,
+    "deltaBytes": -1922
+  },
+  "reference": {
+    "url": "https://human-atlas-seven.vercel.app/",
+    "measuredAt": "2026-09-07T03:56:04.280Z",
+    "javascript": {
+      "url": "https://human-atlas-seven.vercel.app/assets/index-CW6uCXww.js",
+      "raw": 916370,
+      "gzip": 260993,
+      "brotli": 218188,
+      "kind": "js"
+    },
+    "shellTotal": {
+      "raw": 1113585,
+      "gzip": 292274,
+      "brotli": 243784
+    },
+    "provenance": "Fetched and measured locally by scripts/measure-reference.mjs."
+  },
+  "comparison": {
+    "javascript": {
+      "dipmeter": {
+        "raw": 658714,
+        "gzip": 167038,
+        "brotli": 123333
+      },
+      "reference": {
+        "raw": 916370,
+        "gzip": 260993,
+        "brotli": 218188
+      },
+      "rawPctVsReference": -28.1,
+      "gzipPctVsReference": -36
+    },
+    "shell": {
+      "dipmeter": {
+        "raw": 925935,
+        "gzip": 204882,
+        "brotli": 153946
+      },
+      "reference": {
+        "raw": 1113585,
+        "gzip": 292274,
+        "brotli": 243784
+      },
+      "rawPctVsReference": -16.9,
+      "gzipPctVsReference": -29.9,
+      "brotliPctVsReference": -36.9
+    }
+  }
+}

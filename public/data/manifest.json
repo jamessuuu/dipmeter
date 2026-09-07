@@ -1,0 +1,4942 @@
+{
+  "generatedAt": "2026-09-07T03:49:09.039Z",
+  "generator": "scripts/build-data.mjs",
+  "encoding": {
+    "LAT_SCALE": 364,
+    "LON_SCALE": 180,
+    "DEPTH_OFFSET": 100,
+    "DEPTH_SCALE": 50,
+    "MAG_BASE": 4,
+    "MAG_TENTHS_OFFSET": 40,
+    "MAG_QUANTUM": 0.1,
+    "EPOCH_YEAR": 1990,
+    "SLAB_SCALE": 10,
+    "COAST_SCALE": 180,
+    "SLAB_DECIMATE_DEG": 0.2,
+    "ATTRIBUTION_MAX_RESIDUAL_KM": 300
+  },
+  "flags": {
+    "FLAG_DEFAULT_DEPTH": 1,
+    "FLAG_NOT_EARTHQUAKE": 2
+  },
+  "sources": {
+    "comcat": {
+      "name": "USGS ANSS ComCat, M4.5+, 1990-01-01 to 2026-01-01",
+      "endpoint": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+      "licence": "U.S. Public Domain",
+      "fetchedAt": "2026-09-07T03:09:36.102Z",
+      "csvBytes": 40051116,
+      "dataRows": 230060,
+      "parsedRows": 230060,
+      "skippedIncomplete": 0,
+      "droppedBelowMagnitudeFloor": {
+        "count": 1,
+        "reason": "The FDSN service matched these on a magnitude other than the preferred one it reports. The brief forbids anything below M4.5.",
+        "events": [
+          {
+            "id": "nc21364840",
+            "time": "2004-05-17T21:41:12.700Z",
+            "mag": 3.38,
+            "magType": "ml",
+            "place": "12 km NNE of Cayucos, California"
+          }
+        ]
+      },
+      "keptEvents": 230059
+    },
+    "slab2": {
+      "name": "USGS Slab2, Hayes et al. 2018",
+      "item": "https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467",
+      "doi": "10.5066/F7PV6JNV",
+      "licence": "U.S. Public Domain",
+      "fetchedAt": "2026-09-07T03:13:25.209Z",
+      "zones": 27,
+      "overturningZones": [
+        {
+          "code": "izu",
+          "name": "Izu-Bonin"
+        },
+        {
+          "code": "ker",
+          "name": "Kermadec-Tonga"
+        },
+        {
+          "code": "man",
+          "name": "Manila"
+        },
+        {
+          "code": "sol",
+          "name": "Solomon Islands"
+        }
+      ]
+    },
+    "naturalEarth": {
+      "name": "Natural Earth 1:110m coastline",
+      "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_coastline.geojson",
+      "licence": "Public domain",
+      "geojsonBytes": 139907,
+      "strands": 134,
+      "points": 5128
+    }
+  },
+  "counts": {
+    "events": 230059,
+    "tierA": 62629,
+    "tierB": 167430,
+    "defaultDepth": 106108,
+    "notEarthquake": 125,
+    "byType": {
+      "earthquake": 229934,
+      "nuclear explosion": 45,
+      "mine collapse": 2,
+      "rock burst": 2,
+      "explosion": 2,
+      "volcanic eruption": 71,
+      "landslide": 3
+    },
+    "aboveSeaLevel": 73,
+    "attributedToASlab": 160303,
+    "unattributed": 69756,
+    "regimes": {
+      "shallow": 179798,
+      "intermediate": 38963,
+      "deep": 11298,
+      "deeperThan500": 7547
+    },
+    "depthKm": {
+      "min": -3,
+      "max": 700.9
+    },
+    "magnitude": {
+      "min": 4.5,
+      "max": 9.1
+    },
+    "quantisation": {
+      "depthKm": 0.02,
+      "magnitude": 0.1,
+      "latitudeDeg": 0.0027472527472527475,
+      "longitudeDeg": 0.005555555555555556,
+      "note": "Counts and extremes above describe the quantised values the page actually renders, not the raw CSV decimals."
+    },
+    "months": {
+      "epochYear": 1990,
+      "count": 441,
+      "firstEvent": "1990-01-01T07:49:35.570Z",
+      "lastEvent": "2026-09-07T02:30:21.719Z"
+    }
+  },
+  "zones": [
+    {
+      "code": "alu",
+      "name": "Alaska-Aleutians",
+      "lonMin": 161,
+      "latMin": 45,
+      "step": 0.2,
+      "nx": 326,
+      "ny": 116,
+      "sourceNx": 1301,
+      "sourceNy": 461,
+      "sourceStep": 0.05,
+      "sourceNodes": 599761,
+      "sourceValidNodes": 70465,
+      "shippedNodes": 37816,
+      "shippedValidNodes": 4393,
+      "depthMinKm": 1.47,
+      "depthMaxKm": 262.39,
+      "byteOffset": 16,
+      "byteLength": 75632,
+      "overturns": false,
+      "events": 5326,
+      "deepEvents": 644
+    },
+    {
+      "code": "cal",
+      "name": "Calabria",
+      "lonMin": 8,
+      "latMin": 30,
+      "step": 0.2,
+      "nx": 81,
+      "ny": 76,
+      "sourceNx": 321,
+      "sourceNy": 301,
+      "sourceStep": 0.05,
+      "sourceNodes": 96621,
+      "sourceValidNodes": 9796,
+      "shippedNodes": 6156,
+      "shippedValidNodes": 611,
+      "depthMinKm": 6.29,
+      "depthMaxKm": 480.03,
+      "byteOffset": 75648,
+      "byteLength": 12312,
+      "overturns": false,
+      "events": 117,
+      "deepEvents": 59
+    },
+    {
+      "code": "cam",
+      "name": "Central America",
+      "lonMin": 247,
+      "latMin": 3,
+      "step": 0.2,
+      "nx": 171,
+      "ny": 121,
+      "sourceNx": 681,
+      "sourceNy": 481,
+      "sourceStep": 0.05,
+      "sourceNodes": 327561,
+      "sourceValidNodes": 30897,
+      "shippedNodes": 20691,
+      "shippedValidNodes": 1924,
+      "depthMinKm": 4.26,
+      "depthMaxKm": 382.03,
+      "byteOffset": 87960,
+      "byteLength": 41382,
+      "overturns": false,
+      "events": 6030,
+      "deepEvents": 1289
+    },
+    {
+      "code": "car",
+      "name": "Caribbean",
+      "lonMin": 283,
+      "latMin": 5,
+      "step": 0.2,
+      "nx": 121,
+      "ny": 106,
+      "sourceNx": 481,
+      "sourceNy": 421,
+      "sourceStep": 0.05,
+      "sourceNodes": 202501,
+      "sourceValidNodes": 21367,
+      "shippedNodes": 12826,
+      "shippedValidNodes": 1333,
+      "depthMinKm": 7.06,
+      "depthMaxKm": 180.5,
+      "byteOffset": 129342,
+      "byteLength": 25652,
+      "overturns": false,
+      "events": 973,
+      "deepEvents": 271
+    },
+    {
+      "code": "cas",
+      "name": "Cascadia",
+      "lonMin": 227,
+      "latMin": 35,
+      "step": 0.2,
+      "nx": 91,
+      "ny": 96,
+      "sourceNx": 361,
+      "sourceNy": 381,
+      "sourceStep": 0.05,
+      "sourceNodes": 137541,
+      "sourceValidNodes": 26637,
+      "shippedNodes": 8736,
+      "shippedValidNodes": 1669,
+      "depthMinKm": 5.1,
+      "depthMaxKm": 429.88,
+      "byteOffset": 154994,
+      "byteLength": 17472,
+      "overturns": false,
+      "events": 100,
+      "deepEvents": 0
+    },
+    {
+      "code": "cot",
+      "name": "Cotabato",
+      "lonMin": 118,
+      "latMin": 1,
+      "step": 0.2,
+      "nx": 56,
+      "ny": 56,
+      "sourceNx": 221,
+      "sourceNy": 221,
+      "sourceStep": 0.05,
+      "sourceNodes": 48841,
+      "sourceValidNodes": 1510,
+      "shippedNodes": 3136,
+      "shippedValidNodes": 95,
+      "depthMinKm": 7.31,
+      "depthMaxKm": 139.64,
+      "byteOffset": 172466,
+      "byteLength": 6272,
+      "overturns": false,
+      "events": 444,
+      "deepEvents": 77
+    },
+    {
+      "code": "hal",
+      "name": "Halmahera",
+      "lonMin": 116,
+      "latMin": -4,
+      "step": 0.2,
+      "nx": 86,
+      "ny": 91,
+      "sourceNx": 341,
+      "sourceNy": 361,
+      "sourceStep": 0.05,
+      "sourceNodes": 123101,
+      "sourceValidNodes": 22485,
+      "shippedNodes": 7826,
+      "shippedValidNodes": 1409,
+      "depthMinKm": 33.42,
+      "depthMaxKm": 675.54,
+      "byteOffset": 178738,
+      "byteLength": 15652,
+      "overturns": false,
+      "events": 8361,
+      "deepEvents": 3411
+    },
+    {
+      "code": "hel",
+      "name": "Hellenic",
+      "lonMin": 13,
+      "latMin": 27,
+      "step": 0.2,
+      "nx": 136,
+      "ny": 86,
+      "sourceNx": 541,
+      "sourceNy": 341,
+      "sourceStep": 0.05,
+      "sourceNodes": 184481,
+      "sourceValidNodes": 31138,
+      "shippedNodes": 11696,
+      "shippedValidNodes": 1946,
+      "depthMinKm": 6.81,
+      "depthMaxKm": 444.03,
+      "byteOffset": 194390,
+      "byteLength": 23392,
+      "overturns": false,
+      "events": 1837,
+      "deepEvents": 107
+    },
+    {
+      "code": "him",
+      "name": "Himalaya",
+      "lonMin": 71,
+      "latMin": 23,
+      "step": 0.2,
+      "nx": 146,
+      "ny": 76,
+      "sourceNx": 581,
+      "sourceNy": 301,
+      "sourceStep": 0.05,
+      "sourceNodes": 174881,
+      "sourceValidNodes": 11917,
+      "shippedNodes": 11096,
+      "shippedValidNodes": 737,
+      "depthMinKm": 1.63,
+      "depthMaxKm": 39.78,
+      "byteOffset": 217782,
+      "byteLength": 22192,
+      "overturns": false,
+      "events": 515,
+      "deepEvents": 5
+    },
+    {
+      "code": "hin",
+      "name": "Hindu Kush",
+      "lonMin": 65,
+      "latMin": 32,
+      "step": 0.2,
+      "nx": 56,
+      "ny": 46,
+      "sourceNx": 551,
+      "sourceNy": 451,
+      "sourceStep": 0.02,
+      "sourceNodes": 248501,
+      "sourceValidNodes": 11009,
+      "shippedNodes": 2576,
+      "shippedValidNodes": 109,
+      "depthMinKm": 23.21,
+      "depthMaxKm": 331.94,
+      "byteOffset": 239974,
+      "byteLength": 5152,
+      "overturns": false,
+      "events": 1308,
+      "deepEvents": 1112
+    },
+    {
+      "code": "izu",
+      "name": "Izu-Bonin",
+      "lonMin": 134,
+      "latMin": 10,
+      "step": 0.2,
+      "nx": 71,
+      "ny": 126,
+      "sourceNx": 281,
+      "sourceNy": 501,
+      "sourceStep": 0.05,
+      "sourceNodes": 140781,
+      "sourceValidNodes": 40403,
+      "shippedNodes": 8946,
+      "shippedValidNodes": 2538,
+      "depthMinKm": 5.89,
+      "depthMaxKm": 576.65,
+      "byteOffset": 245126,
+      "byteLength": 17892,
+      "overturns": true,
+      "events": 9439,
+      "deepEvents": 2904
+    },
+    {
+      "code": "ker",
+      "name": "Kermadec-Tonga",
+      "lonMin": 169,
+      "latMin": -44,
+      "step": 0.2,
+      "nx": 96,
+      "ny": 151,
+      "sourceNx": 381,
+      "sourceNy": 601,
+      "sourceStep": 0.05,
+      "sourceNodes": 228981,
+      "sourceValidNodes": 69457,
+      "shippedNodes": 14496,
+      "shippedValidNodes": 4346,
+      "depthMinKm": 4.9,
+      "depthMaxKm": 700,
+      "byteOffset": 263018,
+      "byteLength": 28992,
+      "overturns": true,
+      "events": 27386,
+      "deepEvents": 12339
+    },
+    {
+      "code": "kur",
+      "name": "Kuril-Kamchatka-Japan",
+      "lonMin": 121,
+      "latMin": 35,
+      "step": 0.2,
+      "nx": 246,
+      "ny": 131,
+      "sourceNx": 981,
+      "sourceNy": 521,
+      "sourceStep": 0.05,
+      "sourceNodes": 511101,
+      "sourceValidNodes": 119754,
+      "shippedNodes": 32226,
+      "shippedValidNodes": 7498,
+      "depthMinKm": 7.5,
+      "depthMaxKm": 660.66,
+      "byteOffset": 292010,
+      "byteLength": 64452,
+      "overturns": false,
+      "events": 18215,
+      "deepEvents": 2909
+    },
+    {
+      "code": "mak",
+      "name": "Makran",
+      "lonMin": 52,
+      "latMin": 18,
+      "step": 0.2,
+      "nx": 91,
+      "ny": 76,
+      "sourceNx": 361,
+      "sourceNy": 301,
+      "sourceStep": 0.05,
+      "sourceNodes": 108661,
+      "sourceValidNodes": 23316,
+      "shippedNodes": 6916,
+      "shippedValidNodes": 1448,
+      "depthMinKm": 3.08,
+      "depthMaxKm": 155.71,
+      "byteOffset": 356462,
+      "byteLength": 13832,
+      "overturns": false,
+      "events": 516,
+      "deepEvents": 22
+    },
+    {
+      "code": "man",
+      "name": "Manila",
+      "lonMin": 119,
+      "latMin": 13,
+      "step": 0.2,
+      "nx": 21,
+      "ny": 51,
+      "sourceNx": 201,
+      "sourceNy": 501,
+      "sourceStep": 0.02,
+      "sourceNodes": 100701,
+      "sourceValidNodes": 49063,
+      "shippedNodes": 1071,
+      "shippedValidNodes": 489,
+      "depthMinKm": 3.96,
+      "depthMaxKm": 169.6,
+      "byteOffset": 370294,
+      "byteLength": 2142,
+      "overturns": true,
+      "events": 2443,
+      "deepEvents": 425
+    },
+    {
+      "code": "mue",
+      "name": "Muertos Trough",
+      "lonMin": 285,
+      "latMin": 11,
+      "step": 0.2,
+      "nx": 76,
+      "ny": 56,
+      "sourceNx": 751,
+      "sourceNy": 551,
+      "sourceStep": 0.02,
+      "sourceNodes": 413801,
+      "sourceValidNodes": 14415,
+      "shippedNodes": 4256,
+      "shippedValidNodes": 144,
+      "depthMinKm": 0.87,
+      "depthMaxKm": 99.38,
+      "byteOffset": 372436,
+      "byteLength": 8512,
+      "overturns": false,
+      "events": 88,
+      "deepEvents": 23
+    },
+    {
+      "code": "pam",
+      "name": "Pamir",
+      "lonMin": 67,
+      "latMin": 33,
+      "step": 0.2,
+      "nx": 66,
+      "ny": 51,
+      "sourceNx": 651,
+      "sourceNy": 501,
+      "sourceStep": 0.02,
+      "sourceNodes": 326151,
+      "sourceValidNodes": 24028,
+      "shippedNodes": 3366,
+      "shippedValidNodes": 236,
+      "depthMinKm": 8.29,
+      "depthMaxKm": 232.72,
+      "byteOffset": 380948,
+      "byteLength": 6732,
+      "overturns": false,
+      "events": 665,
+      "deepEvents": 343
+    },
+    {
+      "code": "phi",
+      "name": "Philippines",
+      "lonMin": 118,
+      "latMin": -2,
+      "step": 0.2,
+      "nx": 81,
+      "ny": 116,
+      "sourceNx": 321,
+      "sourceNy": 461,
+      "sourceStep": 0.05,
+      "sourceNodes": 147981,
+      "sourceValidNodes": 8425,
+      "shippedNodes": 9396,
+      "shippedValidNodes": 537,
+      "depthMinKm": 6.33,
+      "depthMaxKm": 228.42,
+      "byteOffset": 387680,
+      "byteLength": 18792,
+      "overturns": false,
+      "events": 5560,
+      "deepEvents": 1296
+    },
+    {
+      "code": "png",
+      "name": "New Guinea",
+      "lonMin": 128,
+      "latMin": -9,
+      "step": 0.2,
+      "nx": 96,
+      "ny": 71,
+      "sourceNx": 381,
+      "sourceNy": 281,
+      "sourceStep": 0.05,
+      "sourceNodes": 107061,
+      "sourceValidNodes": 15347,
+      "shippedNodes": 6816,
+      "shippedValidNodes": 961,
+      "depthMinKm": 5.61,
+      "depthMaxKm": 167.75,
+      "byteOffset": 406472,
+      "byteLength": 13632,
+      "overturns": false,
+      "events": 2857,
+      "deepEvents": 142
+    },
+    {
+      "code": "puy",
+      "name": "Puysegur",
+      "lonMin": 157,
+      "latMin": -56,
+      "step": 0.2,
+      "nx": 76,
+      "ny": 81,
+      "sourceNx": 751,
+      "sourceNy": 801,
+      "sourceStep": 0.02,
+      "sourceNodes": 601551,
+      "sourceValidNodes": 18847,
+      "shippedNodes": 6156,
+      "shippedValidNodes": 189,
+      "depthMinKm": 3.84,
+      "depthMaxKm": 156.56,
+      "byteOffset": 420104,
+      "byteLength": 12312,
+      "overturns": false,
+      "events": 394,
+      "deepEvents": 45
+    },
+    {
+      "code": "ryu",
+      "name": "Ryukyu",
+      "lonMin": 116,
+      "latMin": 19,
+      "step": 0.2,
+      "nx": 136,
+      "ny": 111,
+      "sourceNx": 541,
+      "sourceNy": 441,
+      "sourceStep": 0.05,
+      "sourceNodes": 238581,
+      "sourceValidNodes": 33661,
+      "shippedNodes": 15096,
+      "shippedValidNodes": 2099,
+      "depthMinKm": 5.39,
+      "depthMaxKm": 392.83,
+      "byteOffset": 432416,
+      "byteLength": 30192,
+      "overturns": false,
+      "events": 4128,
+      "deepEvents": 570
+    },
+    {
+      "code": "sam",
+      "name": "South America",
+      "lonMin": 274,
+      "latMin": -49,
+      "step": 0.2,
+      "nx": 146,
+      "ny": 321,
+      "sourceNx": 581,
+      "sourceNy": 1281,
+      "sourceStep": 0.05,
+      "sourceNodes": 744261,
+      "sourceValidNodes": 206451,
+      "shippedNodes": 46866,
+      "shippedValidNodes": 12901,
+      "depthMinKm": 6.07,
+      "depthMaxKm": 668.61,
+      "byteOffset": 462608,
+      "byteLength": 93732,
+      "overturns": false,
+      "events": 15037,
+      "deepEvents": 6460
+    },
+    {
+      "code": "sco",
+      "name": "Scotia Sea",
+      "lonMin": 325,
+      "latMin": -65,
+      "step": 0.2,
+      "nx": 81,
+      "ny": 76,
+      "sourceNx": 321,
+      "sourceNy": 301,
+      "sourceStep": 0.05,
+      "sourceNodes": 96621,
+      "sourceValidNodes": 8727,
+      "shippedNodes": 6156,
+      "shippedValidNodes": 540,
+      "depthMinKm": 7.36,
+      "depthMaxKm": 299.74,
+      "byteOffset": 556340,
+      "byteLength": 12312,
+      "overturns": false,
+      "events": 4584,
+      "deepEvents": 1028
+    },
+    {
+      "code": "sol",
+      "name": "Solomon Islands",
+      "lonMin": 141,
+      "latMin": -12,
+      "step": 0.2,
+      "nx": 116,
+      "ny": 46,
+      "sourceNx": 461,
+      "sourceNy": 181,
+      "sourceStep": 0.05,
+      "sourceNodes": 83441,
+      "sourceValidNodes": 18542,
+      "shippedNodes": 5336,
+      "shippedValidNodes": 1153,
+      "depthMinKm": 5.43,
+      "depthMaxKm": 574.86,
+      "byteOffset": 568652,
+      "byteLength": 10672,
+      "overturns": true,
+      "events": 11977,
+      "deepEvents": 4029
+    },
+    {
+      "code": "sul",
+      "name": "Sulawesi",
+      "lonMin": 115,
+      "latMin": -4,
+      "step": 0.2,
+      "nx": 66,
+      "ny": 56,
+      "sourceNx": 261,
+      "sourceNy": 221,
+      "sourceStep": 0.05,
+      "sourceNodes": 57681,
+      "sourceValidNodes": 4539,
+      "shippedNodes": 3696,
+      "shippedValidNodes": 282,
+      "depthMinKm": 6.43,
+      "depthMaxKm": 252.94,
+      "byteOffset": 579324,
+      "byteLength": 7392,
+      "overturns": false,
+      "events": 778,
+      "deepEvents": 206
+    },
+    {
+      "code": "sum",
+      "name": "Sumatra-Java",
+      "lonMin": 87,
+      "latMin": -16,
+      "step": 0.2,
+      "nx": 261,
+      "ny": 236,
+      "sourceNx": 1041,
+      "sourceNy": 941,
+      "sourceStep": 0.05,
+      "sourceNodes": 979581,
+      "sourceValidNodes": 115512,
+      "shippedNodes": 61596,
+      "shippedValidNodes": 7228,
+      "depthMinKm": 3.23,
+      "depthMaxKm": 671.03,
+      "byteOffset": 586716,
+      "byteLength": 123192,
+      "overturns": false,
+      "events": 21298,
+      "deepEvents": 6207
+    },
+    {
+      "code": "van",
+      "name": "Vanuatu",
+      "lonMin": 161,
+      "latMin": -28,
+      "step": 0.2,
+      "nx": 86,
+      "ny": 111,
+      "sourceNx": 341,
+      "sourceNy": 441,
+      "sourceStep": 0.05,
+      "sourceNodes": 150381,
+      "sourceValidNodes": 13326,
+      "shippedNodes": 9546,
+      "shippedValidNodes": 829,
+      "depthMinKm": 4.83,
+      "depthMaxKm": 338.56,
+      "byteOffset": 709908,
+      "byteLength": 19092,
+      "overturns": false,
+      "events": 9927,
+      "deepEvents": 3063
+    }
+  ],
+  "regions": [
+    {
+      "name": "Fiji region",
+      "count": 2307,
+      "lat": -19.825,
+      "lon": -178.826,
+      "span": 9.94
+    },
+    {
+      "name": "Japan",
+      "count": 15279,
+      "lat": 35.448,
+      "lon": 138.011,
+      "span": 18.26
+    },
+    {
+      "name": "south of the Fiji Islands",
+      "count": 4147,
+      "lat": -24.33,
+      "lon": -179.285,
+      "span": 7.05
+    },
+    {
+      "name": "Indonesia",
+      "count": 28246,
+      "lat": -2.037,
+      "lon": 117.267,
+      "span": 25.98
+    },
+    {
+      "name": "Solomon Islands",
+      "count": 5153,
+      "lat": -10.484,
+      "lon": 162.577,
+      "span": 8.27
+    },
+    {
+      "name": "Timor Leste",
+      "count": 2282,
+      "lat": -7.643,
+      "lon": 127.15,
+      "span": 3.88
+    },
+    {
+      "name": "Alaska",
+      "count": 5715,
+      "lat": 54.37,
+      "lon": -170.388,
+      "span": 21.39
+    },
+    {
+      "name": "New Caledonia",
+      "count": 1854,
+      "lat": -21.821,
+      "lon": 169.378,
+      "span": 7.61
+    },
+    {
+      "name": "Colombia",
+      "count": 1237,
+      "lat": 6.093,
+      "lon": -75.317,
+      "span": 9.45
+    },
+    {
+      "name": "Philippine Islands region",
+      "count": 44,
+      "lat": 11.398,
+      "lon": 124.987,
+      "span": 10.37
+    },
+    {
+      "name": "southern Mid-Atlantic Ridge",
+      "count": 1487,
+      "lat": -31.28,
+      "lon": -13.395,
+      "span": 27.26
+    },
+    {
+      "name": "Papua New Guinea",
+      "count": 13330,
+      "lat": -5.488,
+      "lon": 150.321,
+      "span": 11.86
+    },
+    {
+      "name": "Vanuatu",
+      "count": 6956,
+      "lat": -16.627,
+      "lon": 167.875,
+      "span": 5.89
+    },
+    {
+      "name": "Guam",
+      "count": 2027,
+      "lat": 12.755,
+      "lon": 144.315,
+      "span": 2.94
+    },
+    {
+      "name": "Greece",
+      "count": 1902,
+      "lat": 36.94,
+      "lon": 23.548,
+      "span": 4.71
+    },
+    {
+      "name": "Chile",
+      "count": 7704,
+      "lat": -29.664,
+      "lon": -71.407,
+      "span": 35.99
+    },
+    {
+      "name": "China",
+      "count": 3425,
+      "lat": 35.271,
+      "lon": 94.872,
+      "span": 29.65
+    },
+    {
+      "name": "Philippines",
+      "count": 12362,
+      "lat": 9.794,
+      "lon": 124.779,
+      "span": 12.17
+    },
+    {
+      "name": "Russia",
+      "count": 9541,
+      "lat": 51.254,
+      "lon": 152.142,
+      "span": 68.97
+    },
+    {
+      "name": "northwest of Australia",
+      "count": 19,
+      "lat": -13.107,
+      "lon": 116.614,
+      "span": 7.09
+    },
+    {
+      "name": "Tonga",
+      "count": 9478,
+      "lat": -18.835,
+      "lon": -174.481,
+      "span": 5.24
+    },
+    {
+      "name": "southeast Indian Ridge",
+      "count": 547,
+      "lat": -46.345,
+      "lon": 97.285,
+      "span": 11.67
+    },
+    {
+      "name": "Oregon",
+      "count": 181,
+      "lat": 42.964,
+      "lon": -126.728,
+      "span": 4.32
+    },
+    {
+      "name": "Afghanistan",
+      "count": 1691,
+      "lat": 36.323,
+      "lon": 70.511,
+      "span": 9.15
+    },
+    {
+      "name": "Peru",
+      "count": 3547,
+      "lat": -12.495,
+      "lon": -74.74,
+      "span": 12.31
+    },
+    {
+      "name": "Mexico",
+      "count": 3243,
+      "lat": 17.783,
+      "lon": -98.883,
+      "span": 22.57
+    },
+    {
+      "name": "Mariana Islands region",
+      "count": 966,
+      "lat": 19.356,
+      "lon": 144.967,
+      "span": 8.13
+    },
+    {
+      "name": "Iran",
+      "count": 2136,
+      "lat": 30.965,
+      "lon": 53.106,
+      "span": 10.4
+    },
+    {
+      "name": "South Indian Ocean",
+      "count": 314,
+      "lat": -23.051,
+      "lon": 74.184,
+      "span": 46.68
+    },
+    {
+      "name": "Azerbaijan",
+      "count": 123,
+      "lat": 40.336,
+      "lon": 49.05,
+      "span": 2.98
+    },
+    {
+      "name": "Southwest Indian Ridge",
+      "count": 793,
+      "lat": -33.115,
+      "lon": 56.433,
+      "span": 13.41
+    },
+    {
+      "name": "Tajikistan",
+      "count": 823,
+      "lat": 38.213,
+      "lon": 71.861,
+      "span": 3.63
+    },
+    {
+      "name": "Japan region",
+      "count": 4421,
+      "lat": 28.037,
+      "lon": 142.128,
+      "span": 15.82
+    },
+    {
+      "name": "Kuril Islands",
+      "count": 1553,
+      "lat": 46.867,
+      "lon": 152.944,
+      "span": 5.93
+    },
+    {
+      "name": "India",
+      "count": 2508,
+      "lat": 18.971,
+      "lon": 90.648,
+      "span": 21.74
+    },
+    {
+      "name": "Micronesia",
+      "count": 647,
+      "lat": 10.885,
+      "lon": 140.425,
+      "span": 19.37
+    },
+    {
+      "name": "Macquarie Island region",
+      "count": 227,
+      "lat": -56.066,
+      "lon": 158.711,
+      "span": 5.03
+    },
+    {
+      "name": "southeast of the Loyalty Islands",
+      "count": 1404,
+      "lat": -22.806,
+      "lon": 171.59,
+      "span": 3.17
+    },
+    {
+      "name": "U.S. Virgin Islands",
+      "count": 124,
+      "lat": 19.242,
+      "lon": -64.574,
+      "span": 1.36
+    },
+    {
+      "name": "Fiji",
+      "count": 2480,
+      "lat": -17.751,
+      "lon": -179.484,
+      "span": 6.56
+    },
+    {
+      "name": "Myanmar",
+      "count": 703,
+      "lat": 20.991,
+      "lon": 95.385,
+      "span": 8.86
+    },
+    {
+      "name": "Samoa",
+      "count": 106,
+      "lat": -14.938,
+      "lon": -172.468,
+      "span": 2.06
+    },
+    {
+      "name": "southwest of Africa",
+      "count": 255,
+      "lat": -52.621,
+      "lon": 14.725,
+      "span": 3.47
+    },
+    {
+      "name": "south of Tonga",
+      "count": 419,
+      "lat": -24.917,
+      "lon": -175.456,
+      "span": 2.8
+    },
+    {
+      "name": "Nepal",
+      "count": 373,
+      "lat": 28.626,
+      "lon": 84.612,
+      "span": 3.82
+    },
+    {
+      "name": "Honduras",
+      "count": 172,
+      "lat": 16.064,
+      "lon": -86.217,
+      "span": 3.51
+    },
+    {
+      "name": "south of Alaska",
+      "count": 19,
+      "lat": 54.019,
+      "lon": -152.83,
+      "span": 7.29
+    },
+    {
+      "name": "Mid-Indian Ridge",
+      "count": 1728,
+      "lat": -25.04,
+      "lon": 71.601,
+      "span": 21.98
+    },
+    {
+      "name": "Xinjiang-Xizang border region",
+      "count": 9,
+      "lat": 36.222,
+      "lon": 85.092,
+      "span": 3.53
+    },
+    {
+      "name": "Reykjanes Ridge",
+      "count": 1079,
+      "lat": 55.592,
+      "lon": -34.039,
+      "span": 6.22
+    },
+    {
+      "name": "near the coast of Nicaragua",
+      "count": 25,
+      "lat": 11.704,
+      "lon": -87.034,
+      "span": 1.2
+    },
+    {
+      "name": "Greenland Sea",
+      "count": 185,
+      "lat": 75.079,
+      "lon": 6.458,
+      "span": 6.79
+    },
+    {
+      "name": "south of the Kermadec Islands",
+      "count": 2569,
+      "lat": -33.153,
+      "lon": -178.768,
+      "span": 4.49
+    },
+    {
+      "name": "Canada",
+      "count": 587,
+      "lat": 53.869,
+      "lon": -127.648,
+      "span": 41.72
+    },
+    {
+      "name": "Northern Mariana Islands",
+      "count": 2211,
+      "lat": 17.166,
+      "lon": 146.105,
+      "span": 4.07
+    },
+    {
+      "name": "New Zealand",
+      "count": 4676,
+      "lat": -35.416,
+      "lon": 178.867,
+      "span": 16.34
+    },
+    {
+      "name": "Kermadec Islands region",
+      "count": 3683,
+      "lat": -29.637,
+      "lon": -177.402,
+      "span": 4.55
+    },
+    {
+      "name": "off the coast of Oregon",
+      "count": 178,
+      "lat": 44.18,
+      "lon": -129.102,
+      "span": 2.46
+    },
+    {
+      "name": "western Indian-Antarctic Ridge",
+      "count": 618,
+      "lat": -50.046,
+      "lon": 124.637,
+      "span": 10.24
+    },
+    {
+      "name": "Taiwan",
+      "count": 1882,
+      "lat": 23.332,
+      "lon": 121.423,
+      "span": 3.21
+    },
+    {
+      "name": "California",
+      "count": 312,
+      "lat": 37.997,
+      "lon": -121.546,
+      "span": 7.07
+    },
+    {
+      "name": "Australia",
+      "count": 168,
+      "lat": -26.106,
+      "lon": 129.931,
+      "span": 28.01
+    },
+    {
+      "name": "South Sandwich Islands region",
+      "count": 5722,
+      "lat": -57.62,
+      "lon": -26.367,
+      "span": 4.36
+    },
+    {
+      "name": "Argentina",
+      "count": 2305,
+      "lat": -28.747,
+      "lon": -67.202,
+      "span": 28.71
+    },
+    {
+      "name": "West Chile Rise",
+      "count": 591,
+      "lat": -40.222,
+      "lon": -89.678,
+      "span": 12.87
+    },
+    {
+      "name": "Panama",
+      "count": 613,
+      "lat": 7.435,
+      "lon": -81.886,
+      "span": 4.97
+    },
+    {
+      "name": "Guatemala",
+      "count": 980,
+      "lat": 14.043,
+      "lon": -91.385,
+      "span": 3.4
+    },
+    {
+      "name": "Italy",
+      "count": 335,
+      "lat": 41.677,
+      "lon": 13.307,
+      "span": 6.88
+    },
+    {
+      "name": "Djibouti",
+      "count": 168,
+      "lat": 11.856,
+      "lon": 43.729,
+      "span": 2.07
+    },
+    {
+      "name": "Banda Sea",
+      "count": 938,
+      "lat": -6.5,
+      "lon": 129.518,
+      "span": 6.46
+    },
+    {
+      "name": "Dominican Republic",
+      "count": 177,
+      "lat": 18.932,
+      "lon": -69.602,
+      "span": 3.34
+    },
+    {
+      "name": "northern Mid-Atlantic Ridge",
+      "count": 1790,
+      "lat": 29.789,
+      "lon": -40.859,
+      "span": 24.08
+    },
+    {
+      "name": "New Mexico",
+      "count": 9,
+      "lat": 32.065,
+      "lon": -104.561,
+      "span": 3.08
+    },
+    {
+      "name": "South Atlantic Ocean",
+      "count": 82,
+      "lat": -41.497,
+      "lon": -29.815,
+      "span": 46.97
+    },
+    {
+      "name": "North Macedonia",
+      "count": 18,
+      "lat": 41.422,
+      "lon": 21.093,
+      "span": 1.18
+    },
+    {
+      "name": "Pakistan",
+      "count": 934,
+      "lat": 31.461,
+      "lon": 69.9,
+      "span": 10.69
+    },
+    {
+      "name": "Puerto Rico",
+      "count": 114,
+      "lat": 18.637,
+      "lon": -66.612,
+      "span": 2.08
+    },
+    {
+      "name": "Bismarck Sea",
+      "count": 8,
+      "lat": -3.471,
+      "lon": 147.356,
+      "span": 1.55
+    },
+    {
+      "name": "Venezuela",
+      "count": 356,
+      "lat": 10.319,
+      "lon": -66.126,
+      "span": 7.63
+    },
+    {
+      "name": "Vanuatu region",
+      "count": 330,
+      "lat": -18.092,
+      "lon": 172.444,
+      "span": 9.19
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "count": 93,
+      "lat": 17.714,
+      "lon": -61.39,
+      "span": 2.37
+    },
+    {
+      "name": "Kyrgyzstan",
+      "count": 394,
+      "lat": 40.52,
+      "lon": 73.977,
+      "span": 4.35
+    },
+    {
+      "name": "El Salvador",
+      "count": 886,
+      "lat": 12.888,
+      "lon": -89.025,
+      "span": 1.58
+    },
+    {
+      "name": "Portugal",
+      "count": 366,
+      "lat": 38.927,
+      "lon": -27.39,
+      "span": 15.99
+    },
+    {
+      "name": "Algeria",
+      "count": 139,
+      "lat": 36.183,
+      "lon": 3.814,
+      "span": 13.85
+    },
+    {
+      "name": "south of Panama",
+      "count": 199,
+      "lat": 4.535,
+      "lon": -82.594,
+      "span": 4.03
+    },
+    {
+      "name": "central East Pacific Rise",
+      "count": 642,
+      "lat": -7.263,
+      "lon": -107.072,
+      "span": 9.62
+    },
+    {
+      "name": "Brazil",
+      "count": 79,
+      "lat": -9.005,
+      "lon": -67.101,
+      "span": 36.46
+    },
+    {
+      "name": "Pacific-Antarctic Ridge",
+      "count": 1141,
+      "lat": -57.773,
+      "lon": -142.118,
+      "span": 19.16
+    },
+    {
+      "name": "New Zealand region",
+      "count": 88,
+      "lat": -49.722,
+      "lon": 164,
+      "span": 15.1
+    },
+    {
+      "name": "South Africa",
+      "count": 158,
+      "lat": -27.076,
+      "lon": 26.827,
+      "span": 7.31
+    },
+    {
+      "name": "Costa Rica",
+      "count": 559,
+      "lat": 9.778,
+      "lon": -84.682,
+      "span": 2.74
+    },
+    {
+      "name": "Wallis and Futuna",
+      "count": 579,
+      "lat": -15.483,
+      "lon": -177.217,
+      "span": 3.85
+    },
+    {
+      "name": "Iraq",
+      "count": 101,
+      "lat": 34.191,
+      "lon": 45.58,
+      "span": 3.79
+    },
+    {
+      "name": "southern East Pacific Rise",
+      "count": 1028,
+      "lat": -39.372,
+      "lon": -113.984,
+      "span": 24.41
+    },
+    {
+      "name": "Montserrat",
+      "count": 2,
+      "lat": 16.959,
+      "lon": -62.294,
+      "span": 0.06
+    },
+    {
+      "name": "Palau",
+      "count": 79,
+      "lat": 4.46,
+      "lon": 133.394,
+      "span": 4.69
+    },
+    {
+      "name": "Ecuador",
+      "count": 809,
+      "lat": -1.204,
+      "lon": -80.629,
+      "span": 11.27
+    },
+    {
+      "name": "Ecuador region",
+      "count": 37,
+      "lat": 2.152,
+      "lon": -93.526,
+      "span": 7.33
+    },
+    {
+      "name": "Nicaragua",
+      "count": 1100,
+      "lat": 11.742,
+      "lon": -87.06,
+      "span": 4.45
+    },
+    {
+      "name": "Molucca Sea",
+      "count": 99,
+      "lat": 1.273,
+      "lon": 126.247,
+      "span": 2.74
+    },
+    {
+      "name": "Bolivia",
+      "count": 470,
+      "lat": -19.965,
+      "lon": -66.737,
+      "span": 6.34
+    },
+    {
+      "name": "Easter Island region",
+      "count": 480,
+      "lat": -25.967,
+      "lon": -112.893,
+      "span": 7.85
+    },
+    {
+      "name": "Malawi",
+      "count": 62,
+      "lat": -12.899,
+      "lon": 34.429,
+      "span": 5.35
+    },
+    {
+      "name": "California Earthquake",
+      "count": 11,
+      "lat": 36.482,
+      "lon": -119.711,
+      "span": 5.7
+    },
+    {
+      "name": "CA",
+      "count": 216,
+      "lat": 36.046,
+      "lon": -118.677,
+      "span": 7.46
+    },
+    {
+      "name": "Guadeloupe",
+      "count": 120,
+      "lat": 16.373,
+      "lon": -60.7,
+      "span": 1.64
+    },
+    {
+      "name": "Norwegian Sea",
+      "count": 92,
+      "lat": 72.588,
+      "lon": 3.836,
+      "span": 7.91
+    },
+    {
+      "name": "east of the Kuril Islands",
+      "count": 705,
+      "lat": 46.431,
+      "lon": 154.515,
+      "span": 5.52
+    },
+    {
+      "name": "Somalia",
+      "count": 198,
+      "lat": 12.841,
+      "lon": 49.323,
+      "span": 6.75
+    },
+    {
+      "name": "northwestern Kashmir",
+      "count": 3,
+      "lat": 35.857,
+      "lon": 73.957,
+      "span": 1.09
+    },
+    {
+      "name": "Mauritius - Reunion region",
+      "count": 147,
+      "lat": -18.884,
+      "lon": 66.377,
+      "span": 3.62
+    },
+    {
+      "name": "Albania",
+      "count": 107,
+      "lat": 40.992,
+      "lon": 19.93,
+      "span": 1.23
+    },
+    {
+      "name": "Balleny Islands region",
+      "count": 547,
+      "lat": -63.411,
+      "lon": 165.375,
+      "span": 7.87
+    },
+    {
+      "name": "Nevada",
+      "count": 81,
+      "lat": 38.453,
+      "lon": -117.45,
+      "span": 4.33
+    },
+    {
+      "name": "Kenya",
+      "count": 14,
+      "lat": -1.528,
+      "lon": 37.427,
+      "span": 5.37
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "count": 84,
+      "lat": 10.851,
+      "lon": -60.727,
+      "span": 2.17
+    },
+    {
+      "name": "Chile-Bolivia border region",
+      "count": 14,
+      "lat": -20.882,
+      "lon": -68.696,
+      "span": 1.89
+    },
+    {
+      "name": "western Iran",
+      "count": 10,
+      "lat": 32.475,
+      "lon": 48.955,
+      "span": 2.37
+    },
+    {
+      "name": "central Mid-Atlantic Ridge",
+      "count": 1251,
+      "lat": 3.73,
+      "lon": -30.937,
+      "span": 13.51
+    },
+    {
+      "name": "Indian Ocean Triple Junction",
+      "count": 278,
+      "lat": -26.764,
+      "lon": 67.73,
+      "span": 2.97
+    },
+    {
+      "name": "Iceland",
+      "count": 594,
+      "lat": 64.367,
+      "lon": -19.945,
+      "span": 4.54
+    },
+    {
+      "name": "Guam region",
+      "count": 37,
+      "lat": 12.918,
+      "lon": 144.542,
+      "span": 1.42
+    },
+    {
+      "name": "northern East Pacific Rise",
+      "count": 173,
+      "lat": 8.764,
+      "lon": -103.536,
+      "span": 5.84
+    },
+    {
+      "name": "off the coast of Central America",
+      "count": 140,
+      "lat": 4.28,
+      "lon": -84.921,
+      "span": 10.37
+    },
+    {
+      "name": "Poland",
+      "count": 59,
+      "lat": 51.47,
+      "lon": 16.259,
+      "span": 3.05
+    },
+    {
+      "name": "D'Entrecasteaux Islands region",
+      "count": 39,
+      "lat": -9.467,
+      "lon": 154.005,
+      "span": 2.1
+    },
+    {
+      "name": "United Kingdom",
+      "count": 7,
+      "lat": 53.989,
+      "lon": -0.736,
+      "span": 5.87
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "count": 29,
+      "lat": 43.694,
+      "lon": 17.937,
+      "span": 1.11
+    },
+    {
+      "name": "west of Macquarie Island",
+      "count": 485,
+      "lat": -56.222,
+      "lon": 145.588,
+      "span": 6.62
+    },
+    {
+      "name": "Tanzania",
+      "count": 240,
+      "lat": -5.545,
+      "lon": 34.91,
+      "span": 8.32
+    },
+    {
+      "name": "Mongolia",
+      "count": 138,
+      "lat": 47.02,
+      "lon": 100.149,
+      "span": 11.25
+    },
+    {
+      "name": "Kazakhstan",
+      "count": 117,
+      "lat": 45.227,
+      "lon": 77.878,
+      "span": 18.16
+    },
+    {
+      "name": "north of Franz Josef Land",
+      "count": 24,
+      "lat": 86.769,
+      "lon": 52.139,
+      "span": 1.16
+    },
+    {
+      "name": "Washington",
+      "count": 15,
+      "lat": 47.818,
+      "lon": -122.376,
+      "span": 2.01
+    },
+    {
+      "name": "east of the South Sandwich Islands",
+      "count": 174,
+      "lat": -59.347,
+      "lon": -16.381,
+      "span": 4.99
+    },
+    {
+      "name": "near the coast of Guatemala",
+      "count": 13,
+      "lat": 13.588,
+      "lon": -91.088,
+      "span": 1.04
+    },
+    {
+      "name": "Turkey",
+      "count": 967,
+      "lat": 38.635,
+      "lon": 35.179,
+      "span": 7.73
+    },
+    {
+      "name": "Scotia Sea",
+      "count": 416,
+      "lat": -60.54,
+      "lon": -43.876,
+      "span": 8.83
+    },
+    {
+      "name": "north of Svalbard",
+      "count": 172,
+      "lat": 83.17,
+      "lon": 0.921,
+      "span": 4.25
+    },
+    {
+      "name": "Montenegro",
+      "count": 19,
+      "lat": 42.263,
+      "lon": 19.301,
+      "span": 1.06
+    },
+    {
+      "name": "Haiti",
+      "count": 100,
+      "lat": 18.59,
+      "lon": -73.072,
+      "span": 1.53
+    },
+    {
+      "name": "Bouvet Island region",
+      "count": 197,
+      "lat": -54.392,
+      "lon": 3.673,
+      "span": 3.86
+    },
+    {
+      "name": "Ethiopia",
+      "count": 318,
+      "lat": 10.645,
+      "lon": 40.053,
+      "span": 7.89
+    },
+    {
+      "name": "Carlsberg Ridge",
+      "count": 772,
+      "lat": 2.881,
+      "lon": 64.262,
+      "span": 10.61
+    },
+    {
+      "name": "Oman",
+      "count": 28,
+      "lat": 19.005,
+      "lon": 57.367,
+      "span": 7.66
+    },
+    {
+      "name": "southeast of Easter Island",
+      "count": 492,
+      "lat": -37.616,
+      "lon": -98.348,
+      "span": 8.37
+    },
+    {
+      "name": "near the coast of Ecuador",
+      "count": 11,
+      "lat": -0.563,
+      "lon": -80.454,
+      "span": 2.19
+    },
+    {
+      "name": "east of the Philippine Islands",
+      "count": 4,
+      "lat": 13.097,
+      "lon": 128.949,
+      "span": 5.22
+    },
+    {
+      "name": "North Korea",
+      "count": 17,
+      "lat": 40.525,
+      "lon": 129.225,
+      "span": 5.16
+    },
+    {
+      "name": "north of Severnaya Zemlya",
+      "count": 197,
+      "lat": 85.184,
+      "lon": 95.516,
+      "span": 3.92
+    },
+    {
+      "name": "Saint Lucia",
+      "count": 8,
+      "lat": 13.898,
+      "lon": -60.518,
+      "span": 0.55
+    },
+    {
+      "name": "South Sudan",
+      "count": 52,
+      "lat": 5.241,
+      "lon": 32.065,
+      "span": 2.89
+    },
+    {
+      "name": "Cuba region",
+      "count": 2,
+      "lat": 19.548,
+      "lon": -76.224,
+      "span": 0.27
+    },
+    {
+      "name": "Sudan",
+      "count": 61,
+      "lat": 18.969,
+      "lon": 38.606,
+      "span": 15.07
+    },
+    {
+      "name": "Armenia",
+      "count": 12,
+      "lat": 40.82,
+      "lon": 44.447,
+      "span": 1.16
+    },
+    {
+      "name": "Romania",
+      "count": 100,
+      "lat": 45.604,
+      "lon": 25.746,
+      "span": 3.36
+    },
+    {
+      "name": "French Polynesia region",
+      "count": 17,
+      "lat": -21.281,
+      "lon": -138.931,
+      "span": 8.68
+    },
+    {
+      "name": "Uganda",
+      "count": 76,
+      "lat": 0.86,
+      "lon": 30.49,
+      "span": 3.22
+    },
+    {
+      "name": "Saudi Arabia",
+      "count": 60,
+      "lat": 19.672,
+      "lon": 39.849,
+      "span": 12.51
+    },
+    {
+      "name": "east central Pacific Ocean",
+      "count": 17,
+      "lat": 5.739,
+      "lon": -112.318,
+      "span": 16.57
+    },
+    {
+      "name": "South Shetland Islands",
+      "count": 244,
+      "lat": -61.995,
+      "lon": -57.364,
+      "span": 3.16
+    },
+    {
+      "name": "southwestern Atlantic Ocean",
+      "count": 20,
+      "lat": -55.914,
+      "lon": -24.1,
+      "span": 17.33
+    },
+    {
+      "name": "Revilla Gigedo Islands region",
+      "count": 101,
+      "lat": 19.536,
+      "lon": -109.124,
+      "span": 4.57
+    },
+    {
+      "name": "Uzbekistan",
+      "count": 81,
+      "lat": 40.26,
+      "lon": 68.334,
+      "span": 5.45
+    },
+    {
+      "name": "northwestern Iran",
+      "count": 1,
+      "lat": 37.257,
+      "lon": 48.854,
+      "span": 0
+    },
+    {
+      "name": "Russia region",
+      "count": 143,
+      "lat": 54.547,
+      "lon": 168.028,
+      "span": 2.59
+    },
+    {
+      "name": "Afghanistan-Tajikistan border region",
+      "count": 5,
+      "lat": 37.613,
+      "lon": 71.329,
+      "span": 1.21
+    },
+    {
+      "name": "north of Ascension Island",
+      "count": 537,
+      "lat": -1.462,
+      "lon": -14.598,
+      "span": 5.25
+    },
+    {
+      "name": "near the south coast of Myanmar",
+      "count": 2,
+      "lat": 15.487,
+      "lon": 94.908,
+      "span": 0.87
+    },
+    {
+      "name": "South Island of New Zealand",
+      "count": 16,
+      "lat": -43.799,
+      "lon": 170.748,
+      "span": 2.69
+    },
+    {
+      "name": "Windward Islands",
+      "count": 1,
+      "lat": 14.647,
+      "lon": -60.458,
+      "span": 0
+    },
+    {
+      "name": "Laos",
+      "count": 27,
+      "lat": 20.827,
+      "lon": 101.599,
+      "span": 2.66
+    },
+    {
+      "name": "Federated States of Micronesia",
+      "count": 62,
+      "lat": 8.457,
+      "lon": 144.123,
+      "span": 6.62
+    },
+    {
+      "name": "western Xizang",
+      "count": 258,
+      "lat": 33.921,
+      "lon": 85.867,
+      "span": 5.22
+    },
+    {
+      "name": "Hawaii",
+      "count": 171,
+      "lat": 19.436,
+      "lon": -155.481,
+      "span": 19.65
+    },
+    {
+      "name": "off the coast of northern Peru",
+      "count": 7,
+      "lat": -7.765,
+      "lon": -81.918,
+      "span": 3.43
+    },
+    {
+      "name": "northern Colombia",
+      "count": 15,
+      "lat": 6.929,
+      "lon": -74.196,
+      "span": 2.78
+    },
+    {
+      "name": "Mauritius",
+      "count": 120,
+      "lat": -18.794,
+      "lon": 65.326,
+      "span": 10.25
+    },
+    {
+      "name": "Ukraine",
+      "count": 10,
+      "lat": 46.653,
+      "lon": 31.596,
+      "span": 6.37
+    },
+    {
+      "name": "off the east coast of the North Island of New Zealand",
+      "count": 127,
+      "lat": -35.669,
+      "lon": 179.234,
+      "span": 4.21
+    },
+    {
+      "name": "Cuba",
+      "count": 60,
+      "lat": 20.134,
+      "lon": -76.731,
+      "span": 8.23
+    },
+    {
+      "name": "Croatia",
+      "count": 52,
+      "lat": 43.859,
+      "lon": 16.393,
+      "span": 2.09
+    },
+    {
+      "name": "Democratic Republic of the Congo",
+      "count": 153,
+      "lat": -3.286,
+      "lon": 27.86,
+      "span": 11.18
+    },
+    {
+      "name": "Svalbard and Jan Mayen",
+      "count": 323,
+      "lat": 73.496,
+      "lon": -4.668,
+      "span": 7.73
+    },
+    {
+      "name": "Svalbard region",
+      "count": 24,
+      "lat": 76.353,
+      "lon": 7.923,
+      "span": 2.47
+    },
+    {
+      "name": "Owen Fracture Zone region",
+      "count": 199,
+      "lat": 13.778,
+      "lon": 57.306,
+      "span": 10.21
+    },
+    {
+      "name": "Drake Passage",
+      "count": 121,
+      "lat": -59.184,
+      "lon": -63.483,
+      "span": 4.1
+    },
+    {
+      "name": "Yemen",
+      "count": 262,
+      "lat": 14.085,
+      "lon": 51.971,
+      "span": 9.72
+    },
+    {
+      "name": "Anguilla",
+      "count": 52,
+      "lat": 18.9,
+      "lon": -62.872,
+      "span": 1.18
+    },
+    {
+      "name": "Burundi",
+      "count": 17,
+      "lat": -3.7,
+      "lon": 29.327,
+      "span": 1.19
+    },
+    {
+      "name": "Grenada",
+      "count": 11,
+      "lat": 11.814,
+      "lon": -61.542,
+      "span": 0.84
+    },
+    {
+      "name": "Cameroon",
+      "count": 2,
+      "lat": 4.195,
+      "lon": 10.043,
+      "span": 0.98
+    },
+    {
+      "name": "Missouri",
+      "count": 2,
+      "lat": 36.864,
+      "lon": -89.719,
+      "span": 0.3
+    },
+    {
+      "name": "Tonga region",
+      "count": 86,
+      "lat": -22.416,
+      "lon": -174.462,
+      "span": 5.61
+    },
+    {
+      "name": "Prince Edward Islands region",
+      "count": 294,
+      "lat": -44.486,
+      "lon": 38.19,
+      "span": 7.51
+    },
+    {
+      "name": "Malta",
+      "count": 17,
+      "lat": 34.959,
+      "lon": 14.754,
+      "span": 1.46
+    },
+    {
+      "name": "Iceland region",
+      "count": 28,
+      "lat": 64.25,
+      "lon": -24.176,
+      "span": 5.56
+    },
+    {
+      "name": "Martinique",
+      "count": 50,
+      "lat": 14.894,
+      "lon": -60.637,
+      "span": 0.96
+    },
+    {
+      "name": "north of New Zealand",
+      "count": 5,
+      "lat": -29.676,
+      "lon": 175.887,
+      "span": 2.91
+    },
+    {
+      "name": "Zimbabwe",
+      "count": 77,
+      "lat": -20.961,
+      "lon": 32.89,
+      "span": 6.3
+    },
+    {
+      "name": "off the west coast of northern Sumatra",
+      "count": 345,
+      "lat": 2.597,
+      "lon": 92.45,
+      "span": 3.49
+    },
+    {
+      "name": "Tunisia",
+      "count": 28,
+      "lat": 35.25,
+      "lon": 9.426,
+      "span": 2.43
+    },
+    {
+      "name": "Slovenia",
+      "count": 9,
+      "lat": 45.884,
+      "lon": 14.133,
+      "span": 0.82
+    },
+    {
+      "name": "Saint Eustatius and Saba",
+      "count": 6,
+      "lat": 16.783,
+      "lon": -63.956,
+      "span": 5.49
+    },
+    {
+      "name": "east of the North Island of New Zealand",
+      "count": 226,
+      "lat": -35.788,
+      "lon": -179.353,
+      "span": 5.15
+    },
+    {
+      "name": "south of Africa",
+      "count": 392,
+      "lat": -52.242,
+      "lon": 26.152,
+      "span": 5.85
+    },
+    {
+      "name": "Galapagos Triple Junction region",
+      "count": 92,
+      "lat": 2.224,
+      "lon": -101.67,
+      "span": 5.41
+    },
+    {
+      "name": "East of the Volcano Islands",
+      "count": 7,
+      "lat": 24.565,
+      "lon": 145.577,
+      "span": 1.6
+    },
+    {
+      "name": "Sea of Okhotsk",
+      "count": 49,
+      "lat": 50.848,
+      "lon": 149.775,
+      "span": 4.3
+    },
+    {
+      "name": "Georgia",
+      "count": 70,
+      "lat": 42.369,
+      "lon": 43.724,
+      "span": 2.32
+    },
+    {
+      "name": "Tristan da Cunha region",
+      "count": 102,
+      "lat": -37.05,
+      "lon": -15.362,
+      "span": 5.92
+    },
+    {
+      "name": "India region",
+      "count": 628,
+      "lat": 8.746,
+      "lon": 92.982,
+      "span": 5.98
+    },
+    {
+      "name": "Greenland",
+      "count": 31,
+      "lat": 64.095,
+      "lon": -43.996,
+      "span": 8.36
+    },
+    {
+      "name": "Zambia",
+      "count": 44,
+      "lat": -11.957,
+      "lon": 28.342,
+      "span": 6.78
+    },
+    {
+      "name": "Turkey-Syria-Iraq border region",
+      "count": 1,
+      "lat": 37.18,
+      "lon": 42.605,
+      "span": 0
+    },
+    {
+      "name": "France",
+      "count": 29,
+      "lat": 44.811,
+      "lon": 3.08,
+      "span": 5.58
+    },
+    {
+      "name": "Bering Sea",
+      "count": 11,
+      "lat": 60.078,
+      "lon": -177.072,
+      "span": 1.85
+    },
+    {
+      "name": "northwest of the Kuril Islands",
+      "count": 45,
+      "lat": 49.335,
+      "lon": 150.008,
+      "span": 4.99
+    },
+    {
+      "name": "Northern Peru",
+      "count": 3,
+      "lat": -7.394,
+      "lon": -74.603,
+      "span": 0.87
+    },
+    {
+      "name": "north of Macquarie Island",
+      "count": 58,
+      "lat": -50.221,
+      "lon": 160.977,
+      "span": 5.83
+    },
+    {
+      "name": "Spain",
+      "count": 57,
+      "lat": 37.416,
+      "lon": -6.065,
+      "span": 15.14
+    },
+    {
+      "name": "east of Severnaya Zemlya",
+      "count": 40,
+      "lat": 80.243,
+      "lon": 122.566,
+      "span": 2.17
+    },
+    {
+      "name": "Cabo Verde",
+      "count": 9,
+      "lat": 17.352,
+      "lon": -26.075,
+      "span": 3.06
+    },
+    {
+      "name": "northern Peru",
+      "count": 10,
+      "lat": -5.278,
+      "lon": -76.524,
+      "span": 2.35
+    },
+    {
+      "name": "south of the Mariana Islands",
+      "count": 54,
+      "lat": 11.004,
+      "lon": 144.575,
+      "span": 2.82
+    },
+    {
+      "name": "Utah",
+      "count": 7,
+      "lat": 39.63,
+      "lon": -112.29,
+      "span": 2.7
+    },
+    {
+      "name": "Madagascar",
+      "count": 29,
+      "lat": -18.747,
+      "lon": 44.641,
+      "span": 7.47
+    },
+    {
+      "name": "Bangladesh",
+      "count": 39,
+      "lat": 22.744,
+      "lon": 91.183,
+      "span": 3.72
+    },
+    {
+      "name": "Russia-Georgia border region",
+      "count": 6,
+      "lat": 42.566,
+      "lon": 43.756,
+      "span": 0.29
+    },
+    {
+      "name": "Central Alaska",
+      "count": 6,
+      "lat": 63.167,
+      "lon": -147.882,
+      "span": 2.39
+    },
+    {
+      "name": "Chagos Archipelago region",
+      "count": 287,
+      "lat": -5.427,
+      "lon": 68.903,
+      "span": 4.11
+    },
+    {
+      "name": "Botswana",
+      "count": 13,
+      "lat": -22.033,
+      "lon": 25.095,
+      "span": 4.68
+    },
+    {
+      "name": "Germany",
+      "count": 6,
+      "lat": 50.4,
+      "lon": 8.767,
+      "span": 2.65
+    },
+    {
+      "name": "Caspian Sea",
+      "count": 3,
+      "lat": 41.172,
+      "lon": 48.675,
+      "span": 2.81
+    },
+    {
+      "name": "Malaysia",
+      "count": 36,
+      "lat": 4.967,
+      "lon": 116.421,
+      "span": 6.88
+    },
+    {
+      "name": "central Mongolia",
+      "count": 2,
+      "lat": 45.154,
+      "lon": 99.295,
+      "span": 0.54
+    },
+    {
+      "name": "Federated States of Micronesia region",
+      "count": 56,
+      "lat": 2.555,
+      "lon": 146.837,
+      "span": 9.23
+    },
+    {
+      "name": "Saint Helena",
+      "count": 198,
+      "lat": -8.22,
+      "lon": -13.165,
+      "span": 29.1
+    },
+    {
+      "name": "west of the Galapagos Islands",
+      "count": 60,
+      "lat": 2.136,
+      "lon": -98.189,
+      "span": 1.91
+    },
+    {
+      "name": "South Pacific Ocean",
+      "count": 42,
+      "lat": -23.664,
+      "lon": -131.645,
+      "span": 42.16
+    },
+    {
+      "name": "North Atlantic Ocean",
+      "count": 79,
+      "lat": 23.223,
+      "lon": -49.097,
+      "span": 41.39
+    },
+    {
+      "name": "Serbia",
+      "count": 13,
+      "lat": 43.952,
+      "lon": 20.918,
+      "span": 1.63
+    },
+    {
+      "name": "Celebes Sea",
+      "count": 16,
+      "lat": 3.405,
+      "lon": 122.831,
+      "span": 2.75
+    },
+    {
+      "name": "Turkmenistan",
+      "count": 115,
+      "lat": 39.603,
+      "lon": 54.833,
+      "span": 9.37
+    },
+    {
+      "name": "Mozambique",
+      "count": 44,
+      "lat": -16.753,
+      "lon": 39.105,
+      "span": 9.84
+    },
+    {
+      "name": "Ascension Island region",
+      "count": 210,
+      "lat": -8.579,
+      "lon": -12.502,
+      "span": 3.73
+    },
+    {
+      "name": "Off the coast of southern Peru",
+      "count": 2,
+      "lat": -17.593,
+      "lon": -72.88,
+      "span": 0.88
+    },
+    {
+      "name": "off the coast of Northern California",
+      "count": 2,
+      "lat": 40.577,
+      "lon": -125.465,
+      "span": 0.24
+    },
+    {
+      "name": "off the coast of Ecuador",
+      "count": 75,
+      "lat": 1.234,
+      "lon": -85.146,
+      "span": 1.76
+    },
+    {
+      "name": "Cayman Islands",
+      "count": 44,
+      "lat": 18.482,
+      "lon": -81.442,
+      "span": 1.72
+    },
+    {
+      "name": "Santa Cruz Islands region",
+      "count": 15,
+      "lat": -11.75,
+      "lon": 167.831,
+      "span": 4.42
+    },
+    {
+      "name": "Vietnam",
+      "count": 33,
+      "lat": 17.308,
+      "lon": 106.442,
+      "span": 7.62
+    },
+    {
+      "name": "Syria",
+      "count": 18,
+      "lat": 35.343,
+      "lon": 37.205,
+      "span": 3.24
+    },
+    {
+      "name": "Crozet Islands region",
+      "count": 12,
+      "lat": -41.071,
+      "lon": 44.358,
+      "span": 0.17
+    },
+    {
+      "name": "Switzerland",
+      "count": 5,
+      "lat": 46.899,
+      "lon": 8.846,
+      "span": 1.17
+    },
+    {
+      "name": "Santa Cruz Islands",
+      "count": 58,
+      "lat": -11.566,
+      "lon": 166.179,
+      "span": 1.6
+    },
+    {
+      "name": "MX",
+      "count": 70,
+      "lat": 32.147,
+      "lon": -115.304,
+      "span": 2.13
+    },
+    {
+      "name": "Alaska Peninsula",
+      "count": 13,
+      "lat": 55.664,
+      "lon": -159.269,
+      "span": 2.74
+    },
+    {
+      "name": "Afghanistan-Pakistan border region",
+      "count": 3,
+      "lat": 33.396,
+      "lon": 70.393,
+      "span": 2.54
+    },
+    {
+      "name": "Norway",
+      "count": 18,
+      "lat": 65.526,
+      "lon": 7.646,
+      "span": 7.14
+    },
+    {
+      "name": "Bay of Bengal",
+      "count": 11,
+      "lat": 10.114,
+      "lon": 86.855,
+      "span": 9.45
+    },
+    {
+      "name": "Peru-Ecuador border region",
+      "count": 12,
+      "lat": -3.295,
+      "lon": -79.306,
+      "span": 2.53
+    },
+    {
+      "name": "southeast of Australia",
+      "count": 3,
+      "lat": -41.629,
+      "lon": 156.96,
+      "span": 2.85
+    },
+    {
+      "name": "Laptev Sea",
+      "count": 23,
+      "lat": 75.769,
+      "lon": 131.093,
+      "span": 2.4
+    },
+    {
+      "name": "Belize",
+      "count": 1,
+      "lat": 16.087,
+      "lon": -88.506,
+      "span": 0
+    },
+    {
+      "name": "Brunei",
+      "count": 1,
+      "lat": 5.415,
+      "lon": 114.546,
+      "span": 0
+    },
+    {
+      "name": "North Pacific Ocean",
+      "count": 22,
+      "lat": 23.662,
+      "lon": -148.303,
+      "span": 50.02
+    },
+    {
+      "name": "Rwanda",
+      "count": 33,
+      "lat": -2.129,
+      "lon": 29.134,
+      "span": 0.74
+    },
+    {
+      "name": "south of Australia",
+      "count": 73,
+      "lat": -55.312,
+      "lon": 132.098,
+      "span": 15.3
+    },
+    {
+      "name": "Belgium",
+      "count": 2,
+      "lat": 51.088,
+      "lon": 5.717,
+      "span": 0.08
+    },
+    {
+      "name": "Idaho",
+      "count": 18,
+      "lat": 43.585,
+      "lon": -112.997,
+      "span": 2.38
+    },
+    {
+      "name": "Timor Sea",
+      "count": 5,
+      "lat": -8.901,
+      "lon": 127.855,
+      "span": 2.93
+    },
+    {
+      "name": "Egypt",
+      "count": 69,
+      "lat": 28.896,
+      "lon": 33.831,
+      "span": 5.89
+    },
+    {
+      "name": "southeast central Pacific Ocean",
+      "count": 12,
+      "lat": -26.099,
+      "lon": -89.728,
+      "span": 15.37
+    },
+    {
+      "name": "Western Australia",
+      "count": 6,
+      "lat": -27.621,
+      "lon": 123.643,
+      "span": 8.46
+    },
+    {
+      "name": "southwest of the Galapagos Islands",
+      "count": 11,
+      "lat": -6.956,
+      "lon": -97.789,
+      "span": 6.15
+    },
+    {
+      "name": "Massachusetts",
+      "count": 1,
+      "lat": 39.106,
+      "lon": -70.319,
+      "span": 0
+    },
+    {
+      "name": "Azores Islands region",
+      "count": 118,
+      "lat": 38.249,
+      "lon": -32.043,
+      "span": 8.67
+    },
+    {
+      "name": "Baffin Bay",
+      "count": 7,
+      "lat": 74.742,
+      "lon": -70.81,
+      "span": 2.48
+    },
+    {
+      "name": "Morocco",
+      "count": 96,
+      "lat": 34.71,
+      "lon": -4.537,
+      "span": 5.83
+    },
+    {
+      "name": "Chile-Argentina border region",
+      "count": 18,
+      "lat": -28.06,
+      "lon": -68.66,
+      "span": 10.08
+    },
+    {
+      "name": "North Island of New Zealand",
+      "count": 17,
+      "lat": -38.795,
+      "lon": 176.445,
+      "span": 1.78
+    },
+    {
+      "name": "south of the Aleutian Islands",
+      "count": 8,
+      "lat": 50.216,
+      "lon": 179.092,
+      "span": 9.46
+    },
+    {
+      "name": "Kerguelen Islands region",
+      "count": 16,
+      "lat": -53.112,
+      "lon": 72.834,
+      "span": 0.5
+    },
+    {
+      "name": "Namibia",
+      "count": 14,
+      "lat": -20.932,
+      "lon": 15.38,
+      "span": 7.78
+    },
+    {
+      "name": "Jamaica",
+      "count": 19,
+      "lat": 18.219,
+      "lon": -77.691,
+      "span": 2.78
+    },
+    {
+      "name": "Sea of Japan",
+      "count": 13,
+      "lat": 38.488,
+      "lon": 133.903,
+      "span": 3.33
+    },
+    {
+      "name": "near the west coast of Colombia",
+      "count": 4,
+      "lat": 5.644,
+      "lon": -77.686,
+      "span": 0.51
+    },
+    {
+      "name": "Barbados",
+      "count": 37,
+      "lat": 13.389,
+      "lon": -58.821,
+      "span": 2.28
+    },
+    {
+      "name": "Arafura Sea",
+      "count": 7,
+      "lat": -8.853,
+      "lon": 134.892,
+      "span": 3.78
+    },
+    {
+      "name": "Afghanistan-Tajikistan-Pakistan region",
+      "count": 14,
+      "lat": 36.497,
+      "lon": 71.229,
+      "span": 0.45
+    },
+    {
+      "name": "Falkland Islands region",
+      "count": 34,
+      "lat": -54.114,
+      "lon": -57.28,
+      "span": 3.31
+    },
+    {
+      "name": "northeast of Taiwan",
+      "count": 8,
+      "lat": 25.475,
+      "lon": 124.337,
+      "span": 1.6
+    },
+    {
+      "name": "Cyprus",
+      "count": 68,
+      "lat": 34.659,
+      "lon": 32.593,
+      "span": 1.49
+    },
+    {
+      "name": "southern Greece",
+      "count": 3,
+      "lat": 37.014,
+      "lon": 22.039,
+      "span": 0.8
+    },
+    {
+      "name": "Savu Sea",
+      "count": 2,
+      "lat": -10.014,
+      "lon": 122.55,
+      "span": 0.31
+    },
+    {
+      "name": "northwest of New Zealand",
+      "count": 5,
+      "lat": -30.761,
+      "lon": 166.121,
+      "span": 2.35
+    },
+    {
+      "name": "Mayotte",
+      "count": 147,
+      "lat": -12.878,
+      "lon": 45.519,
+      "span": 1.16
+    },
+    {
+      "name": "Arizona",
+      "count": 5,
+      "lat": 34.72,
+      "lon": -111.21,
+      "span": 2.73
+    },
+    {
+      "name": "Northeastern Iran",
+      "count": 2,
+      "lat": 35.456,
+      "lon": 58.096,
+      "span": 0.94
+    },
+    {
+      "name": "southern Pacific Ocean",
+      "count": 34,
+      "lat": -55.237,
+      "lon": -93.684,
+      "span": 24.82
+    },
+    {
+      "name": "Ross Sea",
+      "count": 2,
+      "lat": -74.445,
+      "lon": 170.104,
+      "span": 2.41
+    },
+    {
+      "name": "Slovenia-Hungary-Croatia border region",
+      "count": 1,
+      "lat": 46.166,
+      "lon": 16.467,
+      "span": 0
+    },
+    {
+      "name": "Kuwait",
+      "count": 4,
+      "lat": 28.947,
+      "lon": 47.559,
+      "span": 0.12
+    },
+    {
+      "name": "Eritrea",
+      "count": 54,
+      "lat": 14.369,
+      "lon": 40.683,
+      "span": 3.06
+    },
+    {
+      "name": "Israel",
+      "count": 6,
+      "lat": 31.378,
+      "lon": 34.993,
+      "span": 1.85
+    },
+    {
+      "name": "near the north coast of Greenland",
+      "count": 11,
+      "lat": 82.839,
+      "lon": -27.046,
+      "span": 2.7
+    },
+    {
+      "name": "Mauritania",
+      "count": 5,
+      "lat": 21.767,
+      "lon": -13.21,
+      "span": 3.89
+    },
+    {
+      "name": "Libya",
+      "count": 13,
+      "lat": 33.249,
+      "lon": 17.871,
+      "span": 5.52
+    },
+    {
+      "name": "South China Sea",
+      "count": 3,
+      "lat": 14.888,
+      "lon": 115.935,
+      "span": 1.21
+    },
+    {
+      "name": "Jan Mayen Island region",
+      "count": 10,
+      "lat": 71.284,
+      "lon": -7.016,
+      "span": 3.98
+    },
+    {
+      "name": "Leeward Islands",
+      "count": 13,
+      "lat": 16.811,
+      "lon": -61.399,
+      "span": 2.86
+    },
+    {
+      "name": "Bulgaria",
+      "count": 16,
+      "lat": 42.493,
+      "lon": 25.087,
+      "span": 2.8
+    },
+    {
+      "name": "Wyoming",
+      "count": 14,
+      "lat": 43.074,
+      "lon": -109.75,
+      "span": 3.42
+    },
+    {
+      "name": "Pennsylvania",
+      "count": 2,
+      "lat": 40.933,
+      "lon": -78.193,
+      "span": 1.74
+    },
+    {
+      "name": "earthquake",
+      "count": 1,
+      "lat": 34.213,
+      "lon": -118.537,
+      "span": 0
+    },
+    {
+      "name": "Central African Republic",
+      "count": 3,
+      "lat": 4.961,
+      "lon": 20.114,
+      "span": 5.12
+    },
+    {
+      "name": "Arctic Ocean",
+      "count": 25,
+      "lat": 79.823,
+      "lon": -116.047,
+      "span": 4.23
+    },
+    {
+      "name": "Pitcairn Islands region",
+      "count": 6,
+      "lat": -24.906,
+      "lon": -129.301,
+      "span": 1.31
+    },
+    {
+      "name": "Austria",
+      "count": 8,
+      "lat": 47.672,
+      "lon": 14.569,
+      "span": 3.01
+    },
+    {
+      "name": "southern Iran",
+      "count": 25,
+      "lat": 27.598,
+      "lon": 54.803,
+      "span": 3.23
+    },
+    {
+      "name": "Ionian Sea",
+      "count": 3,
+      "lat": 37.48,
+      "lon": 20.67,
+      "span": 0.25
+    },
+    {
+      "name": "Russia-Georgia-Azerbaijan border region",
+      "count": 1,
+      "lat": 41.948,
+      "lon": 46.317,
+      "span": 0
+    },
+    {
+      "name": "Central Afghanistan",
+      "count": 3,
+      "lat": 36.764,
+      "lon": 66.68,
+      "span": 0.42
+    },
+    {
+      "name": "French Southern Territories",
+      "count": 12,
+      "lat": -49.372,
+      "lon": 69.774,
+      "span": 2.57
+    },
+    {
+      "name": "South Korea",
+      "count": 19,
+      "lat": 35.609,
+      "lon": 127.824,
+      "span": 3.94
+    },
+    {
+      "name": "central Peru",
+      "count": 14,
+      "lat": -12.885,
+      "lon": -73.134,
+      "span": 4.68
+    },
+    {
+      "name": "Xizang-Qinghai border region",
+      "count": 30,
+      "lat": 34.179,
+      "lon": 89.717,
+      "span": 4.49
+    },
+    {
+      "name": "Samoa Islands region",
+      "count": 29,
+      "lat": -15.483,
+      "lon": -172.519,
+      "span": 6.94
+    },
+    {
+      "name": "Thailand",
+      "count": 24,
+      "lat": 17.585,
+      "lon": 99.733,
+      "span": 9.6
+    },
+    {
+      "name": "AK",
+      "count": 7,
+      "lat": 53.532,
+      "lon": -168.585,
+      "span": 7.21
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "count": 3,
+      "lat": 13.358,
+      "lon": -60.94,
+      "span": 0.43
+    },
+    {
+      "name": "Gulf of Alaska",
+      "count": 7,
+      "lat": 56.598,
+      "lon": -147.043,
+      "span": 2.21
+    },
+    {
+      "name": "Taiwan region",
+      "count": 32,
+      "lat": 23.107,
+      "lon": 121.678,
+      "span": 2.88
+    },
+    {
+      "name": "American Samoa",
+      "count": 39,
+      "lat": -15.311,
+      "lon": -170.414,
+      "span": 2.21
+    },
+    {
+      "name": "Antarctica",
+      "count": 13,
+      "lat": -79.665,
+      "lon": 132.196,
+      "span": 18.26
+    },
+    {
+      "name": "Cyprus region",
+      "count": 2,
+      "lat": 35.419,
+      "lon": 31.831,
+      "span": 0.52
+    },
+    {
+      "name": "Colorado",
+      "count": 5,
+      "lat": 37.682,
+      "lon": -105.486,
+      "span": 3.62
+    },
+    {
+      "name": "Texas",
+      "count": 18,
+      "lat": 31.756,
+      "lon": -101.177,
+      "span": 5.78
+    },
+    {
+      "name": "Comoros",
+      "count": 13,
+      "lat": -11.811,
+      "lon": 43.315,
+      "span": 1.62
+    },
+    {
+      "name": "Seychelles",
+      "count": 2,
+      "lat": -2.172,
+      "lon": 55.562,
+      "span": 0.19
+    },
+    {
+      "name": "Bermuda",
+      "count": 3,
+      "lat": 31.543,
+      "lon": -65.276,
+      "span": 0.96
+    },
+    {
+      "name": "Southern Alaska",
+      "count": 12,
+      "lat": 60.743,
+      "lon": -150.367,
+      "span": 2.43
+    },
+    {
+      "name": "Republic of the Congo",
+      "count": 4,
+      "lat": 0.964,
+      "lon": 18.395,
+      "span": 1.06
+    },
+    {
+      "name": "Mexico Earthquake",
+      "count": 3,
+      "lat": 22.339,
+      "lon": -103.991,
+      "span": 14.12
+    },
+    {
+      "name": "Near the coast of northern Iran",
+      "count": 1,
+      "lat": 37.055,
+      "lon": 49.476,
+      "span": 0
+    },
+    {
+      "name": "near the coast of central Chile",
+      "count": 2,
+      "lat": -33.683,
+      "lon": -71.348,
+      "span": 0.4
+    },
+    {
+      "name": "Jordan",
+      "count": 6,
+      "lat": 29.996,
+      "lon": 35.209,
+      "span": 1.99
+    },
+    {
+      "name": "Liberia",
+      "count": 1,
+      "lat": 6.776,
+      "lon": -10.935,
+      "span": 0
+    },
+    {
+      "name": "California-Nevada border region",
+      "count": 3,
+      "lat": 37.998,
+      "lon": -119.165,
+      "span": 0.81
+    },
+    {
+      "name": "Western Iran",
+      "count": 3,
+      "lat": 31.84,
+      "lon": 50.757,
+      "span": 0.31
+    },
+    {
+      "name": "Indonesia Earthquake",
+      "count": 1,
+      "lat": -0.891,
+      "lon": 136.952,
+      "span": 0
+    },
+    {
+      "name": "Revilla Gigedo Islands",
+      "count": 2,
+      "lat": 18.175,
+      "lon": -111.432,
+      "span": 0.07
+    },
+    {
+      "name": "Dominica",
+      "count": 38,
+      "lat": 15.295,
+      "lon": -61.378,
+      "span": 0.51
+    },
+    {
+      "name": "south of Timor",
+      "count": 3,
+      "lat": -12.587,
+      "lon": 125.024,
+      "span": 2.3
+    },
+    {
+      "name": "Marshall Islands region",
+      "count": 3,
+      "lat": 15.25,
+      "lon": 167.402,
+      "span": 6.2
+    },
+    {
+      "name": "Greece-Albania border region",
+      "count": 1,
+      "lat": 40.081,
+      "lon": 20.655,
+      "span": 0
+    },
+    {
+      "name": "Central Turkey",
+      "count": 21,
+      "lat": 38.247,
+      "lon": 36.754,
+      "span": 4.7
+    },
+    {
+      "name": "near the coast of central Peru",
+      "count": 14,
+      "lat": -14.256,
+      "lon": -76.039,
+      "span": 2.99
+    },
+    {
+      "name": "Near the coast of southern Peru",
+      "count": 5,
+      "lat": -16.559,
+      "lon": -73.406,
+      "span": 1.74
+    },
+    {
+      "name": "India-Bangladesh border region",
+      "count": 3,
+      "lat": 25.184,
+      "lon": 91.404,
+      "span": 2.03
+    },
+    {
+      "name": "Myanmar-India border region",
+      "count": 3,
+      "lat": 24.693,
+      "lon": 94.761,
+      "span": 2.08
+    },
+    {
+      "name": "Turkmenistan-Iran border region",
+      "count": 2,
+      "lat": 36.848,
+      "lon": 58.963,
+      "span": 1.56
+    },
+    {
+      "name": "Kashmir-Xinjiang border region",
+      "count": 3,
+      "lat": 35.517,
+      "lon": 77.881,
+      "span": 0.44
+    },
+    {
+      "name": "Lebanon",
+      "count": 3,
+      "lat": 33.484,
+      "lon": 35.407,
+      "span": 0.26
+    },
+    {
+      "name": "Java Sea",
+      "count": 2,
+      "lat": -5.756,
+      "lon": 110.683,
+      "span": 0.15
+    },
+    {
+      "name": "Iran-Afghanistan border region",
+      "count": 1,
+      "lat": 33.12,
+      "lon": 60.105,
+      "span": 0
+    },
+    {
+      "name": "eastern Kashmir",
+      "count": 1,
+      "lat": 34.108,
+      "lon": 77.66,
+      "span": 0
+    },
+    {
+      "name": "Bhutan",
+      "count": 21,
+      "lat": 27.348,
+      "lon": 91.028,
+      "span": 1.86
+    },
+    {
+      "name": "southern Kerguelen Plateau",
+      "count": 3,
+      "lat": -60.29,
+      "lon": 79.796,
+      "span": 5.17
+    },
+    {
+      "name": "Oklahoma",
+      "count": 16,
+      "lat": 36.038,
+      "lon": -97.436,
+      "span": 1.6
+    },
+    {
+      "name": "off the west coast of the South Island of New Zealand",
+      "count": 33,
+      "lat": -48.109,
+      "lon": 164.877,
+      "span": 3.31
+    },
+    {
+      "name": "East of the Mariana Islands",
+      "count": 5,
+      "lat": 15.626,
+      "lon": 153.613,
+      "span": 4.87
+    },
+    {
+      "name": "Kiribati region",
+      "count": 7,
+      "lat": -0.531,
+      "lon": -170.207,
+      "span": 20.11
+    },
+    {
+      "name": "central Italy",
+      "count": 3,
+      "lat": 43.207,
+      "lon": 13.115,
+      "span": 0.74
+    },
+    {
+      "name": "Alabama",
+      "count": 3,
+      "lat": 33.008,
+      "lon": -86.751,
+      "span": 1.95
+    },
+    {
+      "name": "Maldives",
+      "count": 7,
+      "lat": 2.622,
+      "lon": 74.137,
+      "span": 5.25
+    },
+    {
+      "name": "Azores-Cape St. Vincent Ridge",
+      "count": 27,
+      "lat": 37.242,
+      "lon": -15.234,
+      "span": 3.62
+    },
+    {
+      "name": "South Georgia Island region",
+      "count": 215,
+      "lat": -55.172,
+      "lon": -32.195,
+      "span": 4.33
+    },
+    {
+      "name": "off the coast of Washington",
+      "count": 3,
+      "lat": 46.542,
+      "lon": -129.504,
+      "span": 0.74
+    },
+    {
+      "name": "Near the coast of Azerbaijan",
+      "count": 1,
+      "lat": 39.688,
+      "lon": 49.134,
+      "span": 0
+    },
+    {
+      "name": "1998 Balleny Islands Earthquake",
+      "count": 1,
+      "lat": -62.877,
+      "lon": 149.527,
+      "span": 0
+    },
+    {
+      "name": "Peru-Bolivia border region",
+      "count": 2,
+      "lat": -17.335,
+      "lon": -69.397,
+      "span": 0.42
+    },
+    {
+      "name": "Northern Iran",
+      "count": 2,
+      "lat": 36.658,
+      "lon": 49.601,
+      "span": 0.14
+    },
+    {
+      "name": "OR",
+      "count": 2,
+      "lat": 42.178,
+      "lon": -126.249,
+      "span": 0.42
+    },
+    {
+      "name": "southeast of Taiwan",
+      "count": 5,
+      "lat": 22.256,
+      "lon": 125.563,
+      "span": 0.84
+    },
+    {
+      "name": "Philippine Sea",
+      "count": 3,
+      "lat": 23.69,
+      "lon": 132.267,
+      "span": 5.7
+    },
+    {
+      "name": "Panama-Costa Rica border region",
+      "count": 5,
+      "lat": 8.469,
+      "lon": -82.704,
+      "span": 0.56
+    },
+    {
+      "name": "North Indian Ocean",
+      "count": 168,
+      "lat": 2.003,
+      "lon": 89.907,
+      "span": 21.71
+    },
+    {
+      "name": "Sri Lanka",
+      "count": 3,
+      "lat": 5.412,
+      "lon": 79.802,
+      "span": 3.12
+    },
+    {
+      "name": "Idaho-Montana border region",
+      "count": 1,
+      "lat": 47.993,
+      "lon": -115.206,
+      "span": 0
+    },
+    {
+      "name": "central Iran",
+      "count": 1,
+      "lat": 34.753,
+      "lon": 54.352,
+      "span": 0
+    },
+    {
+      "name": "Broken Ridge",
+      "count": 8,
+      "lat": -32.353,
+      "lon": 81.087,
+      "span": 6.09
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "count": 6,
+      "lat": 17.377,
+      "lon": -62.616,
+      "span": 0.51
+    },
+    {
+      "name": "Equatorial Guinea",
+      "count": 7,
+      "lat": 2.515,
+      "lon": 7.802,
+      "span": 4.7
+    },
+    {
+      "name": "Mozambique Channel",
+      "count": 8,
+      "lat": -21.905,
+      "lon": 39.78,
+      "span": 2.5
+    },
+    {
+      "name": "Davis Strait",
+      "count": 5,
+      "lat": 60.722,
+      "lon": -58.713,
+      "span": 0.76
+    },
+    {
+      "name": "Angola",
+      "count": 5,
+      "lat": -10.898,
+      "lon": 17.124,
+      "span": 6.27
+    },
+    {
+      "name": "Puerto Rico region",
+      "count": 9,
+      "lat": 18.445,
+      "lon": -66.63,
+      "span": 1.55
+    },
+    {
+      "name": "Montana",
+      "count": 5,
+      "lat": 45.708,
+      "lon": -112.63,
+      "span": 1.17
+    },
+    {
+      "name": "Kosovo",
+      "count": 6,
+      "lat": 42.184,
+      "lon": 20.762,
+      "span": 0.61
+    },
+    {
+      "name": "northern Alaska",
+      "count": 3,
+      "lat": 66.382,
+      "lon": -157.806,
+      "span": 2.23
+    },
+    {
+      "name": "Eswatini",
+      "count": 1,
+      "lat": -26.288,
+      "lon": 30.888,
+      "span": 0
+    },
+    {
+      "name": "Portugal region",
+      "count": 4,
+      "lat": 33.612,
+      "lon": -13.364,
+      "span": 3.23
+    },
+    {
+      "name": "Nigeria",
+      "count": 1,
+      "lat": 6.224,
+      "lon": 5.147,
+      "span": 0
+    },
+    {
+      "name": "southern Italy",
+      "count": 2,
+      "lat": 41.65,
+      "lon": 13.686,
+      "span": 0.64
+    },
+    {
+      "name": "northern Italy",
+      "count": 2,
+      "lat": 44.363,
+      "lon": 9.636,
+      "span": 1.63
+    },
+    {
+      "name": "central Mediterranean Sea",
+      "count": 1,
+      "lat": 35.918,
+      "lon": 22.053,
+      "span": 0
+    },
+    {
+      "name": "Flores Sea",
+      "count": 12,
+      "lat": -7.401,
+      "lon": 121.028,
+      "span": 2.31
+    },
+    {
+      "name": "Colombia-Ecuador border region",
+      "count": 3,
+      "lat": 0.623,
+      "lon": -77.958,
+      "span": 0.27
+    },
+    {
+      "name": "2000 New Ireland Earthquake",
+      "count": 1,
+      "lat": -3.98,
+      "lon": 152.169,
+      "span": 0
+    },
+    {
+      "name": "northern Algeria",
+      "count": 4,
+      "lat": 36.744,
+      "lon": 4.278,
+      "span": 0.81
+    },
+    {
+      "name": "Beaufort Sea",
+      "count": 6,
+      "lat": 72.015,
+      "lon": -132.513,
+      "span": 0.84
+    },
+    {
+      "name": "Arabian Sea",
+      "count": 2,
+      "lat": 10.217,
+      "lon": 65.464,
+      "span": 4.17
+    },
+    {
+      "name": "Red Sea",
+      "count": 2,
+      "lat": 22.844,
+      "lon": 37.163,
+      "span": 4.31
+    },
+    {
+      "name": "Gulf of Aden",
+      "count": 8,
+      "lat": 13.243,
+      "lon": 50.212,
+      "span": 2.12
+    },
+    {
+      "name": "Canada region",
+      "count": 7,
+      "lat": 49.941,
+      "lon": -129.498,
+      "span": 1.53
+    },
+    {
+      "name": "Russia-Kazakhstan-Xinjiang border region",
+      "count": 1,
+      "lat": 49.026,
+      "lon": 87.485,
+      "span": 0
+    },
+    {
+      "name": "Dem. Republic of the Congo-Tanzania",
+      "count": 1,
+      "lat": -5.552,
+      "lon": 29.372,
+      "span": 0
+    },
+    {
+      "name": "off the east coast of the United States",
+      "count": 3,
+      "lat": 29.527,
+      "lon": -70.489,
+      "span": 3.11
+    },
+    {
+      "name": "Juan Fernandez Islands region",
+      "count": 2,
+      "lat": -34.008,
+      "lon": -80.316,
+      "span": 0.75
+    },
+    {
+      "name": "United Arab Emirates",
+      "count": 3,
+      "lat": 25.27,
+      "lon": 56.161,
+      "span": 0.19
+    },
+    {
+      "name": "New York",
+      "count": 1,
+      "lat": 44.512,
+      "lon": -73.697,
+      "span": 0
+    },
+    {
+      "name": "Georgia-Armenia border region",
+      "count": 1,
+      "lat": 41.765,
+      "lon": 44.96,
+      "span": 0
+    },
+    {
+      "name": "off the coast of Mexico",
+      "count": 4,
+      "lat": 9.916,
+      "lon": -98.357,
+      "span": 1.59
+    },
+    {
+      "name": "Czechia",
+      "count": 1,
+      "lat": 49.882,
+      "lon": 18.371,
+      "span": 0
+    },
+    {
+      "name": "Indiana",
+      "count": 1,
+      "lat": 38,
+      "lon": -87.756,
+      "span": 0
+    },
+    {
+      "name": "Palau region",
+      "count": 8,
+      "lat": 5.873,
+      "lon": 137.43,
+      "span": 3.86
+    },
+    {
+      "name": "Netherlands",
+      "count": 1,
+      "lat": 50.889,
+      "lon": 6.103,
+      "span": 0
+    },
+    {
+      "name": "Southern Iran",
+      "count": 3,
+      "lat": 30.608,
+      "lon": 51.173,
+      "span": 0.63
+    },
+    {
+      "name": "eastern Turkey",
+      "count": 12,
+      "lat": 38.583,
+      "lon": 40.167,
+      "span": 2.68
+    },
+    {
+      "name": "Alaska Earthquake",
+      "count": 6,
+      "lat": 56.32,
+      "lon": -157.874,
+      "span": 8.87
+    },
+    {
+      "name": "Iran-Iraq border region",
+      "count": 8,
+      "lat": 33.67,
+      "lon": 46.5,
+      "span": 1.74
+    },
+    {
+      "name": "Rwanda - Burundi region",
+      "count": 1,
+      "lat": -2.418,
+      "lon": 29.56,
+      "span": 0
+    },
+    {
+      "name": "Adriatic Sea",
+      "count": 1,
+      "lat": 43.151,
+      "lon": 15.43,
+      "span": 0
+    },
+    {
+      "name": "Mexico-Guatemala border region",
+      "count": 3,
+      "lat": 15.619,
+      "lon": -92.157,
+      "span": 0.65
+    },
+    {
+      "name": "South of the Mariana Islands",
+      "count": 6,
+      "lat": 10.548,
+      "lon": 146.322,
+      "span": 0.67
+    },
+    {
+      "name": "Dominican Republic region",
+      "count": 6,
+      "lat": 19.397,
+      "lon": -70.616,
+      "span": 1.55
+    },
+    {
+      "name": "2003 Tokachi-Oki Earthquake",
+      "count": 1,
+      "lat": 41.815,
+      "lon": 143.91,
+      "span": 0
+    },
+    {
+      "name": "off the coast of central Peru",
+      "count": 2,
+      "lat": -14.471,
+      "lon": -78.946,
+      "span": 1.54
+    },
+    {
+      "name": "Virginia",
+      "count": 3,
+      "lat": 37.877,
+      "lon": -78.001,
+      "span": 0.13
+    },
+    {
+      "name": "Eastern Kazakhstan",
+      "count": 1,
+      "lat": 47.37,
+      "lon": 82.303,
+      "span": 0
+    },
+    {
+      "name": "eastern Mediterranean Sea",
+      "count": 3,
+      "lat": 35.863,
+      "lon": 29.919,
+      "span": 1.36
+    },
+    {
+      "name": "Virgin Islands",
+      "count": 1,
+      "lat": 19.123,
+      "lon": -64.723,
+      "span": 0
+    },
+    {
+      "name": "Laccadive Sea",
+      "count": 2,
+      "lat": 3.807,
+      "lon": 77.9,
+      "span": 2.06
+    },
+    {
+      "name": "Hawaiian Islands region",
+      "count": 2,
+      "lat": 24.85,
+      "lon": -177.417,
+      "span": 4.67
+    },
+    {
+      "name": "Tyrrhenian Sea",
+      "count": 1,
+      "lat": 40.315,
+      "lon": 12.951,
+      "span": 0
+    },
+    {
+      "name": "East of Tanzania",
+      "count": 1,
+      "lat": -8.371,
+      "lon": 43.85,
+      "span": 0
+    },
+    {
+      "name": "Macedonia",
+      "count": 1,
+      "lat": 41.24,
+      "lon": 21.313,
+      "span": 0
+    },
+    {
+      "name": "east of Australia",
+      "count": 1,
+      "lat": -20.018,
+      "lon": 156.74,
+      "span": 0
+    },
+    {
+      "name": "2004 Tasman Sea Earthquake",
+      "count": 1,
+      "lat": -49.312,
+      "lon": 161.345,
+      "span": 0
+    },
+    {
+      "name": "2004 Sumatra - Andaman Islands Earthquake",
+      "count": 1,
+      "lat": 3.295,
+      "lon": 95.982,
+      "span": 0
+    },
+    {
+      "name": "Turkey-Iraq border region",
+      "count": 1,
+      "lat": 37.622,
+      "lon": 43.703,
+      "span": 0
+    },
+    {
+      "name": "Western Mongolia",
+      "count": 3,
+      "lat": 46.745,
+      "lon": 92.398,
+      "span": 3.15
+    },
+    {
+      "name": "off the east coast of the South Island of New Zealand",
+      "count": 2,
+      "lat": -45.864,
+      "lon": 176.781,
+      "span": 1.8
+    },
+    {
+      "name": "southern Peru",
+      "count": 14,
+      "lat": -15.911,
+      "lon": -71.753,
+      "span": 2.07
+    },
+    {
+      "name": "East of the Izu Islands",
+      "count": 1,
+      "lat": 31.576,
+      "lon": 144.165,
+      "span": 0
+    },
+    {
+      "name": "near the coast of northern Peru",
+      "count": 7,
+      "lat": -7.032,
+      "lon": -80.314,
+      "span": 3.51
+    },
+    {
+      "name": "Louisiana",
+      "count": 2,
+      "lat": 27.852,
+      "lon": -89.444,
+      "span": 0.68
+    },
+    {
+      "name": "2006 Tonga Earthquake",
+      "count": 1,
+      "lat": -20.187,
+      "lon": -174.123,
+      "span": 0
+    },
+    {
+      "name": "Eastern Xizang",
+      "count": 6,
+      "lat": 30.333,
+      "lon": 94.664,
+      "span": 3.7
+    },
+    {
+      "name": "French Guiana",
+      "count": 1,
+      "lat": 4.664,
+      "lon": -51.896,
+      "span": 0
+    },
+    {
+      "name": "Tokelau",
+      "count": 1,
+      "lat": -8.283,
+      "lon": -170.169,
+      "span": 0
+    },
+    {
+      "name": "Palestinian Territory",
+      "count": 1,
+      "lat": 32.02,
+      "lon": 35.49,
+      "span": 0
+    },
+    {
+      "name": "Gulf of America",
+      "count": 6,
+      "lat": 21.591,
+      "lon": -92.759,
+      "span": 7.34
+    },
+    {
+      "name": "Gulf of Thailand",
+      "count": 1,
+      "lat": 11.743,
+      "lon": 100.179,
+      "span": 0
+    },
+    {
+      "name": "2006 Kuril Islands Earthquake",
+      "count": 1,
+      "lat": 46.592,
+      "lon": 153.266,
+      "span": 0
+    },
+    {
+      "name": "southwest of Australia",
+      "count": 2,
+      "lat": -37.587,
+      "lon": 109.287,
+      "span": 2.25
+    },
+    {
+      "name": "northwest of Madagascar",
+      "count": 1,
+      "lat": -12.222,
+      "lon": 46.428,
+      "span": 0
+    },
+    {
+      "name": "2007 Kuril Islands Earthquake",
+      "count": 1,
+      "lat": 46.243,
+      "lon": 154.524,
+      "span": 0
+    },
+    {
+      "name": "Socotra region",
+      "count": 6,
+      "lat": 13.387,
+      "lon": 56.895,
+      "span": 2.24
+    },
+    {
+      "name": "2007 Solomon Islands Earthquake",
+      "count": 1,
+      "lat": -8.466,
+      "lon": 157.043,
+      "span": 0
+    },
+    {
+      "name": "Reunion",
+      "count": 1,
+      "lat": -21.187,
+      "lon": 55.658,
+      "span": 0
+    },
+    {
+      "name": "Kyrgyzstan-Tajikistan border region",
+      "count": 3,
+      "lat": 39.461,
+      "lon": 70.421,
+      "span": 0.5
+    },
+    {
+      "name": "Tajikistan-Xinjiang border region",
+      "count": 8,
+      "lat": 38.196,
+      "lon": 73.578,
+      "span": 0.49
+    },
+    {
+      "name": "Illinois",
+      "count": 2,
+      "lat": 38.455,
+      "lon": -87.878,
+      "span": 0.01
+    },
+    {
+      "name": "Kazakhstan-Xinjiang border region",
+      "count": 2,
+      "lat": 44.638,
+      "lon": 81.862,
+      "span": 1.57
+    },
+    {
+      "name": "NV",
+      "count": 1,
+      "lat": 38.61,
+      "lon": -119.133,
+      "span": 0
+    },
+    {
+      "name": "West of the Mariana Islands",
+      "count": 2,
+      "lat": 18.175,
+      "lon": 141.548,
+      "span": 2.82
+    },
+    {
+      "name": "Australia region",
+      "count": 4,
+      "lat": -28.579,
+      "lon": 171.1,
+      "span": 3.11
+    },
+    {
+      "name": "south of Tasmania",
+      "count": 4,
+      "lat": -50.448,
+      "lon": 147.727,
+      "span": 1.45
+    },
+    {
+      "name": "Kyrgyzstan-Tajikistan-Xinjiang border region",
+      "count": 2,
+      "lat": 39.462,
+      "lon": 73.658,
+      "span": 0.08
+    },
+    {
+      "name": "south of the Chatham Islands",
+      "count": 1,
+      "lat": -50.778,
+      "lon": -179.721,
+      "span": 0
+    },
+    {
+      "name": "Guyana",
+      "count": 5,
+      "lat": 6.252,
+      "lon": -59.733,
+      "span": 3.59
+    },
+    {
+      "name": "Western Turkey",
+      "count": 5,
+      "lat": 38.715,
+      "lon": 28.388,
+      "span": 3.34
+    },
+    {
+      "name": "near the coast of Venezuela",
+      "count": 7,
+      "lat": 10.815,
+      "lon": -63.649,
+      "span": 7.41
+    },
+    {
+      "name": "Near the coast of southeastern Iran",
+      "count": 1,
+      "lat": 25.448,
+      "lon": 57.027,
+      "span": 0
+    },
+    {
+      "name": "southeast of the Galapagos Islands",
+      "count": 4,
+      "lat": -9.961,
+      "lon": -88.493,
+      "span": 4.32
+    },
+    {
+      "name": "2009 Samoa Earthquake",
+      "count": 1,
+      "lat": -15.489,
+      "lon": -172.095,
+      "span": 0
+    },
+    {
+      "name": "South Georgia Rise",
+      "count": 3,
+      "lat": -50.771,
+      "lon": -29.467,
+      "span": 1.72
+    },
+    {
+      "name": "Gulf of California",
+      "count": 4,
+      "lat": 24.3,
+      "lon": -109.228,
+      "span": 1.23
+    },
+    {
+      "name": "Haiti region",
+      "count": 10,
+      "lat": 18.466,
+      "lon": -73.072,
+      "span": 1.12
+    },
+    {
+      "name": "Chile Earthquake",
+      "count": 1,
+      "lat": -36.122,
+      "lon": -72.898,
+      "span": 0
+    },
+    {
+      "name": "Central Peru",
+      "count": 2,
+      "lat": -8.5,
+      "lon": -74.22,
+      "span": 0.32
+    },
+    {
+      "name": "west of the Mariana Islands",
+      "count": 2,
+      "lat": 16.342,
+      "lon": 140.116,
+      "span": 3.17
+    },
+    {
+      "name": "Senegal",
+      "count": 1,
+      "lat": 14.281,
+      "lon": -19.015,
+      "span": 0
+    },
+    {
+      "name": "Southeastern Iran",
+      "count": 1,
+      "lat": 28.167,
+      "lon": 58.907,
+      "span": 0
+    },
+    {
+      "name": "Arkansas",
+      "count": 1,
+      "lat": 35.269,
+      "lon": -92.355,
+      "span": 0
+    },
+    {
+      "name": "Turkey-Iran border region",
+      "count": 1,
+      "lat": 38.725,
+      "lon": 44.112,
+      "span": 0
+    },
+    {
+      "name": "Myanmar-China border region",
+      "count": 1,
+      "lat": 25.062,
+      "lon": 98.79,
+      "span": 0
+    },
+    {
+      "name": "Bali Sea",
+      "count": 1,
+      "lat": -7.086,
+      "lon": 117.024,
+      "span": 0
+    },
+    {
+      "name": "2012 Wharton Basin Earthquake",
+      "count": 1,
+      "lat": 2.327,
+      "lon": 93.063,
+      "span": 0
+    },
+    {
+      "name": "2012 Wharton Basin Aftershock",
+      "count": 1,
+      "lat": 0.802,
+      "lon": 92.463,
+      "span": 0
+    },
+    {
+      "name": "Serbia-Bulgaria-Macedonia border region",
+      "count": 1,
+      "lat": 42.645,
+      "lon": 22.968,
+      "span": 0
+    },
+    {
+      "name": "Guinea",
+      "count": 5,
+      "lat": 10.294,
+      "lon": -10.879,
+      "span": 2.46
+    },
+    {
+      "name": "French Polynesia",
+      "count": 2,
+      "lat": -14.86,
+      "lon": -143.742,
+      "span": 5.85
+    },
+    {
+      "name": "Maine",
+      "count": 1,
+      "lat": 43.597,
+      "lon": -70.656,
+      "span": 0
+    },
+    {
+      "name": "Cayman Islands region",
+      "count": 1,
+      "lat": 17.785,
+      "lon": -81.692,
+      "span": 0
+    },
+    {
+      "name": "Near the coast of Guatemala",
+      "count": 3,
+      "lat": 13.899,
+      "lon": -92.425,
+      "span": 0.16
+    },
+    {
+      "name": "off the coast of Southeastern Alaska",
+      "count": 1,
+      "lat": 55.829,
+      "lon": -135.296,
+      "span": 0
+    },
+    {
+      "name": "Southeastern Alaska",
+      "count": 2,
+      "lat": 55.307,
+      "lon": -134.891,
+      "span": 0.03
+    },
+    {
+      "name": "2013 Santa Cruz Islands Earthquake",
+      "count": 1,
+      "lat": -10.799,
+      "lon": 165.114,
+      "span": 0
+    },
+    {
+      "name": "Mona Passage",
+      "count": 2,
+      "lat": 19.295,
+      "lon": -67.837,
+      "span": 0.13
+    },
+    {
+      "name": "Myanmar-Thailand border region",
+      "count": 1,
+      "lat": 18.787,
+      "lon": 97.479,
+      "span": 0
+    },
+    {
+      "name": "2013 Sea of Okhotsk Earthquake",
+      "count": 1,
+      "lat": 54.892,
+      "lon": 153.221,
+      "span": 0
+    },
+    {
+      "name": "off the coast of Costa Rica",
+      "count": 3,
+      "lat": 10.301,
+      "lon": -86.242,
+      "span": 0.76
+    },
+    {
+      "name": "west of Vancouver Island",
+      "count": 5,
+      "lat": 50.226,
+      "lon": -139.476,
+      "span": 1.77
+    },
+    {
+      "name": "Mongolia-China border region",
+      "count": 2,
+      "lat": 42.887,
+      "lon": 102.618,
+      "span": 4.5
+    },
+    {
+      "name": "Labrador Sea",
+      "count": 2,
+      "lat": 59.565,
+      "lon": -54.909,
+      "span": 0.5
+    },
+    {
+      "name": "west of Australia",
+      "count": 1,
+      "lat": -33.093,
+      "lon": 105.957,
+      "span": 0
+    },
+    {
+      "name": "Sweden",
+      "count": 2,
+      "lat": 64.717,
+      "lon": 17.015,
+      "span": 3.37
+    },
+    {
+      "name": "Kansas",
+      "count": 3,
+      "lat": 38.173,
+      "lon": -98.331,
+      "span": 1.35
+    },
+    {
+      "name": "south of New Zealand",
+      "count": 2,
+      "lat": -52.936,
+      "lon": 176.421,
+      "span": 3.61
+    },
+    {
+      "name": "eastern Greenland",
+      "count": 7,
+      "lat": 76.103,
+      "lon": -23.753,
+      "span": 8.23
+    },
+    {
+      "name": "Alaska region",
+      "count": 2,
+      "lat": 56.655,
+      "lon": -169.007,
+      "span": 0.02
+    },
+    {
+      "name": "Xizang-Nepal border region",
+      "count": 1,
+      "lat": 28.027,
+      "lon": 85.052,
+      "span": 0
+    },
+    {
+      "name": "Strait of Gibraltar",
+      "count": 3,
+      "lat": 35.42,
+      "lon": -3.6,
+      "span": 0.19
+    },
+    {
+      "name": "Uzbekistan-Tajikistan border region",
+      "count": 1,
+      "lat": 39.114,
+      "lon": 67.1,
+      "span": 0
+    },
+    {
+      "name": "off the coast of South Africa",
+      "count": 2,
+      "lat": -38.328,
+      "lon": 32.867,
+      "span": 1.76
+    },
+    {
+      "name": "East Timor region",
+      "count": 2,
+      "lat": -8.623,
+      "lon": 127.263,
+      "span": 0.65
+    },
+    {
+      "name": "Lesotho",
+      "count": 1,
+      "lat": -30.112,
+      "lon": 28.577,
+      "span": 0
+    },
+    {
+      "name": "Niger",
+      "count": 1,
+      "lat": 19.605,
+      "lon": 10.649,
+      "span": 0
+    },
+    {
+      "name": "Kashmir-India border region",
+      "count": 1,
+      "lat": 33.957,
+      "lon": 76.422,
+      "span": 0
+    },
+    {
+      "name": "Mayotte region",
+      "count": 4,
+      "lat": -12.876,
+      "lon": 45.565,
+      "span": 0.15
+    },
+    {
+      "name": "2018 Fiji Earthquake",
+      "count": 1,
+      "lat": -18.113,
+      "lon": -178.153,
+      "span": 0
+    },
+    {
+      "name": "Bahamas",
+      "count": 1,
+      "lat": 23.079,
+      "lon": -70.468,
+      "span": 0
+    },
+    {
+      "name": "Maryland",
+      "count": 1,
+      "lat": 37.232,
+      "lon": -73.01,
+      "span": 0
+    },
+    {
+      "name": "Hungary",
+      "count": 1,
+      "lat": 46.383,
+      "lon": 17.354,
+      "span": 0
+    },
+    {
+      "name": "Ridgecrest Earthquake Sequence",
+      "count": 2,
+      "lat": 35.737,
+      "lon": -117.552,
+      "span": 0.05
+    },
+    {
+      "name": "Congo-Uganda",
+      "count": 2,
+      "lat": 0.199,
+      "lon": 29.801,
+      "span": 0.99
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "count": 1,
+      "lat": 1.805,
+      "lon": 8.184,
+      "span": 0
+    },
+    {
+      "name": "southwestern Pakistan",
+      "count": 1,
+      "lat": 25.499,
+      "lon": 63.139,
+      "span": 0
+    },
+    {
+      "name": "NV Earthquake",
+      "count": 1,
+      "lat": 38.169,
+      "lon": -117.85,
+      "span": 0
+    },
+    {
+      "name": "Tuvalu",
+      "count": 1,
+      "lat": -3.62,
+      "lon": 177.542,
+      "span": 0
+    },
+    {
+      "name": "North Carolina",
+      "count": 1,
+      "lat": 36.474,
+      "lon": -81.087,
+      "span": 0
+    },
+    {
+      "name": "Jamaica region",
+      "count": 1,
+      "lat": 18.282,
+      "lon": -77.346,
+      "span": 0
+    },
+    {
+      "name": "Gabon",
+      "count": 9,
+      "lat": -1.084,
+      "lon": 10.203,
+      "span": 0.26
+    },
+    {
+      "name": "Lomonosov Ridge",
+      "count": 2,
+      "lat": 86.15,
+      "lon": 147.044,
+      "span": 6.11
+    },
+    {
+      "name": "New Zealand Earthquake",
+      "count": 1,
+      "lat": -29.723,
+      "lon": -177.279,
+      "span": 0
+    },
+    {
+      "name": "2021 South Sandwich Islands Earthquake",
+      "count": 1,
+      "lat": -58.375,
+      "lon": -25.264,
+      "span": 0
+    },
+    {
+      "name": "Off the coast of Oregon",
+      "count": 2,
+      "lat": 44.05,
+      "lon": -128.911,
+      "span": 0.15
+    },
+    {
+      "name": "north of Honduras",
+      "count": 2,
+      "lat": 16.944,
+      "lon": -85.529,
+      "span": 0.55
+    },
+    {
+      "name": "Peru-Brazil border region",
+      "count": 1,
+      "lat": -9.09,
+      "lon": -71.263,
+      "span": 0
+    },
+    {
+      "name": "Saint Pierre and Miquelon",
+      "count": 1,
+      "lat": 44.564,
+      "lon": -56.021,
+      "span": 0
+    },
+    {
+      "name": "off the south coast of Australia",
+      "count": 2,
+      "lat": -39.521,
+      "lon": 127.941,
+      "span": 5.24
+    },
+    {
+      "name": "21 km NNE of Ta",
+      "count": 1,
+      "lat": -14.052,
+      "lon": -169.459,
+      "span": 0
+    },
+    {
+      "name": "Near the coast of Oman",
+      "count": 1,
+      "lat": 21.134,
+      "lon": 59.531,
+      "span": 0
+    },
+    {
+      "name": "western Uzbekistan",
+      "count": 1,
+      "lat": 40.733,
+      "lon": 63.353,
+      "span": 0
+    },
+    {
+      "name": "Southern Peru",
+      "count": 1,
+      "lat": -17.559,
+      "lon": -70.216,
+      "span": 0
+    },
+    {
+      "name": "Ligurian Sea",
+      "count": 1,
+      "lat": 43.674,
+      "lon": 8.996,
+      "span": 0
+    },
+    {
+      "name": "eastern Sea of Japan",
+      "count": 1,
+      "lat": 44.276,
+      "lon": 140.167,
+      "span": 0
+    },
+    {
+      "name": "western Texas",
+      "count": 1,
+      "lat": 31.634,
+      "lon": -103.988,
+      "span": 0
+    },
+    {
+      "name": "Aegean Sea",
+      "count": 3,
+      "lat": 38.804,
+      "lon": 24.27,
+      "span": 1.01
+    },
+    {
+      "name": "Kyrgyzstan-Xinjiang border region",
+      "count": 2,
+      "lat": 41.81,
+      "lon": 79.701,
+      "span": 0.1
+    },
+    {
+      "name": "western Greenland",
+      "count": 1,
+      "lat": 60.765,
+      "lon": -44.028,
+      "span": 0
+    },
+    {
+      "name": "Near the coast of western Turkey",
+      "count": 1,
+      "lat": 39.413,
+      "lon": 26.2,
+      "span": 0
+    },
+    {
+      "name": "Cape Verde",
+      "count": 1,
+      "lat": 16.615,
+      "lon": -25.619,
+      "span": 0
+    },
+    {
+      "name": "Kahramanmaras earthquake sequence",
+      "count": 2,
+      "lat": 37.618,
+      "lon": 37.105,
+      "span": 0.4
+    },
+    {
+      "name": "Turkey-Syria border region",
+      "count": 3,
+      "lat": 36.74,
+      "lon": 36.473,
+      "span": 0.57
+    },
+    {
+      "name": "Lake Almanor Earthquake",
+      "count": 1,
+      "lat": 40.204,
+      "lon": -121.11,
+      "span": 0
+    },
+    {
+      "name": "Panama-Colombia border region",
+      "count": 1,
+      "lat": 8.774,
+      "lon": -77.178,
+      "span": 0
+    },
+    {
+      "name": "southeastern China",
+      "count": 1,
+      "lat": 20.889,
+      "lon": 108.97,
+      "span": 0
+    },
+    {
+      "name": "near the north coast of Colombia",
+      "count": 1,
+      "lat": 9.082,
+      "lon": -76.63,
+      "span": 0
+    },
+    {
+      "name": "North of the Virgin Islands",
+      "count": 1,
+      "lat": 20.169,
+      "lon": -64.194,
+      "span": 0
+    },
+    {
+      "name": "Slovakia",
+      "count": 1,
+      "lat": 49.095,
+      "lon": 21.788,
+      "span": 0
+    },
+    {
+      "name": "Japan Earthquake",
+      "count": 4,
+      "lat": 35.8,
+      "lon": 135.172,
+      "span": 7.56
+    },
+    {
+      "name": "New Jersey Earthquake",
+      "count": 1,
+      "lat": 40.696,
+      "lon": -74.76,
+      "span": 0
+    },
+    {
+      "name": "Texas Earthquake",
+      "count": 1,
+      "lat": 32.411,
+      "lon": -102.057,
+      "span": 0
+    },
+    {
+      "name": "north of the New Siberian Islands",
+      "count": 1,
+      "lat": 79.994,
+      "lon": 137.096,
+      "span": 0
+    },
+    {
+      "name": "Nevada Earthquake",
+      "count": 1,
+      "lat": 39.167,
+      "lon": -119.024,
+      "span": 0
+    },
+    {
+      "name": "Tibetan Plateau",
+      "count": 2,
+      "lat": 33.433,
+      "lon": 87.092,
+      "span": 0.05
+    },
+    {
+      "name": "2025 Southern Tibetan Plateau Earthquake",
+      "count": 1,
+      "lat": 28.604,
+      "lon": 87.378,
+      "span": 0
+    },
+    {
+      "name": "Southern Tibetan Plateau",
+      "count": 22,
+      "lat": 28.581,
+      "lon": 87.415,
+      "span": 0.34
+    },
+    {
+      "name": "Burma (Myanmar)",
+      "count": 75,
+      "lat": 20.825,
+      "lon": 95.469,
+      "span": 7.47
+    },
+    {
+      "name": "Western Caribbean Sea",
+      "count": 1,
+      "lat": 11.414,
+      "lon": -81.618,
+      "span": 0
+    },
+    {
+      "name": "Burma (Myanmar) Earthquake",
+      "count": 1,
+      "lat": 22.011,
+      "lon": 95.936,
+      "span": 0
+    },
+    {
+      "name": "Burma",
+      "count": 2,
+      "lat": 22.602,
+      "lon": 95.846,
+      "span": 0.17
+    },
+    {
+      "name": "2025 Drake Passage Earthquake",
+      "count": 1,
+      "lat": -56.809,
+      "lon": -68.102,
+      "span": 0
+    },
+    {
+      "name": "Russia Earthquake",
+      "count": 2,
+      "lat": 52.663,
+      "lon": 160.46,
+      "span": 0.21
+    },
+    {
+      "name": "2025 Southern Drake Passage Earthquake",
+      "count": 1,
+      "lat": -60.319,
+      "lon": -61.922,
+      "span": 0
+    },
+    {
+      "name": "2025 Hubbard Glacier Earthquake",
+      "count": 1,
+      "lat": 60.313,
+      "lon": -139.541,
+      "span": 0
+    },
+    {
+      "name": "Taiwan Earthquake",
+      "count": 1,
+      "lat": 22.898,
+      "lon": 121.249,
+      "span": 0
+    },
+    {
+      "name": "Louisiana Earthquake",
+      "count": 1,
+      "lat": 32.061,
+      "lon": -93.413,
+      "span": 0
+    }
+  ],
+  "payload": {
+    "events-a.bin": {
+      "raw": 814193,
+      "gzip": 457423,
+      "brotli": 430655,
+      "events": 62629,
+      "bytesPerEvent": 13
+    },
+    "events-b.bin": {
+      "raw": 2176606,
+      "gzip": 1179010,
+      "brotli": 1120388,
+      "events": 167430,
+      "bytesPerEvent": 13
+    },
+    "slabs.bin": {
+      "raw": 729000,
+      "gzip": 102878,
+      "brotli": 83858
+    },
+    "coast.bin": {
+      "raw": 21064,
+      "gzip": 20348,
+      "brotli": 19731
+    },
+    "total": {
+      "raw": 3740863,
+      "gzip": 1759659,
+      "brotli": 1654632
+    }
+  }
+}
