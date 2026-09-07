@@ -311,6 +311,15 @@ box, actually toggles the input.
 - **Themes:** dusk by default, daylight available; the depth ramp shifts lightness so the same depth
   ordering survives on a pale ground.
 
+## Deployment
+
+Not deployed. `vercel.json` is present and configured (build command, output directory, and
+cache headers that mark the hashed assets immutable while letting the data payload revalidate),
+but publishing this is James's call, not the build's.
+
+The site is entirely static: `vite.config.js` sets `base: './'`, so `dist/` works from any host
+or subpath without further configuration.
+
 ## Repository layout
 
 ```
