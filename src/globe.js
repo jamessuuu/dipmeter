@@ -17,7 +17,10 @@ import { SphereGeometry } from 'three/src/geometries/SphereGeometry.js';
 import { Vector3 } from 'three/src/math/Vector3.js';
 import { Color } from 'three/src/math/Color.js';
 import { Group } from 'three/src/objects/Group.js';
-import { AdditiveBlending, NormalBlending, DoubleSide, BackSide, SRGBColorSpace } from 'three/src/constants.js';
+import {
+  AdditiveBlending, NormalBlending, DoubleSide, BackSide, SRGBColorSpace,
+  NoToneMapping, AgXToneMapping, NeutralToneMapping, ACESFilmicToneMapping,
+} from 'three/src/constants.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { NODATA } from './data.js';
@@ -110,6 +113,30 @@ void main() {
 }
 `;
 
+// Every fragment shader in this file now ends with the same two three.js chunks.
+//
+// This is not decoration. readDepthRamp() converts the OKLCH stops in styles.css to
+// LINEAR sRGB, and these shaders were writing those linear numbers straight into an
+// 8-bit framebuffer the browser reads as sRGB — while depthColorHex(), the CPU twin
+// that paints the legend swatch, the cross section and the tooltip, correctly applied
+// the sRGB transfer function. So the globe and the legend that explains it were a full
+// gamma apart, which is exactly the drift ramp.js opens by promising cannot happen.
+// <colorspace_fragment> closes that gap; <tonemapping_fragment> then rolls off the
+// highlights additive blending pushes past 1.0 instead of clipping them flat.
+// three injects both chunks for ShaderMaterial (unlike RawShaderMaterial), so the whole
+// fix costs these two lines and no library.
+// Guarded by a define rather than hard-wired, so "before" and "after" are the same
+// binary and the comparison in docs/render-ablation.json is a true ablation.
+const OUTPUT_CHUNKS = `
+  #ifdef DIPMETER_OUTPUT_TRANSFORM
+  #include <tonemapping_fragment>
+  #include <colorspace_fragment>
+  #endif
+`;
+
+let OUTPUT_TRANSFORM = true;
+const outputDefines = () => (OUTPUT_TRANSFORM ? { DIPMETER_OUTPUT_TRANSFORM: '' } : {});
+
 const POINT_FRAG = `
 precision highp float;
 varying vec3 vColor;
@@ -120,6 +147,7 @@ void main() {
   if (r2 > 0.25) discard;
   float edge = smoothstep(0.25, 0.06, r2);
   gl_FragColor = vec4(vColor, vAlpha * edge);
+${OUTPUT_CHUNKS}
 }
 `;
 
@@ -169,13 +197,26 @@ void main() {
   // Grazing angles read brighter, which is what makes a dipping plane legible as a plane.
   float rim = 1.0 - vFacing;
   gl_FragColor = vec4(vColor * (0.55 + 0.75 * rim), uOpacity * (0.35 + 0.65 * rim));
+${OUTPUT_CHUNKS}
 }
 `;
+
+const TONE = {
+  none: NoToneMapping, agx: AgXToneMapping, neutral: NeutralToneMapping, aces: ACESFilmicToneMapping,
+};
 
 export function createScene(canvas, options) {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.outputColorSpace = SRGBColorSpace;
+  // Clamped, so a 3x phone display does not pay 9x the fragment cost for a globe made
+  // almost entirely of one-pixel points.
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // There was no tone mapping here at all. Every additive pile-up of hypocentres clipped
+  // hard to flat white, so the densest parts of a slab — the parts with the most events —
+  // carried the least information of anywhere in the frame.
+  renderer.toneMapping = TONE[options.tone] ?? NeutralToneMapping;
+  renderer.toneMappingExposure = options.exposure ?? 1.0;
+  OUTPUT_TRANSFORM = options.outputTransform !== false;
 
   const scene = new Scene();
   const camera = new PerspectiveCamera(38, 1, 0.005, 60);
@@ -206,6 +247,7 @@ export function buildEarthShell(colors) {
   const shell = new Mesh(
     new SphereGeometry(1, 96, 64),
     new ShaderMaterial({
+      defines: outputDefines(),
       transparent: true,
       side: BackSide,
       depthWrite: false,
@@ -224,6 +266,7 @@ export function buildEarthShell(colors) {
         void main() {
           float f = pow(1.0 - abs(dot(normalize(vN), normalize(-vP))), 2.4);
           gl_FragColor = vec4(uColor, f * 0.55);
+        ${OUTPUT_CHUNKS}
         }`,
     })
   );
@@ -234,13 +277,14 @@ export function buildEarthShell(colors) {
   const tz = new Mesh(
     new SphereGeometry(1 - TRANSITION_ZONE_KM / EARTH_RADIUS_KM, 64, 40),
     new ShaderMaterial({
+      defines: outputDefines(),
       transparent: true,
       side: DoubleSide,
       depthWrite: false,
       wireframe: true,
       uniforms: { uColor: { value: new Color(...colors.transition) }, uAlpha: { value: 0.055 } },
       vertexShader: 'void main() { gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-      fragmentShader: 'precision highp float; uniform vec3 uColor; uniform float uAlpha; void main() { gl_FragColor = vec4(uColor, uAlpha); }',
+      fragmentShader: 'precision highp float; uniform vec3 uColor; uniform float uAlpha; void main() { gl_FragColor = vec4(uColor, uAlpha);' + OUTPUT_CHUNKS + '}',
     })
   );
   tz.name = 'transitionZone';
@@ -297,6 +341,7 @@ export function buildPoints(events, ramp, assignedColor, reducedMotion, additive
   geom.computeBoundingSphere();
 
   const mat = new ShaderMaterial({
+    defines: outputDefines(),
     vertexShader: POINT_VERT,
     fragmentShader: POINT_FRAG,
     transparent: true,
@@ -327,6 +372,15 @@ export function buildPoints(events, ramp, assignedColor, reducedMotion, additive
 
 // Walks each zone's decimated grid and emits two triangles per cell, but ONLY where all four
 // corners carry a modelled depth. A slab edge is therefore a real edge: nothing is bridged.
+// A world-space key light on the slab surfaces was built and ablated on 2026-09-07, on
+// the theory that a real directional term would show which way a slab dips where the
+// view-dependent abs(n.z) rim cannot. Measured against the same frame with the light off:
+// mean absolute difference 1.343 of 255, with NOT ONE pixel changing by more than 32.
+// The slabs are thin, near-tangent, translucent sheets seen through a shell, so a
+// directional term across them is swamped by the grazing-angle rim they already have and
+// by the depth colour, which is the channel that actually carries dip. Rejected: for
+// reference, the hyperreal-lab report rejected N8AO at 4.66/255, three and a half times
+// larger. Numbers in docs/render-ablation.json.
 export function buildSlabs(zones, ramp) {
   const positions = [];
   const depths = [];
@@ -371,6 +425,7 @@ export function buildSlabs(zones, ramp) {
   geom.computeBoundingSphere();
 
   const mat = new ShaderMaterial({
+    defines: outputDefines(),
     vertexShader: SLAB_VERT,
     fragmentShader: SLAB_FRAG,
     transparent: true,

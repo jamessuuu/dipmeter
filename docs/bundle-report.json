@@ -1,7 +1,13 @@
 {
-  "measuredAt": "2026-09-07T04:28:05.628Z",
+  "measuredAt": "2026-09-07T06:53:28.839Z",
   "shell": {
     "files": [
+      {
+        "file": "assets/index-CF-vaLRV.js",
+        "raw": 661139,
+        "gzip": 167905,
+        "brotli": 124084
+      },
       {
         "file": "assets/index-DVBbcbBm.css",
         "raw": 16866,
@@ -9,28 +15,22 @@
         "brotli": 3675
       },
       {
-        "file": "assets/index-uVlKF8mf.js",
-        "raw": 660419,
-        "gzip": 167576,
-        "brotli": 123880
-      },
-      {
         "file": "index.html",
         "raw": 253232,
-        "gzip": 34570,
-        "brotli": 27596
+        "gzip": 34571,
+        "brotli": 27572
       }
     ],
     "total": {
-      "raw": 930517,
-      "gzip": 206364,
-      "brotli": 155151
+      "raw": 931237,
+      "gzip": 206694,
+      "brotli": 155331
     },
     "javascript": {
-      "file": "assets/index-uVlKF8mf.js",
-      "raw": 660419,
-      "gzip": 167576,
-      "brotli": 123880
+      "file": "assets/index-CF-vaLRV.js",
+      "raw": 661139,
+      "gzip": 167905,
+      "brotli": 124084
     },
     "css": {
       "file": "assets/index-DVBbcbBm.css",
@@ -41,8 +41,8 @@
     "html": {
       "file": "index.html",
       "raw": 253232,
-      "gzip": 34570,
-      "brotli": 27596
+      "gzip": 34571,
+      "brotli": 27572
     }
   },
   "payload": {
@@ -146,7 +146,7 @@
       "from": "three/src/objects/Group.js"
     },
     {
-      "names": "AdditiveBlending, NormalBlending, DoubleSide, BackSide, SRGBColorSpace",
+      "names": "AdditiveBlending, NormalBlending, DoubleSide, BackSide, SRGBColorSpace,\n  NoToneMapping, AgXToneMapping, NeutralToneMapping, ACESFilmicToneMapping,",
       "from": "three/src/constants.js"
     },
     {
@@ -155,22 +155,22 @@
     }
   ],
   "threeOnly": {
-    "raw": 625520,
-    "gzip": 156313,
-    "brotli": 113599
+    "raw": 625529,
+    "gzip": 156321,
+    "brotli": 113572
   },
   "application": {
-    "raw": 34899,
-    "gzip": 11263,
-    "brotli": 10281,
+    "raw": 35610,
+    "gzip": 11584,
+    "brotli": 10512,
     "note": "Shipped bundle minus a three.js-only bundle built by the same bundler and minifier. Approximate: minifiers share strings across the whole graph."
   },
   "budget": {
     "statedGzipBudgetBytes": 168960,
     "source": "SLATE-3D-DATASET.md section 5.1: about 138 KB of three.js plus about 27 KB of application.",
-    "javascriptGzip": 167576,
+    "javascriptGzip": 167905,
     "withinBudget": true,
-    "deltaBytes": -1384
+    "deltaBytes": -1055
   },
   "reference": {
     "url": "https://human-atlas-seven.vercel.app/",
@@ -192,9 +192,9 @@
   "comparison": {
     "javascript": {
       "dipmeter": {
-        "raw": 660419,
-        "gzip": 167576,
-        "brotli": 123880
+        "raw": 661139,
+        "gzip": 167905,
+        "brotli": 124084
       },
       "reference": {
         "raw": 916370,
@@ -202,13 +202,13 @@
         "brotli": 218188
       },
       "rawPctVsReference": -27.9,
-      "gzipPctVsReference": -35.8
+      "gzipPctVsReference": -35.7
     },
     "shell": {
       "dipmeter": {
-        "raw": 930517,
-        "gzip": 206364,
-        "brotli": 155151
+        "raw": 931237,
+        "gzip": 206694,
+        "brotli": 155331
       },
       "reference": {
         "raw": 1113585,
@@ -216,8 +216,8 @@
         "brotli": 243784
       },
       "rawPctVsReference": -16.4,
-      "gzipPctVsReference": -29.4,
-      "brotliPctVsReference": -36.4
+      "gzipPctVsReference": -29.3,
+      "brotliPctVsReference": -36.3
     }
   }
 }

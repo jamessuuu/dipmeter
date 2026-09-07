@@ -1,0 +1,17 @@
+# The Vercel CLI uploads the project directory, not the build output, and it
+# does not honour .gitignore for this. Without this file the deploy tries to
+# push data/ (350 MB of raw USGS ComCat and Slab2 source) and fails on the
+# 100 MB limit, even though dist/ is 4.6 MB.
+#
+# NOTE: the pattern is root-anchored (/data/). A bare data/ matches ANY
+# directory of that name at any depth, which excluded the BUILT dist/data/
+# too and shipped a site whose globe 404d on manifest.json.
+#
+# The raw sources stay reproducible from scripts/fetch.sh plus the recorded
+# sha256 in data/audit.json; they are inputs to the build, never served.
+/data/
+node_modules/
+docs/
+.git/
+*.zip
+*.grd

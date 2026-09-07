@@ -85,7 +85,17 @@ async function boot() {
   const referenceColor = readColor('--reference', [0.52, 0.02, 255]);
 
   setProgress(0.6, 'Building the scene');
-  scene = createScene(canvas, { reducedMotion });
+  // Render-pipeline ablation switches. Defaults are the shipped configuration;
+  // scripts/render-ablation.mjs drives these so every rendering claim is measured on
+  // the code that actually ships, one variable at a time.
+  const q = new URLSearchParams(location.search);
+  const renderOpts = {
+    reducedMotion,
+    tone: q.get('tone') || undefined,
+    exposure: q.has('exposure') ? Number(q.get('exposure')) : undefined,
+    outputTransform: q.get('output') !== '0',
+  };
+  scene = createScene(canvas, renderOpts);
   scene.controls.addEventListener('change', () => { needsRender = true; });
 
   scene.root.add(buildEarthShell({ shell: shellColor, transition: referenceColor }));
@@ -129,6 +139,16 @@ async function boot() {
   // Anything downstream reads these; exposed for the screenshot harness and for anyone who
   // wants to check the page's arithmetic in a console rather than trusting the caption.
   window.__dipmeter = {
+    // Exposed so the render harness can drive a GPU timer around the real render call
+    // rather than timing a wrapper that might not be drawing anything.
+    renderer: scene.renderer,
+    scene: scene.scene,
+    camera: scene.camera,
+    render: () => scene.renderer.render(scene.scene, scene.camera),
+    // The linear-sRGB depth ramp and its CPU-side twin, so a harness can check that the
+    // globe and the legend agree instead of taking ramp.js's word for it.
+    ramp: () => ramp,
+    depthColorHex: (km) => depthColorHex(km, ramp),
     manifest,
     counts: () => visibleCount(),
     triangles: slabs.triangles,

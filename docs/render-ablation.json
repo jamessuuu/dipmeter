@@ -1,0 +1,469 @@
+{
+  "measuredAt": "2026-09-07T06:51:40.273Z",
+  "base": "http://localhost:4317",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "cases": [
+    {
+      "id": "00-before",
+      "query": "output=0&tone=none",
+      "note": "The pipeline as shipped before this change: the custom shaders wrote linear-sRGB values straight into an sRGB framebuffer, and there was no tone mapping anywhere.",
+      "gpuMs": {
+        "samples": 140,
+        "medianMs": 0.4868,
+        "p95Ms": 0.4958,
+        "method": "EXT_disjoint_timer_query_webgl2 TIME_ELAPSED around renderer.render()"
+      },
+      "gpu": {
+        "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "drawingBuffer": [
+          1440,
+          900
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "pixelRatio": 1.0000000149011612
+      },
+      "legendAgreement": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            243,
+            94,
+            30
+          ],
+          "hueErrorDeg": 1.59
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            139,
+            69,
+            218
+          ],
+          "hueErrorDeg": 3.54
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            46,
+            182,
+            242
+          ],
+          "hueErrorDeg": 1.17
+        }
+      ],
+      "meanHueErrorDeg": 2.1,
+      "isolatedPointVsLegend": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            223,
+            63,
+            16
+          ],
+          "oklabDistance": 0.1396
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            86,
+            40,
+            158
+          ],
+          "oklabDistance": 0.2725
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            29,
+            124,
+            196
+          ],
+          "oklabDistance": 0.1771
+        }
+      ],
+      "meanIsolatedOklabDistance": 0.1964,
+      "clippedFractionOfDataPixels": 0.0885,
+      "oklabSeparation": 0.3162,
+      "errors": [],
+      "shot": "docs/ablation/00-before.png"
+    },
+    {
+      "id": "01-colorspace",
+      "query": "output=1&tone=none",
+      "note": "The output colour transform restored in the custom shaders. Nothing else.",
+      "gpuMs": {
+        "samples": 140,
+        "medianMs": 0.4896,
+        "p95Ms": 0.4989,
+        "method": "EXT_disjoint_timer_query_webgl2 TIME_ELAPSED around renderer.render()"
+      },
+      "gpu": {
+        "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "drawingBuffer": [
+          1440,
+          900
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "pixelRatio": 1.0000000149011612
+      },
+      "legendAgreement": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            214,
+            124,
+            70
+          ],
+          "hueErrorDeg": 8.39
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            147,
+            106,
+            188
+          ],
+          "hueErrorDeg": 1.35
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            94,
+            185,
+            214
+          ],
+          "hueErrorDeg": 13.09
+        }
+      ],
+      "meanHueErrorDeg": 7.61,
+      "isolatedPointVsLegend": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            216,
+            126,
+            65
+          ],
+          "oklabDistance": 0.071
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            137,
+            96,
+            180
+          ],
+          "oklabDistance": 0.1172
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            77,
+            161,
+            196
+          ],
+          "oklabDistance": 0.0748
+        }
+      ],
+      "meanIsolatedOklabDistance": 0.0877,
+      "clippedFractionOfDataPixels": 0.0887,
+      "oklabSeparation": 0.2213,
+      "errors": [],
+      "shot": "docs/ablation/01-colorspace.png"
+    },
+    {
+      "id": "02-shipped",
+      "query": "",
+      "note": "Shipped: colour transform + Khronos PBR Neutral tone mapping at exposure 1.0.",
+      "gpuMs": {
+        "samples": 140,
+        "medianMs": 0.4973,
+        "p95Ms": 0.5057,
+        "method": "EXT_disjoint_timer_query_webgl2 TIME_ELAPSED around renderer.render()"
+      },
+      "gpu": {
+        "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "drawingBuffer": [
+          1440,
+          900
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "pixelRatio": 1.0000000149011612
+      },
+      "legendAgreement": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            214,
+            127,
+            59
+          ],
+          "hueErrorDeg": 14
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            143,
+            98,
+            186
+          ],
+          "hueErrorDeg": 1.85
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            81,
+            193,
+            220
+          ],
+          "hueErrorDeg": 17.65
+        }
+      ],
+      "meanHueErrorDeg": 11.17,
+      "isolatedPointVsLegend": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            210,
+            118,
+            50
+          ],
+          "oklabDistance": 0.0881
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            131,
+            87,
+            176
+          ],
+          "oklabDistance": 0.1393
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            63,
+            161,
+            196
+          ],
+          "oklabDistance": 0.0799
+        }
+      ],
+      "meanIsolatedOklabDistance": 0.1024,
+      "clippedFractionOfDataPixels": 0.0873,
+      "oklabSeparation": 0.2476,
+      "errors": [],
+      "shot": "docs/ablation/02-shipped.png"
+    },
+    {
+      "id": "03-agx",
+      "query": "tone=agx",
+      "note": "AgX instead of Neutral, to show why a data page cannot use it.",
+      "gpuMs": {
+        "samples": 140,
+        "medianMs": 0.5087,
+        "p95Ms": 0.5173,
+        "method": "EXT_disjoint_timer_query_webgl2 TIME_ELAPSED around renderer.render()"
+      },
+      "gpu": {
+        "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "drawingBuffer": [
+          1440,
+          900
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "pixelRatio": 1.0000000149011612
+      },
+      "legendAgreement": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            188,
+            137,
+            105
+          ],
+          "hueErrorDeg": 11.76
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            145,
+            128,
+            169
+          ],
+          "hueErrorDeg": 1.43
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            137,
+            184,
+            200
+          ],
+          "hueErrorDeg": 13.21
+        }
+      ],
+      "meanHueErrorDeg": 8.8,
+      "isolatedPointVsLegend": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            193,
+            140,
+            106
+          ],
+          "oklabDistance": 0.1052
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            130,
+            114,
+            154
+          ],
+          "oklabDistance": 0.1374
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            117,
+            161,
+            178
+          ],
+          "oklabDistance": 0.0835
+        }
+      ],
+      "meanIsolatedOklabDistance": 0.1087,
+      "clippedFractionOfDataPixels": 0.0831,
+      "oklabSeparation": 0.1424,
+      "errors": [],
+      "shot": "docs/ablation/03-agx.png"
+    },
+    {
+      "id": "04-aces",
+      "query": "tone=aces",
+      "note": "ACES Filmic, for completeness.",
+      "gpuMs": {
+        "samples": 140,
+        "medianMs": 0.497,
+        "p95Ms": 0.5078,
+        "method": "EXT_disjoint_timer_query_webgl2 TIME_ELAPSED around renderer.render()"
+      },
+      "gpu": {
+        "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "drawingBuffer": [
+          1440,
+          900
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "pixelRatio": 1.0000000149011612
+      },
+      "legendAgreement": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            205,
+            145,
+            84
+          ],
+          "hueErrorDeg": 23.01
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            161,
+            121,
+            181
+          ],
+          "hueErrorDeg": 9.44
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            123,
+            182,
+            198
+          ],
+          "hueErrorDeg": 18.29
+        }
+      ],
+      "meanHueErrorDeg": 16.91,
+      "isolatedPointVsLegend": [
+        {
+          "band": "0-30 km",
+          "legend": "#ff7f4b",
+          "renderedRgb": [
+            207,
+            148,
+            80
+          ],
+          "oklabDistance": 0.0897
+        },
+        {
+          "band": "280-330 km",
+          "legend": "#af7de6",
+          "renderedRgb": [
+            148,
+            109,
+            170
+          ],
+          "oklabDistance": 0.1037
+        },
+        {
+          "band": "560-660 km",
+          "legend": "#5eb7e7",
+          "renderedRgb": [
+            111,
+            170,
+            187
+          ],
+          "oklabDistance": 0.0643
+        }
+      ],
+      "meanIsolatedOklabDistance": 0.0859,
+      "clippedFractionOfDataPixels": 0.0862,
+      "oklabSeparation": 0.1721,
+      "errors": [],
+      "shot": "docs/ablation/04-aces.png"
+    }
+  ],
+  "gpu": {
+    "renderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "drawingBuffer": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1.0000000149011612,
+    "pixelRatio": 1.0000000149011612
+  }
+}

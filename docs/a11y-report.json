@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-07T04:41:21.080Z",
+  "ranAt": "2026-09-07T06:54:57.206Z",
   "base": "http://localhost:4317/",
   "failures": 0,
   "results": [
@@ -252,7 +252,7 @@
     {
       "ok": true,
       "label": "the arrow keys move the camera",
-      "detail": "1099376020 -> 185105700"
+      "detail": "757328315 -> 2490030994"
     },
     {
       "ok": true,

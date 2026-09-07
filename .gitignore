@@ -13,3 +13,5 @@ data/raw/slab2-nodes/
 data/raw/comcat/
 data/raw/comcat-m45-1990-2026.csv
 data/raw/*.log
+
+.vercel

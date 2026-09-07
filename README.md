@@ -177,6 +177,84 @@ are.
 
 ---
 
+## What the globe is actually doing
+
+`src/ramp.js` opens by promising that the legend swatch and the 230,059 points on the globe
+"can never drift apart", because both are derived from the same four OKLCH stops in
+`styles.css`. Until 2026-09-07 they drifted by a full gamma, and the promise was false.
+
+`readDepthRamp()` converts those stops to **linear** sRGB and hands them to the shader
+uniforms. The custom shaders then wrote those linear numbers straight into an 8-bit
+framebuffer the browser reads as sRGB. Meanwhile `depthColorHex()`, the CPU twin that paints
+the legend swatch, the cross section and the tooltip, correctly applied the sRGB transfer
+function. Same stops, two different transfer functions, one page.
+
+Worse, the inconsistency was *inside* the frame: `LineBasicMaterial` — the coastlines — is a
+built-in three.js material and did get the transfer function applied. The coastlines were on
+one curve and the data was on another.
+
+The fix is two lines per fragment shader. three injects `tonemapping_pars_fragment`,
+`colorspace_pars_fragment` and `linearToOutputTexel()` into every `ShaderMaterial` (unlike
+`RawShaderMaterial`), so `#include <tonemapping_fragment>` and `#include
+<colorspace_fragment>` were already available and cost no library and **329 B gzip**. The
+renderer also had `NoToneMapping`, three's default, so it now runs Khronos PBR Neutral at a
+deliberate exposure of 1.0.
+
+### Measured, not asserted
+
+`npx vite preview --port 4317 && node scripts/render-ablation.mjs`, at 1440x900, DPR 1, from
+a fixed camera, writing `docs/render-ablation.json`. GPU time is
+`EXT_disjoint_timer_query_webgl2` around the real `renderer.render()` call, and the run
+refuses to report if the browser fell back to a software rasteriser.
+
+*Legend agreement* is the OKLab distance between an **isolated** hypocentre as rendered
+(M6.5 and above, so single splats rather than stacks) and the legend swatch that claims to
+explain it. Lower is better. *Band separation* is the mean OKLab distance between the three
+depth bands as rendered; higher is a more distinguishable encoding.
+
+| Configuration | Legend agreement | Band separation | GPU ms |
+|---|---:|---:|---:|
+| Before this change | 0.1964 | 0.3162 | 0.486 |
+| Output colour transform only | 0.0877 | 0.2213 | 0.490 |
+| **Shipped: transform + Neutral, exposure 1.0** | **0.1024** | **0.2476** | **0.497** |
+| AgX instead of Neutral | 0.1087 | 0.1424 | 0.509 |
+| ACES Filmic | 0.0859 | 0.1721 | 0.497 |
+
+The honest reading, including the part that is a cost rather than a win:
+
+- **The globe now agrees with its own legend about twice as closely** (0.1964 to 0.1024).
+  That is the defect that mattered, and in the daylight palette — which blends normally
+  rather than additively, so nothing was masking the error — the difference is not subtle:
+  shallow events were a muddy brick red and are now the vivid orange the legend shows,
+  and the Kermadec-Tonga deep slab is now unmistakably blue instead of dark navy.
+- **Measured band separation drops by 22 %, and the dusk palette does look less punchy.**
+  That is real and it is the price. The old number was inflated for a bad reason: writing
+  linear values into an sRGB framebuffer pushes every colour toward the gamut edge, which
+  looks vivid and is exactly why the globe and the legend disagreed. 0.2476 in OKLab is
+  still more than ten times a just-noticeable difference.
+- **AgX and ACES are both disqualified**, by a wide margin, on a page where colour carries
+  the data rather than a look. Neutral is named for this.
+- Total cost: **329 B gzip and 0.011 ms.**
+
+### What was built, measured, and thrown away
+
+- **A world-space key light on the 27 slab surfaces**, on the theory that a real directional
+  term would show which way a slab dips where the view-dependent `abs(n.z)` rim cannot —
+  including the `gl_FrontFacing` flip a `DoubleSide` sheet needs. Measured against the same
+  frame with it off: **mean absolute difference 1.343 of 255, and not one pixel changed by
+  more than 32.** The slabs are thin, near-tangent, translucent sheets seen through a shell,
+  so a directional term across them is swamped by the grazing-angle rim they already have and
+  by the depth colour, which is the channel that actually carries dip. Removed. For scale,
+  the reference report rejected an ambient-occlusion library at 4.66/255.
+- **Refraction and transmission on the Earth shell.** Not attempted, on the reference
+  report's evidence: in its own build the refracted data points read as confetti and were
+  *less* legible than the flat version. A transparent shell that puts reflections between the
+  reader and the hypocentres is a downgrade dressed as an upgrade.
+- **A key light with a shadow map, an ambient fill and IBL from a 1k CC0 HDRI.** Cost
+  measured by building it: **+6,119 B gzip** (167,905 to 174,024) plus a 1.6 MB HDRI
+  download, for zero pixels — every material in `src/globe.js` is a `ShaderMaterial`, which
+  three's lighting model and `scene.environment` never touch.
+
 ## Measured sizes
 
 Run `npm run build && npm run measure`. Written to [`docs/bundle-report.json`](docs/bundle-report.json).
@@ -185,15 +263,19 @@ Run `npm run build && npm run measure`. Written to [`docs/bundle-report.json`](d
 
 | File | Raw | Gzip | Brotli |
 |---|---:|---:|---:|
-| `assets/index.js` | 660,419 | **167,576** | 123,880 |
+| `assets/index.js` | 661,139 | **167,905** | 124,084 |
 | `assets/index.css` | 16,866 | 4,218 | 3,675 |
-| `index.html` | 253,232 | 34,570 | 27,596 |
-| **Shell total** | **930,517** | **206,364** | **155,151** |
+| `index.html` | 253,232 | 34,571 | 27,572 |
+| **Shell total** | **931,237** | **206,694** | **155,331** |
 
-Of the JavaScript, **625,520 B raw / 156,313 B gzip is three.js** and **34,899 B raw / 11,263 B gzip
+Of the JavaScript, **625,529 B raw / 156,321 B gzip is three.js** and **35,610 B raw / 11,584 B gzip
 is application code**, measured by building a probe that imports exactly the classes `src/globe.js`
 imports, through the same bundler and minifier. The stated budget was 165 KiB gzip for JavaScript;
-the bundle is **1,384 B under it**.
+the bundle is **1,055 B under it**.
+
+The colour pipeline described in "What the globe is actually doing" costs **329 B gzip** of that
+total (167,576 B to 167,905 B), which is the whole price of the rendering work done on
+2026-09-07.
 
 `index.html` is 253 KB raw because it carries the entire no-JavaScript fallback as served markup:
 2,377 SVG marks, every facet table, and the complete 594-region search index.
@@ -218,11 +300,11 @@ Tier A paints first; tier B streams in behind it.
 
 | | Reference | dipmeter | Difference |
 |---|---:|---:|---:|
-| JavaScript, raw | 916,370 | 660,419 | **−27.9%** |
-| JavaScript, gzip | 260,993 | 167,576 | **−35.8%** |
-| Shell total, raw | 1,113,585 | 930,517 | **−16.4%** |
-| Shell total, gzip | 292,274 | 206,364 | **−29.4%** |
-| Shell total, brotli | 243,784 | 155,151 | **−36.4%** |
+| JavaScript, raw | 916,370 | 661,139 | **−27.9%** |
+| JavaScript, gzip | 260,993 | 167,905 | **−35.7%** |
+| Shell total, raw | 1,113,585 | 931,237 | **−16.4%** |
+| Shell total, gzip | 292,274 | 206,694 | **−29.3%** |
+| Shell total, brotli | 243,784 | 155,331 | **−36.3%** |
 
 The brief quoted 260,791 B gzip for the reference's JavaScript; measured here it is 260,993 B. The
 202-byte gap is compressor settings, and it is exactly why the comparison is re-measured rather than

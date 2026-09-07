@@ -1,9 +1,9 @@
 {
-  "capturedAt": "2026-09-07T04:41:21.751Z",
+  "capturedAt": "2026-09-07T06:55:23.966Z",
   "base": "http://localhost:4317/",
   "buildFreshness": {
-    "srcMtime": "2026-09-07T04:26:32.745Z",
-    "distMtime": "2026-09-07T04:38:49.765Z"
+    "srcMtime": "2026-09-07T06:53:03.892Z",
+    "distMtime": "2026-09-07T06:53:07.096Z"
   },
   "shots": [
     {
@@ -15,15 +15,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop.png",
-      "bytes": 851407,
+      "bytes": 951551,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 21.17,
-        "stdDev": 26.31,
-        "distinctColours": 3024,
-        "commonestColourShare": 0.2321
+        "mean": 25.28,
+        "stdDev": 32.558,
+        "distinctColours": 2553,
+        "commonestColourShare": 0.2474
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
@@ -40,15 +40,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-section.png",
-      "bytes": 883148,
+      "bytes": 950994,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 26.99,
-        "stdDev": 32.382,
-        "distinctColours": 4310,
-        "commonestColourShare": 0.2791
+        "mean": 32.87,
+        "stdDev": 41.32,
+        "distinctColours": 3483,
+        "commonestColourShare": 0.2917
       },
       "section": {
         "note": "4,532 events within 150 km of a 989 km section, with 1 Slab2 surface crossing it. Depth axis to 750 km. Vertical scale is 0.66 times the horizontal, so the plane is drawn shallower than its true dip.",
@@ -65,15 +65,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-deep.png",
-      "bytes": 692683,
+      "bytes": 773135,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 21.05,
-        "stdDev": 23.676,
-        "distinctColours": 2003,
-        "commonestColourShare": 0.236
+        "mean": 25.54,
+        "stdDev": 29.112,
+        "distinctColours": 1978,
+        "commonestColourShare": 0.2472
       },
       "visibleCount": "11,298",
       "rendered": true
@@ -87,14 +87,14 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-daylight.png",
-      "bytes": 1061223,
+      "bytes": 1049263,
       "canvas": {
         "pixels": 144000,
         "imageWidth": 1440,
         "imageHeight": 900,
-        "mean": 217.09,
-        "stdDev": 49.638,
-        "distinctColours": 1919,
+        "mean": 223.14,
+        "stdDev": 37.988,
+        "distinctColours": 2204,
         "commonestColourShare": 0.2253
       },
       "rendered": true
@@ -108,15 +108,15 @@
         "dpr": 1
       },
       "file": "docs/shots/desktop-wide.png",
-      "bytes": 1195925,
+      "bytes": 1349758,
       "canvas": {
         "pixels": 129600,
         "imageWidth": 1920,
         "imageHeight": 1080,
-        "mean": 17.97,
-        "stdDev": 21.89,
-        "distinctColours": 2443,
-        "commonestColourShare": 0.3216
+        "mean": 21.56,
+        "stdDev": 28.001,
+        "distinctColours": 2198,
+        "commonestColourShare": 0.2284
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
@@ -133,15 +133,15 @@
         "dpr": 2
       },
       "file": "docs/shots/mobile.png",
-      "bytes": 865222,
+      "bytes": 947627,
       "canvas": {
         "pixels": 498720,
         "imageWidth": 780,
         "imageHeight": 1688,
-        "mean": 27.32,
-        "stdDev": 39.057,
-        "distinctColours": 7008,
-        "commonestColourShare": 0.2269
+        "mean": 32.14,
+        "stdDev": 46.22,
+        "distinctColours": 5311,
+        "commonestColourShare": 0.1925
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
@@ -158,15 +158,15 @@
         "dpr": 1
       },
       "file": "docs/shots/tablet.png",
-      "bytes": 720629,
+      "bytes": 815846,
       "canvas": {
         "pixels": 331680,
         "imageWidth": 820,
         "imageHeight": 1180,
-        "mean": 22.1,
-        "stdDev": 28.192,
-        "distinctColours": 5249,
-        "commonestColourShare": 0.1915
+        "mean": 27.5,
+        "stdDev": 36.402,
+        "distinctColours": 4398,
+        "commonestColourShare": 0.1713
       },
       "headline": {
         "headline": "230,059 located hypocentresagainst 27 modelled slabs",
